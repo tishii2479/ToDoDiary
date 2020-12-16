@@ -11,7 +11,8 @@ import SwiftUI
 struct ToDoDiaryApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainView()
+                .colorScheme(.dark)
         }
     }
 }
