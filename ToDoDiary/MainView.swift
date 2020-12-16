@@ -11,8 +11,8 @@ struct MainView: View {
     var body: some View {
         ZStack {
             CurrentView()
-            TabBar()
             NavigationBar()
+            TabBar()
         }
     }
 }
@@ -20,6 +20,6 @@ struct MainView: View {
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
-            .colorScheme(.dark)
+            .colorScheme(.light)
     }
 }

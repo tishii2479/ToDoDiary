@@ -12,10 +12,10 @@ struct TabBar: View {
         VStack {
             Spacer()
             
-            Color("MainColor")
+            Color("Main")
                 .edgesIgnoringSafeArea(.bottom)
                 .frame(height: 70)
-                .shadow(color: Color.black, radius: 5, x: 0, y: -5)
+                .shadow(color: Color("Shadow"), radius: 5, x: 0, y: -5)
         }
     }
 }

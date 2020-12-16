@@ -16,6 +16,7 @@
 		491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316ED258A419600CF2B6C /* NavigationBar.swift */; };
 		491316F3258A425600CF2B6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316F2258A425600CF2B6C /* MainView.swift */; };
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
+		49131701258A43EB00CF2B6C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* MonthlyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		491316ED258A419600CF2B6C /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		491316F2258A425600CF2B6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
+		49131700258A43EB00CF2B6C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 		491316FF258A43B800CF2B6C /* Monthly */ = {
 			isa = PBXGroup;
 			children = (
+				49131700258A43EB00CF2B6C /* MonthlyView.swift */,
 			);
 			path = Monthly;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49131701258A43EB00CF2B6C /* MonthlyView.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
 				490D02812588B42F00A2F038 /* ToDoDiaryApp.swift in Sources */,
 				491316F3258A425600CF2B6C /* MainView.swift in Sources */,
