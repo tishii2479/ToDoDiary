@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct CalendarCell: View {
-    var index: Int = 0
+    var date: Date
+    
+    init (index: Int) {
+        self.date = CalendarManager.shared.getDateFromIndex(index: index)
+    }
     
     var body: some View {
         VStack {
             HStack {
-                Text("\(index)")
+                Text("\(CalendarManager.shared.formatForCalendar(date: self.date))")
                     .font(.callout)
                     .padding(5)
                 Spacer()
@@ -21,13 +25,21 @@ struct CalendarCell: View {
             Spacer()
         }
         .frame(width: 60, height: 140)
-        .background(ColorManager.calendar1)
+        .background(
+            Group {
+                if (CalendarManager.shared.isOddMonth(date: self.date)) {
+                    ColorManager.calendar1
+                } else {
+                    ColorManager.calendar2
+                }
+            }
+        )
         .border(ColorManager.calendarBorder, width: 1)
     }
 }
 
 struct CalendarCell_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarCell()
+        CalendarCell(index: 0)
     }
 }

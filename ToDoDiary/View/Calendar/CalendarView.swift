@@ -13,11 +13,21 @@ struct CalendarView: View {
             ColorManager.back
                 .edgesIgnoringSafeArea(.all)
             
-            ScrollView {
-                LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0, pinnedViews: .sectionHeaders) {
-                    Section(header: DayBar()) {
-                        ForEach((1...30), id: \.self) { index in
-                            CalendarCell(index: index)
+            ScrollViewReader { (proxy: ScrollViewProxy) in
+                ZStack {
+                    ScrollView {
+                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0, pinnedViews: .sectionHeaders) {
+                            Section(header: DayBar()) {
+                                ForEach((-100...100), id: \.self) { index in
+                                    CalendarCell(index: index)
+                                }
+                            }
+                        }
+                    }
+                    
+                    Button("Scroll to bottom") {
+                        withAnimation {
+                            proxy.scrollTo(0, anchor: .center)
                         }
                     }
                 }

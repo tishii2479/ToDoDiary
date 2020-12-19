@@ -20,6 +20,7 @@
 		49131706258A58DD00CF2B6C /* DayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131705258A58DD00CF2B6C /* DayBar.swift */; };
 		49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83939258DA19D00BA9AA6 /* ColorManager.swift */; };
 		49D8393F258DA1B400BA9AA6 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D8393E258DA1B400BA9AA6 /* Color.xcassets */; };
+		49D83947258DAEEF00BA9AA6 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */; };
 		49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD8BA0258DA07D005219C5 /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		49131705258A58DD00CF2B6C /* DayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBar.swift; sourceTree = "<group>"; };
 		49D83939258DA19D00BA9AA6 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		49D8393E258DA1B400BA9AA6 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		49FD8BA0258DA07D005219C5 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -182,6 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				49D83939258DA19D00BA9AA6 /* ColorManager.swift */,
+				49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */,
 				491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */,
 				49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */,
+				49D83947258DAEEF00BA9AA6 /* CalendarManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
