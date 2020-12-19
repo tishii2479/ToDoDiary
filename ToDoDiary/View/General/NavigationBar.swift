@@ -9,14 +9,20 @@ import SwiftUI
 
 struct NavigationBar: View {
     var body: some View {
-        VStack {
-            Color("Main")
+        ZStack {
+            ColorManager.main
                 .edgesIgnoringSafeArea(.top)
-                .frame(height: 60)
-                .shadow(color: Color("Shadow"), radius: 5, x: 0, y: 5)
-            
-            Spacer()
+        
+            HStack {
+                Text("2021/1")
+                    .font(.largeTitle)
+                    .padding(.leading, 10)
+                Spacer()
+            }
         }
+        .frame(height: 60)
+        .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
+        .zIndex(1)
     }
 }
 

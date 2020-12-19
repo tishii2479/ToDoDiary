@@ -16,7 +16,11 @@
 		491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316ED258A419600CF2B6C /* NavigationBar.swift */; };
 		491316F3258A425600CF2B6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316F2258A425600CF2B6C /* MainView.swift */; };
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
-		49131701258A43EB00CF2B6C /* MonthlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* MonthlyView.swift */; };
+		49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* CalendarView.swift */; };
+		49131706258A58DD00CF2B6C /* DayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131705258A58DD00CF2B6C /* DayBar.swift */; };
+		49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83939258DA19D00BA9AA6 /* ColorManager.swift */; };
+		49D8393F258DA1B400BA9AA6 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D8393E258DA1B400BA9AA6 /* Color.xcassets */; };
+		49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD8BA0258DA07D005219C5 /* CalendarCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +56,11 @@
 		491316ED258A419600CF2B6C /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		491316F2258A425600CF2B6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
-		49131700258A43EB00CF2B6C /* MonthlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyView.swift; sourceTree = "<group>"; };
+		49131700258A43EB00CF2B6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		49131705258A58DD00CF2B6C /* DayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBar.swift; sourceTree = "<group>"; };
+		49D83939258DA19D00BA9AA6 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		49D8393E258DA1B400BA9AA6 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		49FD8BA0258DA07D005219C5 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +111,12 @@
 		490D027F2588B42F00A2F038 /* ToDoDiary */ = {
 			isa = PBXGroup;
 			children = (
+				49D83938258DA18800BA9AA6 /* Manager */,
 				490D02802588B42F00A2F038 /* ToDoDiaryApp.swift */,
 				491316F2258A425600CF2B6C /* MainView.swift */,
 				491316E3258A3DFD00CF2B6C /* View */,
 				490D02842588B43000A2F038 /* Assets.xcassets */,
+				49D8393E258DA1B400BA9AA6 /* Color.xcassets */,
 				490D02892588B43000A2F038 /* Info.plist */,
 				490D02862588B43000A2F038 /* Preview Content */,
 			);
@@ -142,7 +152,7 @@
 		491316E3258A3DFD00CF2B6C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				491316FF258A43B800CF2B6C /* Monthly */,
+				491316FF258A43B800CF2B6C /* Calendar */,
 				491316E4258A3E0700CF2B6C /* General */,
 			);
 			path = View;
@@ -158,12 +168,22 @@
 			path = General;
 			sourceTree = "<group>";
 		};
-		491316FF258A43B800CF2B6C /* Monthly */ = {
+		491316FF258A43B800CF2B6C /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				49131700258A43EB00CF2B6C /* MonthlyView.swift */,
+				49131700258A43EB00CF2B6C /* CalendarView.swift */,
+				49FD8BA0258DA07D005219C5 /* CalendarCell.swift */,
+				49131705258A58DD00CF2B6C /* DayBar.swift */,
 			);
-			path = Monthly;
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		49D83938258DA18800BA9AA6 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				49D83939258DA19D00BA9AA6 /* ColorManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +291,7 @@
 			files = (
 				490D02882588B43000A2F038 /* Preview Assets.xcassets in Resources */,
 				490D02852588B43000A2F038 /* Assets.xcassets in Resources */,
+				49D8393F258DA1B400BA9AA6 /* Color.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,12 +316,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49131701258A43EB00CF2B6C /* MonthlyView.swift in Sources */,
+				49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
 				490D02812588B42F00A2F038 /* ToDoDiaryApp.swift in Sources */,
 				491316F3258A425600CF2B6C /* MainView.swift in Sources */,
+				49131706258A58DD00CF2B6C /* DayBar.swift in Sources */,
 				491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */,
+				49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */,
 				491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */,
+				49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

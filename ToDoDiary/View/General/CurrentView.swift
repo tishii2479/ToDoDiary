@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CurrentView: View {
     var body: some View {
-        MonthlyView()
+        CalendarView()
     }
 }
 

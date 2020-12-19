@@ -9,14 +9,13 @@ import SwiftUI
 
 struct TabBar: View {
     var body: some View {
-        VStack {
-            Spacer()
-            
-            Color("Main")
+        ZStack {
+            ColorManager.main
                 .edgesIgnoringSafeArea(.bottom)
-                .frame(height: 70)
-                .shadow(color: Color("Shadow"), radius: 5, x: 0, y: -5)
         }
+        .frame(height: 70)
+        .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: -5)
+        .zIndex(1)
     }
 }
 

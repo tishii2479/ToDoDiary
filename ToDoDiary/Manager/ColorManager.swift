@@ -1,0 +1,16 @@
+//
+//  ColorManager.swift
+//  ToDoDiary
+//
+//  Created by Tatsuya Ishii on 2020/12/19.
+//
+
+import SwiftUI
+
+class ColorManager {
+    static let main = Color("Main")
+    static let back = Color("Back")
+    static let shadow = Color("Shadow")
+    static let calendar1 = Color("Calendar1")
+    static let calendarBorder = Color("CalendarBorder")
+}

@@ -9,11 +9,12 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
-        ZStack {
-            CurrentView()
+        VStack(spacing: 0) {
             NavigationBar()
+            CurrentView()
             TabBar()
         }
+        .background(ColorManager.back)
     }
 }
 
