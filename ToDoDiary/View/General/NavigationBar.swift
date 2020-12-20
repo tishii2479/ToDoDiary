@@ -15,7 +15,9 @@ struct NavigationBar: View {
         
             HStack {
                 Text("2021/1")
-                    .font(.largeTitle)
+                    .font(Font.custom(FontManager.number, size: 24))
+                    .bold()
+                    .foregroundColor(ColorManager.character)
                     .padding(.leading, 10)
                 Spacer()
             }

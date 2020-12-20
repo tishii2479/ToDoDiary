@@ -14,4 +14,6 @@ class ColorManager {
     static let calendar1 = Color("Calendar1")
     static let calendar2 = Color("Calendar2")
     static let calendarBorder = Color("CalendarBorder")
+    static let character = Color("Character")
+    static let redCharacter = Color("RedCharacter")
 }

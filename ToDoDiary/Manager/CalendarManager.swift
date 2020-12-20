@@ -10,20 +10,22 @@ import Foundation
 class CalendarManager {
     static let shared = CalendarManager()
     
-    // スクロールカウント
-    // 無限スクロールに使う、上下に何回更新されたかを保持する
-    // 上に更新されたら-1、下に更新されたら+1
-    // 更新された分、日付をずらす処理をgetDateFromIndexで行う
-    var scrollCount = 0
+    var dayOffset: Int = 0
+    
+    init () {
+        print("[debug] CalendarManager init")
+        
+        dayOffset = getDayOffset(date: Date())
+    }
     
     // TODO: スクロール更新後の調整
     func getDateFromIndex(index: Int) -> Date {
-        if let date = Calendar.current.date(byAdding: .day, value: index, to: Date()) {
-            return date
+        guard let date = Calendar.current.date(byAdding: .day, value: index + dayOffset, to: Date()) else {
+            print("[Error] GetDateFromIndex Failed")
+            return Date()
         }
         
-        print("[Error] GetDateFromIndex Failed")
-        return Date()
+        return date
     }
     
     // カレンダー用の日付の文字列を返す
@@ -44,11 +46,25 @@ class CalendarManager {
     // カレンダー用に、月が奇数か偶数かを判断する
     func isOddMonth(date: Date) -> Bool {
         let comp = Calendar.current.dateComponents([.month], from: date)
-        if let month = comp.month {
-            return month % 2 == 1
+        
+        guard let month = comp.month else {
+            print("[Error] IsOddMonth Failed")
+            return false
         }
         
-        print("[Error] IsOddMonth Failed")
-        return false
+        return month % 2 == 1
+    }
+    
+    // 曜日計算用のoffSetを計算する
+    // 曜日(1...7) - 1を返す
+    func getDayOffset(date: Date) -> Int {
+        let comp = Calendar.current.dateComponents([.weekday], from: date)
+        
+        guard let offset = comp.weekday else {
+            print("[Error] GetDayOffset Failed")
+            return 0
+        }
+        
+        return offset - 1
     }
 }

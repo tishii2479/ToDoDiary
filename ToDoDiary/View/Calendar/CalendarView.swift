@@ -8,31 +8,47 @@
 import SwiftUI
 
 struct CalendarView: View {
+    
+    @ObservedObject var calendarViewModel: CalendarViewModel = CalendarViewModel()
+    
     var body: some View {
-        ZStack {
-            ColorManager.back
-                .edgesIgnoringSafeArea(.all)
+        VStack {
+            DayBar()
             
             ScrollViewReader { (proxy: ScrollViewProxy) in
                 ZStack {
-                    ScrollView {
-                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0, pinnedViews: .sectionHeaders) {
-                            Section(header: DayBar()) {
-                                ForEach((-100...100), id: \.self) { index in
-                                    CalendarCell(index: index)
-                                }
+                    ColorManager.calendarBorder
+                    
+                ScrollView {
+                    LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
+//                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 1) {
+                            ForEach((calendarViewModel.firstIndex...calendarViewModel.lastIndex), id: \.self) { index in
+                                CalendarCell(index: index).id(index)
                             }
                         }
                     }
-                    
-                    Button("Scroll to bottom") {
-                        withAnimation {
-                            proxy.scrollTo(0, anchor: .center)
-                        }
+                    .background(GeometryReader {
+                        Color.clear.preference(key: ViewOffsetKey.self,
+                        value: -$0.frame(in: .named("scroll")).origin.y)
+                    })
+                    .onPreferenceChange(ViewOffsetKey.self) {
+                        calendarViewModel.checkOffset(offset: $0)
                     }
+                }
+                .coordinateSpace(name: "scroll")
+                .onAppear {
+                    proxy.scrollTo(0, anchor: .top)
                 }
             }
         }
+    }
+}
+
+struct ViewOffsetKey: PreferenceKey {
+    typealias Value = CGFloat
+    static var defaultValue = CGFloat.zero
+    static func reduce(value: inout Value, nextValue: () -> Value) {
+        value += nextValue()
     }
 }
 

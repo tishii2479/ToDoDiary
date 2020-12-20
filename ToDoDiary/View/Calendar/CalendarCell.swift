@@ -18,13 +18,15 @@ struct CalendarCell: View {
         VStack {
             HStack {
                 Text("\(CalendarManager.shared.formatForCalendar(date: self.date))")
-                    .font(.callout)
+                    .font(Font.custom(FontManager.number, size: 18))
+                    .bold()
+                    .foregroundColor(ColorManager.character)
                     .padding(5)
                 Spacer()
             }
             Spacer()
         }
-        .frame(width: 60, height: 140)
+        .frame(width: UIScreen.main.bounds.width / 7 + 2, height: 140)      // TODO: 調整
         .background(
             Group {
                 if (CalendarManager.shared.isOddMonth(date: self.date)) {
