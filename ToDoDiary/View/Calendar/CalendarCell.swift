@@ -8,6 +8,8 @@
 import SwiftUI
 
 fileprivate struct CalendarEventLabel: View {
+    var event: Event
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
@@ -19,7 +21,7 @@ fileprivate struct CalendarEventLabel: View {
                 )
                 .padding(.horizontal, 2)
             
-            Text("イベント")
+            Text(event.title)
                 .font(Font.custom(FontManager.japanese, size: 10))
                 .foregroundColor(ColorManager.character)
                 .lineLimit(1)
@@ -29,16 +31,21 @@ fileprivate struct CalendarEventLabel: View {
 
 struct CalendarCell: View {
     var date: Date
+    var events: [Event] = []
     
     init (index: Int) {
         self.date = CalendarManager.shared.getDateFromIndex(index: index)
-    }
+        
+        if let _events = CalendarManager.shared.getEventArrayFromDate(date: CalendarManager.shared.formatFullDate(date: self.date)) {
+            events = _events
+        }
+     }
     
     var body: some View {
         VStack(spacing: 7) {
             // 日付ラベル
             HStack {
-                Text("\(CalendarManager.shared.formatForCalendar(date: self.date))")
+                Text("\(CalendarManager.shared.formatDateForCalendar(date: self.date))")
                     .font(Font.custom(FontManager.number, size: 18))
                     .bold()
                     .foregroundColor(ColorManager.character)
@@ -47,9 +54,9 @@ struct CalendarCell: View {
             }
             
             // イベントラベル
-            CalendarEventLabel()
-            
-            CalendarEventLabel()
+            ForEach(0 ..< events.count, id: \.self) { index in
+                CalendarEventLabel(event: events[index])
+            }
             
             Spacer()
         }

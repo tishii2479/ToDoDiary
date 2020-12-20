@@ -10,19 +10,23 @@ import SwiftUI
 
 class CalendarViewModel: ObservableObject {
     
-    @Published var firstIndex: Int = -196
-    @Published var lastIndex: Int = 196
-    @Published var zeroIndex: Int = 0
+    @Published var isShowingDetail: Bool = false
+    @Published var selectedIndex: Int = 0
+    @Published var selectedEventArray: [Event] = []
     
-    // スクロールカウント
-    // 無限スクロールに使う、上下に何回更新されたかを保持する
-    // 上に更新されたら-1、下に更新されたら+1
-    // 更新された分、日付をずらす処理をgetDateFromIndexで行う
-    var scrollCount: Int = 0
-    
-    func checkOffset(offset: CGFloat) {
-        if offset < 100 {
-            print("[debug] top")
+    // カレンダーの日付選択時に呼ばれる
+    func selectIndex(index: Int) {
+        print("[debug] select \(index)")
+        let selectedDate: Date = CalendarManager.shared.getDateFromIndex(index: index)
+        let formatDate: String = CalendarManager.shared.formatFullDate(date: selectedDate)
+        
+        if let _selectedEventArray = CalendarManager.shared.getEventArrayFromDate(date: formatDate) {
+            selectedEventArray = _selectedEventArray
+        } else {
+            selectedEventArray = []
         }
+        
+        isShowingDetail = true
+        selectedIndex = index
     }
 }

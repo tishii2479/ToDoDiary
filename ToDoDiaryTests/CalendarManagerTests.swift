@@ -18,7 +18,7 @@ class CalendarManagerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func calendarFormatOfFirstDay() throws {
+    func testCalendarFormatOfFirstDay() throws {
         let calendarManager = CalendarManager()
         
         let firstDayOfMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 1))!
@@ -30,19 +30,19 @@ class CalendarManagerTests: XCTestCase {
         XCTAssertEqual(actual, excepted)
     }
     
-    func calendarFormatOfOtherDay() throws {
+    func testCalendarFormatOfOtherDay() throws {
         let calendarManager = CalendarManager()
 
         let otherDayOfMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 3))!
 
-        let excepted = "1/3"
+        let excepted = "3"
 
         let actual = calendarManager.formatForCalendar(date: otherDayOfMonth)
 
         XCTAssertEqual(actual, excepted)
     }
     
-    open func dayOffset() throws {
+    func testDayOffset() throws {
         let calendarManager = CalendarManager()
         
         let thursday = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 24))!

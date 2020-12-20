@@ -26,24 +26,23 @@ struct CalendarView: View {
                     // カレンダーコンテンツ
                     ScrollView {
                         LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
-    //                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 1) {
-                            ForEach((calendarViewModel.firstIndex...calendarViewModel.lastIndex), id: \.self) { index in
-                                CalendarCell(index: index).id(index)
+                            ForEach((-98 ... 97), id: \.self) { index in
+                                Button(action: {
+                                    calendarViewModel.selectIndex(index: index)
+                                }) {
+                                    CalendarCell(index: index).id(index)
+                                }
                             }
                         }
                         .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
                     }
-                    .background(GeometryReader {
-                        Color.clear.preference(key: ViewOffsetKey.self,
-                        value: -$0.frame(in: .named("scroll")).origin.y)
-                    })
-                    .onPreferenceChange(ViewOffsetKey.self) {
-                        calendarViewModel.checkOffset(offset: $0)
+                    
+                    // 日時イベント詳細ウィンドウ
+                    if calendarViewModel.isShowingDetail {
+                        CalendarDateDetail(calendarViewModel: calendarViewModel)
                     }
                     
-                    CalendarDateDetail()
-                    
-                    Button("0") {
+                    Button("To today") {
                         withAnimation {
                             proxy.scrollTo(0, anchor: .top)
                         }
@@ -51,7 +50,6 @@ struct CalendarView: View {
                     
                     CreateEventButton()
                 }
-                .coordinateSpace(name: "scroll")
             }
         }
     }

@@ -12,12 +12,48 @@ class CalendarManager {
     
     var dayOffset: Int = 0
     
+    // スクロールカウント
+    // 無限スクロールに使う、上下に何回更新されたかを保持する
+    // 上に更新されたら-1、下に更新されたら+1
+    // 更新された分、日付をずらす処理をgetDateFromIndexで行う
+    var scrollCount: Int = 0
+    
+    private var eventDictionary: Dictionary<String, [Event]> = [:]
+    
     init () {
         print("[debug] CalendarManager init")
         
         dayOffset = getDayOffset(date: Date())
+        
+        eventDictionary = setUpEventDictionary()
     }
     
+    // イベント辞書構築
+    // TODO: データベースからイベント検索
+    func setUpEventDictionary() -> Dictionary<String, [Event]> {
+        var dic: Dictionary<String, [Event]> = [:]
+        
+        let event: Event = Event.test
+        
+        if dic[formatFullDate(date: event.startTime)] == nil {
+            dic[formatFullDate(date: event.startTime)] = []
+            print("nil")
+        }
+        
+        dic[formatFullDate(date: event.startTime)]?.append(Event.test)
+        
+        return dic
+    }
+    
+    // 日時の文字列からイベントの配列を返す
+    func getEventArrayFromDate(date: String) -> [Event]? {
+        return eventDictionary[date]
+    }
+    
+    // イベントを辞書に追加する
+    func addEventToDictionary(event: Event) {}
+    
+    // TODO: スクロールカウントを含めた処理
     func getDateFromIndex(index: Int) -> Date {
         guard let date = Calendar.current.date(byAdding: .day, value: index + dayOffset, to: Date()) else {
             print("[Error] GetDateFromIndex Failed")
@@ -29,7 +65,7 @@ class CalendarManager {
     
     // カレンダー用の日付の文字列を返す
     // 1日ならば月を最初につける
-    func formatForCalendar(date: Date) -> String {
+    func formatDateForCalendar(date: Date) -> String {
         let comp = Calendar.current.dateComponents([.day], from: date)
         let formatter = DateFormatter()
         
@@ -38,6 +74,15 @@ class CalendarManager {
         } else {
             formatter.dateFormat = "d"
         }
+        
+        return formatter.string(from: date)
+    }
+    
+    // 全体のカレンダーの表示
+    func formatFullDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier: "ja_JP")
+        formatter.dateFormat = "y/M/d (E)"
         
         return formatter.string(from: date)
     }

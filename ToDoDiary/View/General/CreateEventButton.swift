@@ -13,10 +13,14 @@ struct CreateEventButton: View {
             Spacer()
             HStack {
                 Spacer()
-                Circle()
-                    .fill(ColorManager.main)
-                    .frame(width: 60, height: 60)
-                    .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
+                Button(action: {
+                    print("tapped")
+                }) {
+                    Circle()
+                        .fill(ColorManager.main)
+                        .frame(width: 60, height: 60)
+                        .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
+                }
             }
         }
         .padding(.trailing, 20)
