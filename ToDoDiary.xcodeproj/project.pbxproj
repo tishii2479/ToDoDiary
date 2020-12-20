@@ -17,7 +17,6 @@
 		491316F3258A425600CF2B6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316F2258A425600CF2B6C /* MainView.swift */; };
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
 		49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* CalendarView.swift */; };
-		49131706258A58DD00CF2B6C /* DayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131705258A58DD00CF2B6C /* DayBar.swift */; };
 		49A94662258EF8E00048DA05 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94661258EF8E00048DA05 /* CalendarViewModel.swift */; };
 		49A9466C258F0D070048DA05 /* CalendarDateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9466B258F0D070048DA05 /* CalendarDateDetail.swift */; };
 		49A94674258F13870048DA05 /* CreateEventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94673258F13870048DA05 /* CreateEventButton.swift */; };
@@ -27,6 +26,7 @@
 		49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94693258F49BC0048DA05 /* ToDoListView.swift */; };
 		49A9469C258F575A0048DA05 /* ViewSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9469B258F575A0048DA05 /* ViewSwitcher.swift */; };
 		49A946A2258F58840048DA05 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A946A1258F58840048DA05 /* ViewType.swift */; };
+		49A946B7258F5C400048DA05 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A946B6258F5C400048DA05 /* SettingView.swift */; };
 		49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83939258DA19D00BA9AA6 /* ColorManager.swift */; };
 		49D8393F258DA1B400BA9AA6 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D8393E258DA1B400BA9AA6 /* Color.xcassets */; };
 		49D83947258DAEEF00BA9AA6 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */; };
@@ -68,7 +68,6 @@
 		491316F2258A425600CF2B6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
 		49131700258A43EB00CF2B6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		49131705258A58DD00CF2B6C /* DayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBar.swift; sourceTree = "<group>"; };
 		49A94652258EF2FB0048DA05 /* CalendarManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerTests.swift; sourceTree = "<group>"; };
 		49A94661258EF8E00048DA05 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		49A9466B258F0D070048DA05 /* CalendarDateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateDetail.swift; sourceTree = "<group>"; };
@@ -78,6 +77,7 @@
 		49A94693258F49BC0048DA05 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
 		49A9469B258F575A0048DA05 /* ViewSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSwitcher.swift; sourceTree = "<group>"; };
 		49A946A1258F58840048DA05 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
+		49A946B6258F5C400048DA05 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		49D83939258DA19D00BA9AA6 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		49D8393E258DA1B400BA9AA6 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
@@ -178,6 +178,7 @@
 		491316E3258A3DFD00CF2B6C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				49A946B5258F5C350048DA05 /* Setting */,
 				49A94692258F49880048DA05 /* ToDoList */,
 				491316FF258A43B800CF2B6C /* Calendar */,
 				491316E4258A3E0700CF2B6C /* General */,
@@ -202,7 +203,6 @@
 			children = (
 				49131700258A43EB00CF2B6C /* CalendarView.swift */,
 				49FD8BA0258DA07D005219C5 /* CalendarCell.swift */,
-				49131705258A58DD00CF2B6C /* DayBar.swift */,
 				49A9466B258F0D070048DA05 /* CalendarDateDetail.swift */,
 			);
 			path = Calendar;
@@ -239,6 +239,14 @@
 				49A946A1258F58840048DA05 /* ViewType.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		49A946B5258F5C350048DA05 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				49A946B6258F5C400048DA05 /* SettingView.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		49D83938258DA18800BA9AA6 /* Manager */ = {
@@ -391,8 +399,8 @@
 				49A94674258F13870048DA05 /* CreateEventButton.swift in Sources */,
 				49A9469C258F575A0048DA05 /* ViewSwitcher.swift in Sources */,
 				490D02812588B42F00A2F038 /* ToDoDiaryApp.swift in Sources */,
+				49A946B7258F5C400048DA05 /* SettingView.swift in Sources */,
 				491316F3258A425600CF2B6C /* MainView.swift in Sources */,
-				49131706258A58DD00CF2B6C /* DayBar.swift in Sources */,
 				491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */,
 				49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */,
 				49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */,

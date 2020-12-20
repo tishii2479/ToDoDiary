@@ -16,6 +16,8 @@ struct CurrentView: View {
                 CalendarView()
             case .toDoList:
                 ToDoListView()
+            case .setting:
+                SettingView()
             }
         }
     }

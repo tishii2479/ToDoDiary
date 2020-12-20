@@ -33,6 +33,8 @@ struct TabBar: View {
                 Spacer()
                 TabBarItem(type: .toDoList)
                 Spacer()
+                TabBarItem(type: .setting)
+                Spacer()
             }
         }
         .frame(height: 70)

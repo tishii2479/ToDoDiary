@@ -10,4 +10,5 @@ import Foundation
 enum ViewType {
     case calendar
     case toDoList
+    case setting
 }
