@@ -8,13 +8,15 @@
 import SwiftUI
 
 struct CreateEventButton: View {
+    var baseViewModel: BaseViewModel
+    
     var body: some View {
         VStack {
             Spacer()
             HStack {
                 Spacer()
                 Button(action: {
-                    print("tapped")
+                    baseViewModel.isShowingModal = true
                 }) {
                     Circle()
                         .fill(ColorManager.main)
@@ -30,6 +32,6 @@ struct CreateEventButton: View {
 
 struct CreateEventButton_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventButton()
+        CreateEventButton(baseViewModel: BaseViewModel())
     }
 }

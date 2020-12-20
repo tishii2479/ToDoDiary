@@ -9,11 +9,11 @@ import SwiftUI
 
 struct CalendarView: View {
     
+    @ObservedObject var baseViewModel: BaseViewModel = BaseViewModel()
     @ObservedObject var calendarViewModel: CalendarViewModel = CalendarViewModel()
     
     var body: some View {
         VStack {
-            
             // 曜日表示のバー
             DayBar()
             
@@ -39,7 +39,7 @@ struct CalendarView: View {
                     
                     // 日時イベント詳細ウィンドウ
                     if calendarViewModel.isShowingDetail {
-                        CalendarDateDetail(calendarViewModel: calendarViewModel)
+                        CalendarDateDetail(baseViewModel: baseViewModel, calendarViewModel: calendarViewModel)
                     }
                     
                     Button("To today") {
@@ -48,9 +48,12 @@ struct CalendarView: View {
                         }
                     }
                     
-                    CreateEventButton()
+                    CreateEventButton(baseViewModel: baseViewModel)
                 }
             }
+        }
+        .sheet(isPresented: $baseViewModel.isShowingModal) {
+            CreateEventView()
         }
     }
 }

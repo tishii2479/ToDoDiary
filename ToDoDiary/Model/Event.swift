@@ -12,6 +12,7 @@ class Event {
     var startTime: Date
     var endTime: Date
     
+    // テスト用
     static let test = Event(title: "アルバイト", startTime: Date(), endTime: Date())
     
     init (title: String, startTime: Date, endTime: Date) {

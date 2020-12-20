@@ -32,6 +32,7 @@ fileprivate struct DetailEventLabel: View {
 }
 
 struct CalendarDateDetail: View {
+    @ObservedObject var baseViewModel: BaseViewModel
     @ObservedObject var calendarViewModel: CalendarViewModel
     
     var body: some View {
@@ -56,7 +57,11 @@ struct CalendarDateDetail: View {
                 ScrollView {
                     VStack (spacing: 0) {
                         ForEach(0 ..< calendarViewModel.selectedEventArray.count, id: \.self) { index in
-                            DetailEventLabel(event: calendarViewModel.selectedEventArray[index])
+                            Button(action: {
+                                baseViewModel.isShowingModal = true
+                            }) {
+                                DetailEventLabel(event: calendarViewModel.selectedEventArray[index])
+                            }
                         }
                     }
                 }
@@ -71,6 +76,6 @@ struct CalendarDateDetail: View {
 
 struct CalendarDateDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarDateDetail(calendarViewModel: CalendarViewModel())
+        CalendarDateDetail(baseViewModel: BaseViewModel(), calendarViewModel: CalendarViewModel())
     }
 }
