@@ -41,6 +41,8 @@ struct CalendarView: View {
                         calendarViewModel.checkOffset(offset: $0)
                     }
                     
+                    CalendarDateDetail()
+                    
                     Button("0") {
                         withAnimation {
                             proxy.scrollTo(0, anchor: .top)
