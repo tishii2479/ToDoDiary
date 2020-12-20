@@ -48,6 +48,8 @@ struct CalendarView: View {
                             proxy.scrollTo(0, anchor: .top)
                         }
                     }
+                    
+                    CreateEventButton()
                 }
                 .coordinateSpace(name: "scroll")
             }
