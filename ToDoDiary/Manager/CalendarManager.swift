@@ -38,7 +38,6 @@ class CalendarManager {
             
             if dic[formatFullDate(date: event.startTime)] == nil {
                 dic[formatFullDate(date: event.startTime)] = []
-                print("nil")
             }
             
             dic[formatFullDate(date: event.startTime)]?.append(Event.test)

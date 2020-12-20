@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct CurrentView: View {
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
     var body: some View {
         ZStack {
-            CalendarView()
-            ToDoListView()
+            switch viewSwitcher.currentView {
+            case .calendar:
+                CalendarView()
+            case .toDoList:
+                ToDoListView()
+            }
         }
     }
 }

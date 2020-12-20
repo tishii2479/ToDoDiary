@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// 検索バー
 fileprivate struct SimpleSearchField: View {
     @Binding var value: String
     
@@ -37,7 +38,7 @@ fileprivate struct SimpleSearchField: View {
     }
 }
 
-
+// TODOのセル
 fileprivate struct ToDoListCell: View {
     var title: String
     
@@ -58,6 +59,7 @@ fileprivate struct ToDoListCell: View {
     }
 }
 
+// 新規作成テキストフィールド
 fileprivate struct ToDoTextfield: View {
     @Binding var value: String
     
@@ -109,7 +111,6 @@ struct ToDoListView: View {
             
             VStack {
                 Spacer()
-                
                 ToDoTextfield(value: $createText)
             }
         }

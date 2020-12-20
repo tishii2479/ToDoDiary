@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CreateEventButton: View {
-    var baseViewModel: BaseViewModel
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
     
     var body: some View {
         VStack {
@@ -16,7 +16,7 @@ struct CreateEventButton: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    baseViewModel.isShowingModal = true
+                    viewSwitcher.isShowingModal = true
                 }) {
                     Circle()
                         .fill(ColorManager.main)
@@ -32,6 +32,6 @@ struct CreateEventButton: View {
 
 struct CreateEventButton_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventButton(baseViewModel: BaseViewModel())
+        CreateEventButton()
     }
 }
