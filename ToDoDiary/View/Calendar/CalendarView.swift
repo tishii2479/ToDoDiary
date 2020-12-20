@@ -44,25 +44,17 @@ struct CalendarView: View {
                     
                     Button("To today") {
                         withAnimation {
-                            proxy.scrollTo(0, anchor: .top)
+                            proxy.scrollTo(0, anchor: .center)
                         }
                     }
                     
                     CreateEventButton(baseViewModel: baseViewModel)
                 }
             }
+            .sheet(isPresented: $baseViewModel.isShowingModal) {
+                CreateEventView()
+            }
         }
-        .sheet(isPresented: $baseViewModel.isShowingModal) {
-            CreateEventView()
-        }
-    }
-}
-
-struct ViewOffsetKey: PreferenceKey {
-    typealias Value = CGFloat
-    static var defaultValue = CGFloat.zero
-    static func reduce(value: inout Value, nextValue: () -> Value) {
-        value += nextValue()
     }
 }
 

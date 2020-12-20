@@ -25,6 +25,7 @@
 		49A94681258F228C0048DA05 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94680258F228C0048DA05 /* Event.swift */; };
 		49A94689258F32550048DA05 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94688258F32550048DA05 /* CreateEventView.swift */; };
 		49A9468E258F328C0048DA05 /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9468D258F328C0048DA05 /* BaseViewModel.swift */; };
+		49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94693258F49BC0048DA05 /* ToDoListView.swift */; };
 		49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83939258DA19D00BA9AA6 /* ColorManager.swift */; };
 		49D8393F258DA1B400BA9AA6 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49D8393E258DA1B400BA9AA6 /* Color.xcassets */; };
 		49D83947258DAEEF00BA9AA6 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */; };
@@ -74,6 +75,7 @@
 		49A94680258F228C0048DA05 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		49A94688258F32550048DA05 /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
 		49A9468D258F328C0048DA05 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		49A94693258F49BC0048DA05 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
 		49D83939258DA19D00BA9AA6 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
 		49D8393E258DA1B400BA9AA6 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 		491316E3258A3DFD00CF2B6C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				49A94692258F49880048DA05 /* ToDoList */,
 				491316FF258A43B800CF2B6C /* Calendar */,
 				491316E4258A3E0700CF2B6C /* General */,
 			);
@@ -217,6 +220,14 @@
 				49A94680258F228C0048DA05 /* Event.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		49A94692258F49880048DA05 /* ToDoList */ = {
+			isa = PBXGroup;
+			children = (
+				49A94693258F49BC0048DA05 /* ToDoListView.swift */,
+			);
+			path = ToDoList;
 			sourceTree = "<group>";
 		};
 		49D83938258DA18800BA9AA6 /* Manager */ = {
@@ -371,6 +382,7 @@
 				491316F3258A425600CF2B6C /* MainView.swift in Sources */,
 				49131706258A58DD00CF2B6C /* DayBar.swift in Sources */,
 				491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */,
+				49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */,
 				49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */,
 				49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */,
 				491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */,

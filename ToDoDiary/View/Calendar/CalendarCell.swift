@@ -24,7 +24,7 @@ fileprivate struct CalendarEventLabel: View {
             Text(event.title)
                 .font(Font.custom(FontManager.japanese, size: 10))
                 .foregroundColor(ColorManager.character)
-                .lineLimit(1)
+                .lineLimit(1)   // FIXME: ...省略をclip、textBreakMode
         }
     }
 }
@@ -60,7 +60,7 @@ struct CalendarCell: View {
             
             Spacer()
         }
-        .frame(width: UIScreen.main.bounds.width / 7, height: 140)
+        .frame(width: UIScreen.main.bounds.width / 7, height: 100)
         .background(
             Group {
                 if (CalendarManager.shared.isOddMonth(date: self.date)) {

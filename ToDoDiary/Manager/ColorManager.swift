@@ -17,4 +17,5 @@ class ColorManager {
     static let character = Color("Character")
     static let redCharacter = Color("RedCharacter")
     static let border = Color("Border")
+    static let denseBorder = Color("DenseBorder")
 }

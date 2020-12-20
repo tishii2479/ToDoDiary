@@ -33,14 +33,16 @@ class CalendarManager {
     func setUpEventDictionary() -> Dictionary<String, [Event]> {
         var dic: Dictionary<String, [Event]> = [:]
         
-        let event: Event = Event.test
-        
-        if dic[formatFullDate(date: event.startTime)] == nil {
-            dic[formatFullDate(date: event.startTime)] = []
-            print("nil")
+        for _ in 0 ... 2 {
+            let event: Event = Event.test
+            
+            if dic[formatFullDate(date: event.startTime)] == nil {
+                dic[formatFullDate(date: event.startTime)] = []
+                print("nil")
+            }
+            
+            dic[formatFullDate(date: event.startTime)]?.append(Event.test)
         }
-        
-        dic[formatFullDate(date: event.startTime)]?.append(Event.test)
         
         return dic
     }

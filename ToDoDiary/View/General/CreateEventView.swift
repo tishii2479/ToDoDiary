@@ -53,7 +53,7 @@ struct CreateEventView: View {
                         Button(action: {
                             print("Add")
                         }) {
-                            Text("追加する")
+                            Text("追加")
                                 .foregroundColor(ColorManager.redCharacter)
                                 .font(Font.custom(FontManager.japanese, size: 14))
                         }
@@ -94,6 +94,17 @@ struct CreateEventView: View {
                         
                         ZStack {
                             ColorManager.back
+
+                            // PlaceHolder
+//                            VStack {
+//                                HStack {
+//                                    Text("詳細")
+//                                        .font(Font.custom(FontManager.japanese, size: 12))
+//                                        .padding(10)
+//                                    Spacer()
+//                                }
+//                                Spacer()
+//                            }
                             
                             VStack {
                                 SimpleDivider()
@@ -114,6 +125,5 @@ struct CreateEventView: View {
 struct CreateEventView_Previews: PreviewProvider {
     static var previews: some View {
         CreateEventView()
-            .colorScheme(.light)
     }
 }

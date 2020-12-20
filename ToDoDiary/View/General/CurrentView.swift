@@ -9,7 +9,10 @@ import SwiftUI
 
 struct CurrentView: View {
     var body: some View {
-        CalendarView()
+        ZStack {
+            CalendarView()
+            ToDoListView()
+        }
     }
 }
 
