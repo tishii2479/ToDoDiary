@@ -18,7 +18,6 @@ class CalendarManager {
         dayOffset = getDayOffset(date: Date())
     }
     
-    // TODO: スクロール更新後の調整
     func getDateFromIndex(index: Int) -> Date {
         guard let date = Calendar.current.date(byAdding: .day, value: index + dayOffset, to: Date()) else {
             print("[Error] GetDateFromIndex Failed")

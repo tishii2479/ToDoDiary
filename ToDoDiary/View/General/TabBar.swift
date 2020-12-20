@@ -10,6 +10,7 @@ import SwiftUI
 struct TabBar: View {
     var body: some View {
         ZStack {
+            // 背景色
             ColorManager.main
                 .edgesIgnoringSafeArea(.bottom)
         }

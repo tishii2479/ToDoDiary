@@ -15,18 +15,25 @@ struct CalendarCell: View {
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 7) {
+            // 日付ラベル
             HStack {
                 Text("\(CalendarManager.shared.formatForCalendar(date: self.date))")
                     .font(Font.custom(FontManager.number, size: 18))
                     .bold()
                     .foregroundColor(ColorManager.character)
-                    .padding(5)
+                    .padding([.top, .leading], 5)
                 Spacer()
             }
+            
+            // イベントラベル
+            CalendarEventLabel()
+            
+            CalendarEventLabel()
+            
             Spacer()
         }
-        .frame(width: UIScreen.main.bounds.width / 7 + 2, height: 140)      // TODO: 調整
+        .frame(width: UIScreen.main.bounds.width / 7, height: 140)
         .background(
             Group {
                 if (CalendarManager.shared.isOddMonth(date: self.date)) {

@@ -10,9 +10,11 @@ import SwiftUI
 struct NavigationBar: View {
     var body: some View {
         ZStack {
+            // 背景色
             ColorManager.main
                 .edgesIgnoringSafeArea(.top)
         
+            // タイトル
             HStack {
                 Text("2021/1")
                     .font(Font.custom(FontManager.number, size: 24))

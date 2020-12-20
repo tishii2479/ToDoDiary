@@ -10,10 +10,9 @@ import SwiftUI
 
 class CalendarViewModel: ObservableObject {
     
-    @Published var firstIndex: Int = -98
-    @Published var lastIndex: Int = 98
+    @Published var firstIndex: Int = -196
+    @Published var lastIndex: Int = 196
     @Published var zeroIndex: Int = 0
-    
     
     // スクロールカウント
     // 無限スクロールに使う、上下に何回更新されたかを保持する

@@ -13,19 +13,25 @@ struct CalendarView: View {
     
     var body: some View {
         VStack {
+            
+            // 曜日表示のバー
             DayBar()
             
+            // カレンダー
             ScrollViewReader { (proxy: ScrollViewProxy) in
                 ZStack {
+                    // 背景色
                     ColorManager.calendarBorder
                     
-                ScrollView {
-                    LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
-//                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 1) {
+                    // カレンダーコンテンツ
+                    ScrollView {
+                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
+    //                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 1) {
                             ForEach((calendarViewModel.firstIndex...calendarViewModel.lastIndex), id: \.self) { index in
                                 CalendarCell(index: index).id(index)
                             }
                         }
+                        .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
                     }
                     .background(GeometryReader {
                         Color.clear.preference(key: ViewOffsetKey.self,
@@ -34,11 +40,14 @@ struct CalendarView: View {
                     .onPreferenceChange(ViewOffsetKey.self) {
                         calendarViewModel.checkOffset(offset: $0)
                     }
+                    
+                    Button("0") {
+                        withAnimation {
+                            proxy.scrollTo(0, anchor: .top)
+                        }
+                    }
                 }
                 .coordinateSpace(name: "scroll")
-                .onAppear {
-                    proxy.scrollTo(0, anchor: .top)
-                }
             }
         }
     }
