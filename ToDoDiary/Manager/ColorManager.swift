@@ -20,6 +20,7 @@ class ColorManager {
     // 文字
     static let character = Color("Character")
     static let redCharacter = Color("RedCharacter")
+    static let lightCharacter = Color("LightCharacter")
     
     // 枠線
     static let border = Color("Border")

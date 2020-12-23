@@ -16,7 +16,7 @@ class CreateEventViewModel: ObservableObject {
     @Published var notification: NotificationType = .none
     @Published var detail: String = ""
     
-    private var event: Event?
+    var event: Event?
     
     // イベントの作成
     func createEvent() {

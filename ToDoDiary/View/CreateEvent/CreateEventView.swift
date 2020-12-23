@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+enum PulldownType {
+    case date
+    case notification
+}
+
 struct CreateEventView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var createEvent: CreateEventViewModel = CreateEventViewModel()
@@ -44,7 +49,7 @@ struct CreateEventView: View {
                 
                 // 入力欄
                 ScrollView {
-                    VStack(spacing: 0) {    // ScrollViewのspacingを消す
+                    VStack(spacing: 0) {
                         Group {
                             SimpleDivider()
                             SimpleTextField(value: $createEvent.title, placeHolder: "件名")
@@ -57,7 +62,7 @@ struct CreateEventView: View {
                         
                         Group {
                             SimpleDivider()
-                            SimpleTextField(value: $createEvent.title, placeHolder: "件名")
+                            SimplePulldownField(type: .date, title: "時刻", value: "未設定", event: $createEvent.event)
                             SimpleDivider()
                         }
                         
@@ -65,7 +70,7 @@ struct CreateEventView: View {
                         
                         Group {
                             SimpleDivider()
-                            SimpleTextField(value: $createEvent.title, placeHolder: "件名")
+                            SimplePulldownField(type: .notification, title: "通知", value: "未設定", event: $createEvent.event)
                             SimpleDivider()
                         }
                         
