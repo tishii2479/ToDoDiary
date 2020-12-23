@@ -8,7 +8,6 @@
 import SwiftUI
 
 class CalendarViewModel: ObservableObject {
-    
     @Published var isShowingDetail: Bool = false
     @Published var selectedIndex: Int = 0
     @Published var selectedEventArray: [Event] = []

@@ -17,6 +17,7 @@ class ToDoListViewModel: ObservableObject {
         setUpEvents()
     }
     
+    // イベント作成ボタンが押されたとき
     func createEvent() {
         // 件名が入力されていない場合はreturn
         guard createText != "" else { return }
@@ -29,10 +30,12 @@ class ToDoListViewModel: ObservableObject {
         resetCreateInput()
     }
     
+    // イベント配列のセットアップ
     func setUpEvents() {
         events = EventManager.shared.getToDoArray(searchText: "")
     }
     
+    // 作成欄のリセット
     func resetCreateInput() {
         selectedColor = .none
         createText = ""
