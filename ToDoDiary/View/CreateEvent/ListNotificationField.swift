@@ -1,5 +1,5 @@
 //
-//  SimpleNotificationField.swift
+//  ListNotificationField.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/23.
@@ -7,18 +7,18 @@
 
 import SwiftUI
 
-struct SimpleNotificationField: View {
+struct ListNotificationField: View {
     var body: some View {
         Button(action: {
             print("aa")
         }) {
-            SimpleCellBackground()
+            ListCellBackground()
         }
     }
 }
 
-struct SimpleNotificationField_Previews: PreviewProvider {
+struct ListNotificationField_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleNotificationField()
+        ListNotificationField()
     }
 }

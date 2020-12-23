@@ -1,5 +1,5 @@
 //
-//  SimpleTextField.swift
+//  ListTextField.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SimpleTextField: View {
+struct ListTextField: View {
     @Binding var value: String
     var placeHolder: String
     
@@ -21,8 +21,8 @@ struct SimpleTextField: View {
     }
 }
 
-struct SimpleTextField_Previews: PreviewProvider {
+struct ListTextField_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleTextField(value: .constant("aa"), placeHolder: "Place holder")
+        ListTextField(value: .constant("aa"), placeHolder: "Place holder")
     }
 }

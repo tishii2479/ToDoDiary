@@ -51,27 +51,27 @@ struct CreateEventView: View {
                 ScrollView {
                     VStack(spacing: 0) {
                         Group {
-                            SimpleDivider()
-                            SimpleTextField(value: $createEvent.title, placeHolder: "件名")
-                            SimpleDivider()
-                            SimpleTextField(value: $createEvent.place, placeHolder: "場所")
-                            SimpleDivider()
+                            ListDivider()
+                            ListTextField(value: $createEvent.title, placeHolder: "件名")
+                            ListDivider()
+                            ListTextField(value: $createEvent.place, placeHolder: "場所")
+                            ListDivider()
                         }
                         
                         Spacer().frame(height: 50)
                         
                         Group {
-                            SimpleDivider()
-                            SimplePulldownField(type: .date, title: "時刻", value: "未設定", event: $createEvent.event)
-                            SimpleDivider()
+                            ListDivider()
+                            ListPulldownField(type: .date, title: "時刻", value: "未設定", event: $createEvent.event)
+                            ListDivider()
                         }
                         
                         Spacer().frame(height: 50)
                         
                         Group {
-                            SimpleDivider()
-                            SimplePulldownField(type: .notification, title: "通知", value: "未設定", event: $createEvent.event)
-                            SimpleDivider()
+                            ListDivider()
+                            ListPulldownField(type: .notification, title: "通知", value: "未設定", event: $createEvent.event)
+                            ListDivider()
                         }
                         
                         Spacer().frame(height: 50)
@@ -80,10 +80,10 @@ struct CreateEventView: View {
                             ColorManager.back
                             
                             VStack {
-                                SimpleDivider()
+                                ListDivider()
                                 TextEditor(text: $createEvent.detail)
                                     .padding(.horizontal, 10)
-                                SimpleDivider()
+                                ListDivider()
                             }
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 160)

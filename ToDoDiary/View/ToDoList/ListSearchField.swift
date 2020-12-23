@@ -1,5 +1,5 @@
 //
-//  SimpleSearchField.swift
+//  ListSearchField.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/23.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 // 検索バー
-struct SimpleSearchField: View {
+struct ListSearchField: View {
     @ObservedObject var toDoList: ToDoListViewModel
     
     var body: some View {
@@ -39,8 +39,8 @@ struct SimpleSearchField: View {
     }
 }
 
-struct SimpleSearchField_Previews: PreviewProvider {
+struct ListSearchField_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleSearchField(toDoList: ToDoListViewModel())
+        ListSearchField(toDoList: ToDoListViewModel())
     }
 }

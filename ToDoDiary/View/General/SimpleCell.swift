@@ -1,5 +1,5 @@
 //
-//  SimpleCell.swift
+//  ListCell.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SimpleCellTitle: View {
+struct ListCellTitle: View {
     var title: String
     
     var body: some View {
@@ -23,7 +23,7 @@ struct SimpleCellTitle: View {
 }
 
 // テーブルのセルの背景用
-struct SimpleCellBackground: View {
+struct ListCellBackground: View {
     var body: some View {
         Rectangle()
             .fill(ColorManager.back)
@@ -31,8 +31,8 @@ struct SimpleCellBackground: View {
     }
 }
 
-struct SimpleCellBackground_Previews: PreviewProvider {
+struct ListCellBackground_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleCellBackground()
+        ListCellBackground()
     }
 }

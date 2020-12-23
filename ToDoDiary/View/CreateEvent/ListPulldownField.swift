@@ -1,5 +1,5 @@
 //
-//  SimplePulldownField.swift
+//  ListPulldownField.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SimplePulldownField: View {
+struct ListPulldownField: View {
     var type: PulldownType
     var title: String
     @State var value: String = ""
@@ -24,10 +24,10 @@ struct SimplePulldownField: View {
             }) {
                 ZStack {
                     // 背景
-                    SimpleCellBackground()
+                    ListCellBackground()
                     
                     // タイトル
-                    SimpleCellTitle(title: title)
+                    ListCellTitle(title: title)
                     
                     // 値
                     HStack {
@@ -44,14 +44,14 @@ struct SimplePulldownField: View {
             )
             
             if isOpen {
-                SimpleDivider()
+                ListDivider()
                 
                 Group {
                     switch type {
                     case .date:
-                        SimpleDateField()
+                        ListDateField()
                     case .notification:
-                        SimpleNotificationField()
+                        ListNotificationField()
                     }
                 }
             }
@@ -59,8 +59,8 @@ struct SimplePulldownField: View {
     }
 }
 
-struct SimplePulldownField_Previews: PreviewProvider {
+struct ListPulldownField_Previews: PreviewProvider {
     static var previews: some View {
-        SimplePulldownField(type: .date, title: "日付", event: .constant(Event.test))
+        ListPulldownField(type: .date, title: "日付", event: .constant(Event.test))
     }
 }

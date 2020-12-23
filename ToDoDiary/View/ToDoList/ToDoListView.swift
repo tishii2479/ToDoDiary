@@ -37,7 +37,7 @@ struct ToDoListView: View {
             ColorManager.back
             
             VStack(spacing: 0) {
-                SimpleSearchField(toDoList: toDoList)
+                ListSearchField(toDoList: toDoList)
                 
                 ScrollView {
                     VStack(spacing: 0) {

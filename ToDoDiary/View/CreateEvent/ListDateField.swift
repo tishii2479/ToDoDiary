@@ -1,5 +1,5 @@
 //
-//  SimpleDateField.swift
+//  ListDateField.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SimpleDateField: View {
+struct ListDateField: View {
     @State var startDate: Date = Date()
         
     var body: some View {
@@ -15,41 +15,41 @@ struct SimpleDateField: View {
             // 日にち
             ZStack {
                 // 背景
-                SimpleCellBackground()
+                ListCellBackground()
                 
                 // タイトル
-                SimpleCellTitle(title: "日にち")
+                ListCellTitle(title: "日にち")
             }
             
-            SimpleDivider()
+            ListDivider()
             
             // 開始時刻
             ZStack {
                 // 背景
-                SimpleCellBackground()
+                ListCellBackground()
                 
                 // タイトル
-                SimpleCellTitle(title: "開始時刻")
+                ListCellTitle(title: "開始時刻")
                 
                 
             }
             
-            SimpleDivider()
+            ListDivider()
             
             // 終了時刻
             ZStack {
                 // 背景
-                SimpleCellBackground()
+                ListCellBackground()
                 
                 // タイトル
-                SimpleCellTitle(title: "終了時刻")
+                ListCellTitle(title: "終了時刻")
             }
         }
     }
 }
 
-struct SimpleDateField_Previews: PreviewProvider {
+struct ListDateField_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleDateField()
+        ListDateField()
     }
 }
