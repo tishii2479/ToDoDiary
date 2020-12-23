@@ -22,6 +22,7 @@ fileprivate struct SimpleSearchField: View {
                 .padding(.horizontal, 20)
                 .frame(height: 40)
             
+            // 削除ボタン
             HStack {
                 Spacer()
                 
@@ -61,24 +62,38 @@ fileprivate struct ToDoListCell: View {
 
 // 新規作成テキストフィールド
 fileprivate struct ToDoTextfield: View {
+    
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var toDoListViewModel: ToDoListViewModel
     
     var body: some View {
         ZStack {
+            // 背景
             RoundedRectangle(cornerRadius: 25)
-            .fill(ColorManager.main)
-            .frame(minWidth: 0, maxWidth: 400, minHeight: 50, maxHeight: 50)
-            .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
+                .fill(ColorManager.main)
+                .frame(minWidth: 0, maxWidth: 400, minHeight: 50, maxHeight: 50)
+                .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
             
+            TextField("新規...", text: $toDoListViewModel.createText, onCommit: toDoListViewModel.createEvent)
+                .font(Font.custom(FontManager.japanese, size: 14))
+                .foregroundColor(ColorManager.character)
+                .frame(height: 50)
+                .padding(.leading, 20)
+            
+            // ボタン類
             HStack {
-                TextField("新規...", text: $toDoListViewModel.createText)
-                    .font(Font.custom(FontManager.japanese, size: 14))
-                    .foregroundColor(ColorManager.character)
-                
+                Spacer()
                 Button(action: {
-                    toDoListViewModel.createEvent(title:  toDoListViewModel.createText, selectedColor: toDoListViewModel.selectedColor)
+                    toDoListViewModel.createEvent()
                 }) {
                     Text("追加")
+                }
+                
+                // TODO: 位置検討
+                Button(action: {
+                    viewSwitcher.isShowingModal = true
+                }) {
+                    Text("詳細")
                 }
             }
             .padding(.horizontal, 25)
@@ -89,6 +104,8 @@ fileprivate struct ToDoTextfield: View {
 }
 
 struct ToDoListView: View {
+    
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var toDoListViewModel = ToDoListViewModel()
     
     var body: some View {
@@ -112,6 +129,9 @@ struct ToDoListView: View {
                 Spacer()
                 ColorPalette(selectedColor: $toDoListViewModel.selectedColor)
                 ToDoTextfield(toDoListViewModel: toDoListViewModel)
+            }
+            .sheet(isPresented: $viewSwitcher.isShowingModal) {
+                CreateEventView()
             }
         }
     }

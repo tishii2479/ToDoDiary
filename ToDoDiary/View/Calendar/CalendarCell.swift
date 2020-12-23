@@ -38,7 +38,7 @@ struct CalendarCell: View {
         
         let dateStr: String = CalendarManager.shared.formatFullDate(date: self.date)
         
-        if let _events = CalendarManager.shared.getEventArrayFromDate(date: dateStr) {
+        if let _events = EventManager.shared.getEventArrayFromDate(date: dateStr) {
             events = _events
         }
      }

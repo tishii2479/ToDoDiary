@@ -16,45 +16,14 @@ class CalendarManager {
     // 無限スクロールに使う、上下に何回更新されたかを保持する
     // 上に更新されたら-1、下に更新されたら+1
     // 更新された分、日付をずらす処理をgetDateFromIndexで行う
+    // CalendarViewModelに移すかもーーー
     var scrollCount: Int = 0
-    
-    private var eventDictionary: Dictionary<String, [Event]> = [:]
     
     init () {
         print("[debug] CalendarManager init")
         
         dayOffset = getDayOffset(date: Date())
-        
-        eventDictionary = setUpEventDictionary()
     }
-    
-    // イベント辞書構築
-    // startTimeがnilの場合は、dic[""]にイベントをまとめている
-    // TODO: データベースからイベント検索
-    func setUpEventDictionary() -> Dictionary<String, [Event]> {
-        var dic: Dictionary<String, [Event]> = [:]
-        
-        for _ in 0 ... 2 {
-            let event: Event = Event.test
-            let date: String = formatFullDate(date: event.startTime)
-            
-            if dic[date] == nil {
-                dic[date] = []
-            }
-            
-            dic[date]?.append(Event.test)
-        }
-        
-        return dic
-    }
-    
-    // 日時の文字列からイベントの配列を返す
-    func getEventArrayFromDate(date: String) -> [Event]? {
-        return eventDictionary[date]
-    }
-    
-    // イベントを辞書に追加する
-    func addEventToDictionary(event: Event) {}
     
     // TODO: スクロールカウントを含めた処理
     func getDateFromIndex(index: Int) -> Date {

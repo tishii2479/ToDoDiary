@@ -17,11 +17,11 @@ class ToDoListViewModel: ObservableObject {
         setUpEvents()
     }
     
-    func createEvent(title: String, selectedColor color: EventColor) {
+    func createEvent() {
         // 件名が入力されていない場合はreturn
-        guard title != "" else { return }
+        guard createText != "" else { return }
         
-        events.append(Event(title: title, color: color))
+        events.append(Event(title: createText, color: selectedColor))
         
         resetCreateInput()
     }

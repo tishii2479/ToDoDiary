@@ -20,7 +20,7 @@ class CalendarViewModel: ObservableObject {
         
         let formatDate: String = CalendarManager.shared.formatFullDate(date: selectedDate)
         
-        if let _selectedEventArray = CalendarManager.shared.getEventArrayFromDate(date: formatDate) {
+        if let _selectedEventArray = EventManager.shared.getEventArrayFromDate(date: formatDate) {
             selectedEventArray = _selectedEventArray
         } else {
             selectedEventArray = []
