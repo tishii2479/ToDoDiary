@@ -30,7 +30,7 @@ fileprivate struct DayBar: View {
 struct CalendarView: View {
     
     @EnvironmentObject var viewSwitcher: ViewSwitcher
-    @ObservedObject var calendarViewModel: CalendarViewModel = CalendarViewModel()
+    @ObservedObject var calendar: CalendarViewModel = CalendarViewModel()
     
     var body: some View {
         VStack {
@@ -48,7 +48,7 @@ struct CalendarView: View {
                         LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
                             ForEach((-49 ... 48), id: \.self) { index in
                                 Button(action: {
-                                    calendarViewModel.selectIndex(index: index)
+                                    calendar.selectIndex(index: index)
                                 }) {
                                     CalendarCell(index: index).id(index)
                                 }
@@ -58,8 +58,8 @@ struct CalendarView: View {
                     }
                     
                     // 日時イベント詳細ウィンドウ
-                    if calendarViewModel.isShowingDetail {
-                        CalendarDateDetail(calendarViewModel: calendarViewModel)
+                    if calendar.isShowingDetail {
+                        CalendarDateDetail(calendar: calendar)
                     }
                     
                     Button("To today") {

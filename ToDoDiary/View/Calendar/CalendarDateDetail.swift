@@ -34,21 +34,21 @@ fileprivate struct DetailEventLabel: View {
 struct CalendarDateDetail: View {
     
     @EnvironmentObject var viewSwitcher: ViewSwitcher
-    @ObservedObject var calendarViewModel: CalendarViewModel
+    @ObservedObject var calendar: CalendarViewModel
     
     var body: some View {
-        if calendarViewModel.isShowingDetail {
+        if calendar.isShowingDetail {
             VStack(spacing: 0) {
                 Spacer()
                 
                 HStack {
-                    Text(CalendarManager.shared.formatFullDate(date: CalendarManager.shared.getDateFromIndex(index: calendarViewModel.selectedIndex)))
+                    Text(CalendarManager.shared.formatFullDate(date: CalendarManager.shared.getDateFromIndex(index: calendar.selectedIndex)))
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.number, size: 14))
                     Spacer()
                     
                     Button("閉じる") {
-                        calendarViewModel.isShowingDetail = false
+                        calendar.isShowingDetail = false
                     }
                 }
                 .padding(.horizontal, 10)
@@ -57,11 +57,11 @@ struct CalendarDateDetail: View {
                 
                 ScrollView {
                     VStack (spacing: 0) {
-                        ForEach(0 ..< calendarViewModel.selectedEventArray.count, id: \.self) { index in
+                        ForEach(0 ..< calendar.selectedEventArray.count, id: \.self) { index in
                             Button(action: {
                                 viewSwitcher.isShowingModal = true
                             }) {
-                                DetailEventLabel(event: calendarViewModel.selectedEventArray[index])
+                                DetailEventLabel(event: calendar.selectedEventArray[index])
                             }
                         }
                     }
@@ -77,6 +77,6 @@ struct CalendarDateDetail: View {
 
 struct CalendarDateDetail_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarDateDetail(calendarViewModel: CalendarViewModel())
+        CalendarDateDetail(calendar: CalendarViewModel())
     }
 }
