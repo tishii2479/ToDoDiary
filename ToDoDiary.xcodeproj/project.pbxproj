@@ -19,6 +19,10 @@
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
 		49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* CalendarView.swift */; };
 		4938DDD8259352FE00F4F1AB /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */; };
+		4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */; };
+		4938DDE825936D5000F4F1AB /* SimpleTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDE725936D5000F4F1AB /* SimpleTextField.swift */; };
+		4938DDF225936D9F00F4F1AB /* SimpleDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDF125936D9F00F4F1AB /* SimpleDivider.swift */; };
+		4938DDFA25936DD900F4F1AB /* SimpleSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDF925936DD900F4F1AB /* SimpleSearchField.swift */; };
 		49A2B0922592EAB500E169FC /* EventColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0912592EAB500E169FC /* EventColor.swift */; };
 		49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0962592F51A00E169FC /* ColorPalette.swift */; };
 		49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */; };
@@ -81,6 +85,10 @@
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
 		49131700258A43EB00CF2B6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
+		4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTextField.swift; sourceTree = "<group>"; };
+		4938DDE725936D5000F4F1AB /* SimpleTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleTextField.swift; sourceTree = "<group>"; };
+		4938DDF125936D9F00F4F1AB /* SimpleDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDivider.swift; sourceTree = "<group>"; };
+		4938DDF925936DD900F4F1AB /* SimpleSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleSearchField.swift; sourceTree = "<group>"; };
 		49A2B0912592EAB500E169FC /* EventColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventColor.swift; sourceTree = "<group>"; };
 		49A2B0962592F51A00E169FC /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
@@ -223,6 +231,8 @@
 		491316E3258A3DFD00CF2B6C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4938DDE625936D1800F4F1AB /* Shared */,
+				4938DDDC25936CBD00F4F1AB /* CreateEvent */,
 				49A946B5258F5C350048DA05 /* Setting */,
 				49A94692258F49880048DA05 /* ToDoList */,
 				491316FF258A43B800CF2B6C /* Calendar */,
@@ -234,12 +244,11 @@
 		491316E4258A3E0700CF2B6C /* General */ = {
 			isa = PBXGroup;
 			children = (
-				491316E5258A3E2900CF2B6C /* TabBar.swift */,
-				491316ED258A419600CF2B6C /* NavigationBar.swift */,
-				491316FA258A42B900CF2B6C /* CurrentView.swift */,
 				49A94673258F13870048DA05 /* CreateEventButton.swift */,
-				49A94688258F32550048DA05 /* CreateEventView.swift */,
 				49A2B0962592F51A00E169FC /* ColorPalette.swift */,
+				4938DDE725936D5000F4F1AB /* SimpleTextField.swift */,
+				4938DDF125936D9F00F4F1AB /* SimpleDivider.swift */,
+				4938DDF925936DD900F4F1AB /* SimpleSearchField.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -252,6 +261,24 @@
 				49A9466B258F0D070048DA05 /* CalendarDateDetail.swift */,
 			);
 			path = Calendar;
+			sourceTree = "<group>";
+		};
+		4938DDDC25936CBD00F4F1AB /* CreateEvent */ = {
+			isa = PBXGroup;
+			children = (
+				49A94688258F32550048DA05 /* CreateEventView.swift */,
+			);
+			path = CreateEvent;
+			sourceTree = "<group>";
+		};
+		4938DDE625936D1800F4F1AB /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				491316E5258A3E2900CF2B6C /* TabBar.swift */,
+				491316ED258A419600CF2B6C /* NavigationBar.swift */,
+				491316FA258A42B900CF2B6C /* CurrentView.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		49A2B0A02593001100E169FC /* Util */ = {
@@ -285,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				49A94693258F49BC0048DA05 /* ToDoListView.swift */,
+				4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */,
 			);
 			path = ToDoList;
 			sourceTree = "<group>";
@@ -569,11 +597,15 @@
 				49A94662258EF8E00048DA05 /* CalendarViewModel.swift in Sources */,
 				49A94689258F32550048DA05 /* CreateEventView.swift in Sources */,
 				49A946A2258F58840048DA05 /* ViewType.swift in Sources */,
+				4938DDF225936D9F00F4F1AB /* SimpleDivider.swift in Sources */,
 				49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */,
 				49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */,
+				4938DDFA25936DD900F4F1AB /* SimpleSearchField.swift in Sources */,
 				49A9466C258F0D070048DA05 /* CalendarDateDetail.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
+				4938DDE825936D5000F4F1AB /* SimpleTextField.swift in Sources */,
 				49A94681258F228C0048DA05 /* Event.swift in Sources */,
+				4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */,
 				49A2B0A22593006300E169FC /* ToDoListViewModel.swift in Sources */,
 				49A94674258F13870048DA05 /* CreateEventButton.swift in Sources */,
 				49A9469C258F575A0048DA05 /* ViewSwitcher.swift in Sources */,

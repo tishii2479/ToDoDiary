@@ -7,27 +7,6 @@
 
 import SwiftUI
 
-fileprivate struct SimpleDivider: View {
-    var body: some View {
-        Divider()
-            .background(ColorManager.border)
-    }
-}
-
-fileprivate struct SimpleTextField: View {
-    @Binding var value: String
-    var placeHolder: String
-    
-    var body: some View {
-        TextField(placeHolder, text: $value)
-            .foregroundColor(ColorManager.character)
-            .font(Font.custom(FontManager.japanese, size: 14))
-            .frame(height: 40)
-            .padding(.horizontal, 10)
-            .background(ColorManager.back)
-    }
-}
-
 struct CreateEventView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var createEvent: CreateEventViewModel = CreateEventViewModel()

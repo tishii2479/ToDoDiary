@@ -35,8 +35,6 @@ class CreateEventViewModel: ObservableObject {
         EventManager.shared.addEventToDictionary(event: event)
         
         self.event = event
-        
-        print("add event \(event)")
     }
     
     // 入力欄の初期化
