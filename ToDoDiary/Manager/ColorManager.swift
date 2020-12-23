@@ -18,4 +18,11 @@ class ColorManager {
     static let redCharacter = Color("RedCharacter")
     static let border = Color("Border")
     static let denseBorder = Color("DenseBorder")
+    static let eventGray = Color("EventGray")
+    static let eventRed = Color("EventRed")
+    static let eventBlue = Color("EventBlue")
+    static let eventGreen = Color("EventGreen")
+    static let eventYellow = Color("EventYellow")
+    static let eventPurple = Color("EventPurple")
+    static let eventCyan = Color("EventCyan")
 }

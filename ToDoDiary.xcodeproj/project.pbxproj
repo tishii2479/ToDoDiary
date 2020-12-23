@@ -17,6 +17,9 @@
 		491316F3258A425600CF2B6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316F2258A425600CF2B6C /* MainView.swift */; };
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
 		49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* CalendarView.swift */; };
+		49A2B0922592EAB500E169FC /* EventColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0912592EAB500E169FC /* EventColor.swift */; };
+		49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0962592F51A00E169FC /* ColorPalette.swift */; };
+		49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */; };
 		49A94662258EF8E00048DA05 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94661258EF8E00048DA05 /* CalendarViewModel.swift */; };
 		49A9466C258F0D070048DA05 /* CalendarDateDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9466B258F0D070048DA05 /* CalendarDateDetail.swift */; };
 		49A94674258F13870048DA05 /* CreateEventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94673258F13870048DA05 /* CreateEventButton.swift */; };
@@ -68,6 +71,9 @@
 		491316F2258A425600CF2B6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
 		49131700258A43EB00CF2B6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		49A2B0912592EAB500E169FC /* EventColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventColor.swift; sourceTree = "<group>"; };
+		49A2B0962592F51A00E169FC /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
+		49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
 		49A94652258EF2FB0048DA05 /* CalendarManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManagerTests.swift; sourceTree = "<group>"; };
 		49A94661258EF8E00048DA05 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		49A9466B258F0D070048DA05 /* CalendarDateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateDetail.swift; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 				491316FA258A42B900CF2B6C /* CurrentView.swift */,
 				49A94673258F13870048DA05 /* CreateEventButton.swift */,
 				49A94688258F32550048DA05 /* CreateEventView.swift */,
+				49A2B0962592F51A00E169FC /* ColorPalette.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -213,6 +220,7 @@
 			children = (
 				49A94661258EF8E00048DA05 /* CalendarViewModel.swift */,
 				49A9469B258F575A0048DA05 /* ViewSwitcher.swift */,
+				49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -237,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				49A946A1258F58840048DA05 /* ViewType.swift */,
+				49A2B0912592EAB500E169FC /* EventColor.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -392,6 +401,7 @@
 				49A94662258EF8E00048DA05 /* CalendarViewModel.swift in Sources */,
 				49A94689258F32550048DA05 /* CreateEventView.swift in Sources */,
 				49A946A2258F58840048DA05 /* ViewType.swift in Sources */,
+				49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */,
 				49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */,
 				49A9466C258F0D070048DA05 /* CalendarDateDetail.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
@@ -403,8 +413,10 @@
 				491316F3258A425600CF2B6C /* MainView.swift in Sources */,
 				491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */,
 				49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */,
+				49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */,
 				49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */,
 				49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */,
+				49A2B0922592EAB500E169FC /* EventColor.swift in Sources */,
 				491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */,
 				49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */,
 				49D83947258DAEEF00BA9AA6 /* CalendarManager.swift in Sources */,

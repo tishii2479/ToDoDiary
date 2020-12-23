@@ -8,11 +8,16 @@
 import SwiftUI
 
 struct MainView: View {
+    @ObservedObject var keyboard = KeyboardResponder()
+    
     var body: some View {
         VStack(spacing: 0) {
             NavigationBar()
             CurrentView()
-            TabBar()
+            
+            if keyboard.isShowing == false {
+                TabBar()
+            }
         }
         .background(ColorManager.back)
     }

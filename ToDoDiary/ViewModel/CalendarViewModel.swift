@@ -18,6 +18,7 @@ class CalendarViewModel: ObservableObject {
     func selectIndex(index: Int) {
         print("[debug] select \(index)")
         let selectedDate: Date = CalendarManager.shared.getDateFromIndex(index: index)
+        
         let formatDate: String = CalendarManager.shared.formatFullDate(date: selectedDate)
         
         if let _selectedEventArray = CalendarManager.shared.getEventArrayFromDate(date: formatDate) {

@@ -21,7 +21,7 @@ fileprivate struct SimpleSearchField: View {
                 .font(Font.custom(FontManager.japanese, size: 14))
                 .padding(.horizontal, 20)
                 .frame(height: 40)
-                
+            
             HStack {
                 Spacer()
                 
@@ -91,6 +91,7 @@ fileprivate struct ToDoTextfield: View {
 struct ToDoListView: View {
     @State var searchText: String = ""
     @State var createText: String = ""
+    @State var selectedColor: EventColor = .none
     
     var body: some View {
         ZStack {
@@ -111,6 +112,7 @@ struct ToDoListView: View {
             
             VStack {
                 Spacer()
+                ColorPalette(selectedColor: $selectedColor)
                 ToDoTextfield(value: $createText)
             }
         }

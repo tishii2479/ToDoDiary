@@ -29,18 +29,20 @@ class CalendarManager {
     }
     
     // イベント辞書構築
+    // startTimeがnilの場合は、dic[""]にイベントをまとめている
     // TODO: データベースからイベント検索
     func setUpEventDictionary() -> Dictionary<String, [Event]> {
         var dic: Dictionary<String, [Event]> = [:]
         
         for _ in 0 ... 2 {
             let event: Event = Event.test
+            let date: String = formatFullDate(date: event.startTime)
             
-            if dic[formatFullDate(date: event.startTime)] == nil {
-                dic[formatFullDate(date: event.startTime)] = []
+            if dic[date] == nil {
+                dic[date] = []
             }
             
-            dic[formatFullDate(date: event.startTime)]?.append(Event.test)
+            dic[date]?.append(Event.test)
         }
         
         return dic
@@ -56,7 +58,7 @@ class CalendarManager {
     
     // TODO: スクロールカウントを含めた処理
     func getDateFromIndex(index: Int) -> Date {
-        guard let date = Calendar.current.date(byAdding: .day, value: index + dayOffset, to: Date()) else {
+        guard let date = Calendar.current.date(byAdding: .day, value: index - dayOffset, to: Date()) else {
             print("[Error] GetDateFromIndex Failed")
             return Date()
         }
@@ -80,12 +82,15 @@ class CalendarManager {
     }
     
     // 全体のカレンダーの表示
-    func formatFullDate(date: Date) -> String {
+    // dateがnilの場合は空文字列を返す
+    func formatFullDate(date: Date?) -> String {
+        guard let _date = date else { return "" }
+        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ja_JP")
         formatter.dateFormat = "y/M/d (E)"
         
-        return formatter.string(from: date)
+        return formatter.string(from: _date)
     }
     
     // カレンダー用に、月が奇数か偶数かを判断する

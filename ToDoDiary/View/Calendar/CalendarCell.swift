@@ -30,35 +30,45 @@ fileprivate struct CalendarEventLabel: View {
 }
 
 struct CalendarCell: View {
-    var date: Date
+    var date: Date = Date()
     var events: [Event] = []
     
     init (index: Int) {
         self.date = CalendarManager.shared.getDateFromIndex(index: index)
         
-        if let _events = CalendarManager.shared.getEventArrayFromDate(date: CalendarManager.shared.formatFullDate(date: self.date)) {
+        let dateStr: String = CalendarManager.shared.formatFullDate(date: self.date)
+        
+        if let _events = CalendarManager.shared.getEventArrayFromDate(date: dateStr) {
             events = _events
         }
      }
     
     var body: some View {
-        VStack(spacing: 7) {
-            // 日付ラベル
-            HStack {
-                Text("\(CalendarManager.shared.formatDateForCalendar(date: self.date))")
-                    .font(Font.custom(FontManager.number, size: 18))
-                    .bold()
-                    .foregroundColor(ColorManager.character)
-                    .padding([.top, .leading], 5)
+        ZStack {
+            VStack {
+                // 日付ラベル
+                HStack {
+                    Text("\(CalendarManager.shared.formatDateForCalendar(date: self.date))")
+                        .font(Font.custom(FontManager.number, size: 18))
+                        .bold()
+                        .foregroundColor(ColorManager.character)
+                        .padding([.top, .leading], 5)
+                    Spacer()
+                }
+                
                 Spacer()
             }
             
-            // イベントラベル
-            ForEach(0 ..< events.count, id: \.self) { index in
-                CalendarEventLabel(event: events[index])
+            VStack(spacing: 7) {
+                // イベントラベル
+                ForEach(0 ..< events.count, id: \.self) { index in
+                    CalendarEventLabel(event: events[index])
+                }
+                
+                Spacer()
             }
-            
-            Spacer()
+            .padding(.top, 40)
+            .frame(maxHeight: 100)
         }
         .frame(width: UIScreen.main.bounds.width / 7, height: 100)
         .background(
