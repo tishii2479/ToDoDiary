@@ -10,6 +10,8 @@ import Foundation
 class EventManager {
     static let shared = EventManager()
     
+    // イベントの辞書
+    // eventDictionary[""]は日時登録されていないもの
     private var eventDictionary: Dictionary<String, [Event]> = [:]
     
     init () {
@@ -27,7 +29,8 @@ class EventManager {
         for _ in 0 ... 2 {
             let event: Event = Event.test
             let date: String = CalendarManager.shared.formatFullDate(date: event.startTime)
-
+            print(date)
+            
             if dic[date] == nil {
                 dic[date] = []
             }
@@ -39,6 +42,7 @@ class EventManager {
     }
     
     // 日時の文字列からイベントの配列を返す
+    // なければnilを返す
     func getEventArrayFromDate(date: String) -> [Event]? {
         return eventDictionary[date]
     }

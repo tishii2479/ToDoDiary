@@ -19,7 +19,7 @@ class Event {
     var detail: String?
     
     // テスト用
-    static let test = Event(title: "アルバイトをする")
+    static let test = Event(title: "アルバイトをする", startTime: Date())
     
     var eventColor: Color {
         return Color.red
