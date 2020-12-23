@@ -8,7 +8,12 @@
 import SwiftUI
 
 class ToDoListViewModel: ObservableObject {
-    @Published var searchText: String = ""
+    @Published var searchText: String = "" {
+        didSet {
+            // 検索ワードが更新されたら、配列をアップデートする
+            updateEvents()
+        }
+    }
     @Published var createText: String = ""
     @Published var selectedColor: EventColor = .none
     @Published var events: [Event] = []
@@ -35,9 +40,19 @@ class ToDoListViewModel: ObservableObject {
         events = EventManager.shared.getToDoArray(searchText: "")
     }
     
+    func updateEvents() {
+        events = EventManager.shared.getToDoArray(searchText: searchText)
+        print(events)
+    }
+    
     // 作成欄のリセット
     func resetCreateInput() {
         selectedColor = .none
         createText = ""
+    }
+    
+    // 検索欄のリセット
+    func resetSearchInput() {
+        searchText = ""
     }
 }

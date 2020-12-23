@@ -11,4 +11,7 @@ import SwiftUI
 class ViewSwitcher: ObservableObject {
     @Published var currentView: ViewType = .calendar
     @Published var isShowingModal: Bool = false
+    
+    // 選択されたイベントの保持
+    @Published var targetEvent: Event? = nil
 }

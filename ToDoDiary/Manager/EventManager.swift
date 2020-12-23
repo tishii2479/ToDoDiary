@@ -17,6 +17,7 @@ class EventManager {
     
     init () {
         print("[debug] EventManager init")
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         eventDictionary = setUpEventDictionary()
     }
@@ -65,12 +66,13 @@ class EventManager {
         }
     }
     
-    // TODO:
     // ToDoのイベントを返す
     func getToDoArray(searchText: String) -> [Event] {
         do {
             let realm = try Realm()
-            let events = realm.objects(Event.self)
+            let search: String = "*" + searchText + "*"
+            
+            let events = realm.objects(Event.self).filter("title LIKE '\(search)'")
             
             return Array(events)
         } catch {

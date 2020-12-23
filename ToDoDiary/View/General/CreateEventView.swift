@@ -29,8 +29,8 @@ fileprivate struct SimpleTextField: View {
 }
 
 struct CreateEventView: View {
-    @State var title: String = ""
-    @State var text: String = ""
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
+    @ObservedObject var createEvent: CreateEventViewModel = CreateEventViewModel()
     
     var body: some View {
         // TextEditorの背景色を透明に
@@ -51,7 +51,7 @@ struct CreateEventView: View {
                         Spacer()
                         
                         Button(action: {
-                            print("Add")
+                            createEvent.createEvent()
                         }) {
                             Text("追加")
                                 .foregroundColor(ColorManager.redCharacter)
@@ -68,17 +68,9 @@ struct CreateEventView: View {
                     VStack(spacing: 0) {    // ScrollViewのspacingを消す
                         Group {
                             SimpleDivider()
-                            SimpleTextField(value: $title, placeHolder: "件名")
+                            SimpleTextField(value: $createEvent.title, placeHolder: "件名")
                             SimpleDivider()
-                            SimpleTextField(value: $title, placeHolder: "場所")
-                            SimpleDivider()
-                        }
-                        
-                        Spacer().frame(height: 50)
-                        
-                        Group {
-                            SimpleDivider()
-                            SimpleTextField(value: $title, placeHolder: "件名")
+                            SimpleTextField(value: $createEvent.place, placeHolder: "場所")
                             SimpleDivider()
                         }
                         
@@ -86,7 +78,15 @@ struct CreateEventView: View {
                         
                         Group {
                             SimpleDivider()
-                            SimpleTextField(value: $title, placeHolder: "件名")
+                            SimpleTextField(value: $createEvent.title, placeHolder: "件名")
+                            SimpleDivider()
+                        }
+                        
+                        Spacer().frame(height: 50)
+                        
+                        Group {
+                            SimpleDivider()
+                            SimpleTextField(value: $createEvent.title, placeHolder: "件名")
                             SimpleDivider()
                         }
                         
@@ -94,21 +94,10 @@ struct CreateEventView: View {
                         
                         ZStack {
                             ColorManager.back
-
-                            // PlaceHolder
-//                            VStack {
-//                                HStack {
-//                                    Text("詳細")
-//                                        .font(Font.custom(FontManager.japanese, size: 12))
-//                                        .padding(10)
-//                                    Spacer()
-//                                }
-//                                Spacer()
-//                            }
                             
                             VStack {
                                 SimpleDivider()
-                                TextEditor(text: $text)
+                                TextEditor(text: $createEvent.detail)
                                     .padding(.horizontal, 10)
                                 SimpleDivider()
                             }

@@ -17,7 +17,7 @@ fileprivate struct DetailEventLabel: View {
                 .font(Font.custom(FontManager.number, size: 14))
                 .frame(minWidth: 100, alignment: .trailing)
             
-            Color.red.frame(width: 1)
+            event.color.color.frame(width: 1)
                 .padding(.horizontal, 10)
             
             Text(event.title)

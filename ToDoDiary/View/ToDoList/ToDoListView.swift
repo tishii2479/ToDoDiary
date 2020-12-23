@@ -16,7 +16,7 @@ fileprivate struct SimpleSearchField: View {
             // 丸みのついた枠線
             RoundedRectangle(cornerRadius: 20)
                 .stroke(ColorManager.denseBorder, lineWidth: 1)
-            
+
             TextField("aa", text: $toDoList.searchText)
                 .font(Font.custom(FontManager.japanese, size: 14))
                 .padding(.horizontal, 20)
@@ -27,7 +27,7 @@ fileprivate struct SimpleSearchField: View {
                 Spacer()
                 
                 Button(action: {
-                    print("delete")
+                    toDoList.resetSearchInput()
                 }) {
                     Text("削除")
                 }
@@ -62,7 +62,6 @@ fileprivate struct ToDoListCell: View {
 
 // 新規作成テキストフィールド
 fileprivate struct ToDoTextfield: View {
-    
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var toDoList: ToDoListViewModel
     
@@ -104,7 +103,6 @@ fileprivate struct ToDoTextfield: View {
 }
 
 struct ToDoListView: View {
-    
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var toDoList = ToDoListViewModel()
     

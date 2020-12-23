@@ -18,6 +18,7 @@
 		491316F3258A425600CF2B6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316F2258A425600CF2B6C /* MainView.swift */; };
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
 		49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* CalendarView.swift */; };
+		4938DDD8259352FE00F4F1AB /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */; };
 		49A2B0922592EAB500E169FC /* EventColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0912592EAB500E169FC /* EventColor.swift */; };
 		49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0962592F51A00E169FC /* ColorPalette.swift */; };
 		49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */; };
@@ -79,6 +80,7 @@
 		491316F2258A425600CF2B6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
 		49131700258A43EB00CF2B6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		49A2B0912592EAB500E169FC /* EventColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventColor.swift; sourceTree = "<group>"; };
 		49A2B0962592F51A00E169FC /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				49A94661258EF8E00048DA05 /* CalendarViewModel.swift */,
 				49A9469B258F575A0048DA05 /* ViewSwitcher.swift */,
 				49A2B0A12593006300E169FC /* ToDoListViewModel.swift */,
+				4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				49A2B0C425931E9F00E169FC /* NotificationType.swift in Sources */,
 				491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */,
 				49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */,
+				4938DDD8259352FE00F4F1AB /* CreateEventViewModel.swift in Sources */,
 				49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */,
 				49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */,
 				49A2B0BA2593115E00E169FC /* EventManager.swift in Sources */,
