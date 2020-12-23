@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class EventManager {
     static let shared = EventManager()
@@ -29,7 +30,6 @@ class EventManager {
         for _ in 0 ... 2 {
             let event: Event = Event.test
             let date: String = CalendarManager.shared.formatFullDate(date: event.startTime)
-            print(date)
             
             if dic[date] == nil {
                 dic[date] = []
@@ -49,4 +49,9 @@ class EventManager {
     
     // イベントを辞書に追加する
     func addEventToDictionary(event: Event) {}
+    
+    // TODOのイベントを返す
+    func getToDoArray() -> [Event] {
+        return eventDictionary[CalendarManager.shared.formatFullDate(date: Date())]!
+    }
 }

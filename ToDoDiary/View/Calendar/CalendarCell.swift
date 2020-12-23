@@ -17,7 +17,7 @@ fileprivate struct CalendarEventLabel: View {
                 .frame(height: 15)
                 .overlay(   // 丸みのついた枠線
                     RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.red, lineWidth: 1)
+                        .stroke(event.eventColor, lineWidth: 1)
                 )
                 .padding(.horizontal, 2)
             

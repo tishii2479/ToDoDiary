@@ -45,7 +45,7 @@ fileprivate struct ToDoListCell: View {
     
     var body: some View {
         HStack {
-            event.color.color().frame(width: 2)
+            event.eventColor.frame(width: 2)
                 .padding(.horizontal, 15)
             
             Text(event.title)

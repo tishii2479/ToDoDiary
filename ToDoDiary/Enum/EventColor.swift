@@ -19,8 +19,8 @@ enum EventColor: Int {
     
     static let list: [EventColor] = [.gray, .red, .blue, .green, .yellow, .purple, .cyan]
     
-    static func random() -> EventColor {
-        return EventColor(rawValue: Int.random(in: 0...6))!
+    static func random() -> Int {
+        return Int.random(in: 0...6)
     }
     
     func color() -> Color {

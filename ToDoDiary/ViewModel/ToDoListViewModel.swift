@@ -21,13 +21,13 @@ class ToDoListViewModel: ObservableObject {
         // 件名が入力されていない場合はreturn
         guard createText != "" else { return }
         
-        events.append(Event(title: createText, color: selectedColor))
+        events.append(Event(title: createText, color: selectedColor.rawValue))
         
         resetCreateInput()
     }
     
     func setUpEvents() {
-        events = [Event.test, Event.test]
+        events = EventManager.shared.getToDoArray()
     }
     
     func resetCreateInput() {
