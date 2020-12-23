@@ -7,13 +7,20 @@
 
 import SwiftUI
 
+enum PulldownType {
+    case date
+    case notification
+}
+
 struct ListPulldownField: View {
     var type: PulldownType
     var title: String
     @State var value: String = ""
         
     // 開いているかどうか
-    @State var isOpen: Bool = true
+    @State var isOpen: Bool = false
+    
+    // 編集しているイベント
     @Binding var event: Event?
     
     var body: some View {

@@ -7,11 +7,6 @@
 
 import SwiftUI
 
-enum PulldownType {
-    case date
-    case notification
-}
-
 struct CreateEventView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var createEvent: CreateEventViewModel = CreateEventViewModel()

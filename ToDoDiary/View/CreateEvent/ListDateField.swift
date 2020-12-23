@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+fileprivate enum DateFieldType {
+    case none
+    case date
+    case start
+    case end
+}
+
 fileprivate struct TimeSelecter: View {
     @State private var departureDate = Date()
     
@@ -61,23 +68,32 @@ fileprivate struct DateSelecter: View {
 
 struct ListDateField: View {
     @State var startDate: Date = Date()
-        
+    
+    // どのプルダウンを見せているか
+    @State fileprivate var nowOpen: DateFieldType = .none
+    
     var body: some View {
         VStack(spacing: 0) {
             
             // 日にち
             Group {
-                ZStack {
-                    // 背景
-                    ListCellBackground()
-                    
-                    // タイトル
-                    ListCellTitle(title: "日にち")
+                Button(action: {
+                    nowOpen = .date
+                }) {
+                    ZStack {
+                        // 背景
+                        ListCellBackground()
+                        
+                        // タイトル
+                        ListCellTitle(title: "日にち")
+                    }
                 }
                 
-                ListDivider()
-                
-                DateSelecter()
+                if nowOpen == .date {
+                    ListDivider()
+                    
+                    DateSelecter()
+                }
             }
             
             ListDivider()
@@ -85,17 +101,23 @@ struct ListDateField: View {
             // 開始時刻
             Group {
                 VStack(spacing: 0) {
-                    ZStack {
-                        // 背景
-                        ListCellBackground()
-                        
-                        // タイトル
-                        ListCellTitle(title: "開始時刻")
+                    Button(action: {
+                        nowOpen = .start
+                    }) {
+                        ZStack {
+                            // 背景
+                            ListCellBackground()
+                            
+                            // タイトル
+                            ListCellTitle(title: "開始時刻")
+                        }
                     }
                     
-                    ListDivider()
-                    
-                    TimeSelecter()
+                    if nowOpen == .start {
+                        ListDivider()
+                        
+                        TimeSelecter()
+                    }
                 }
             }
             
@@ -104,17 +126,23 @@ struct ListDateField: View {
             // 終了時刻
             Group {
                 VStack(spacing: 0) {
-                    ZStack {
-                        // 背景
-                        ListCellBackground()
-                        
-                        // タイトル
-                        ListCellTitle(title: "終了時刻")
+                    Button(action: {
+                        nowOpen = .end
+                    }) {
+                        ZStack {
+                            // 背景
+                            ListCellBackground()
+                            
+                            // タイトル
+                            ListCellTitle(title: "終了時刻")
+                        }
                     }
                  
-                    ListDivider()
-                    
-                    TimeSelecter()
+                    if nowOpen == .end {
+                        ListDivider()
+                        
+                        TimeSelecter()
+                    }
                 }
             }
         }
