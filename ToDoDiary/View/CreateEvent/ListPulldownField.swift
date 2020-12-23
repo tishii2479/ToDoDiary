@@ -13,7 +13,7 @@ struct ListPulldownField: View {
     @State var value: String = ""
         
     // 開いているかどうか
-    @State var isOpen: Bool = false
+    @State var isOpen: Bool = true
     @Binding var event: Event?
     
     var body: some View {

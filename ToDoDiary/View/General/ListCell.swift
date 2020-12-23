@@ -16,9 +16,11 @@ struct ListCellTitle: View {
                 .foregroundColor(ColorManager.character)
                 .font(Font.custom(FontManager.japanese, size: 14))
                 .bold()
+            
             Spacer()
         }
         .padding(.horizontal, 10)
+        .frame(height: 40)
     }
 }
 

@@ -62,11 +62,7 @@ struct CalendarView: View {
                         CalendarDateDetail(calendar: calendar)
                     }
                     
-                    Button("To today") {
-                        withAnimation {
-                            proxy.scrollTo(0, anchor: .center)
-                        }
-                    }
+// proxy.scrollTo(0, anchor: .center)
                     
                     CreateEventButton()
                 }

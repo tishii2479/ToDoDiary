@@ -25,7 +25,7 @@
 		4938DDFA25936DD900F4F1AB /* ListSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDF925936DD900F4F1AB /* ListSearchField.swift */; };
 		4938DE07259374DC00F4F1AB /* ListPulldownField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE06259374DC00F4F1AB /* ListPulldownField.swift */; };
 		4938DE112593754000F4F1AB /* ListNotificationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE102593754000F4F1AB /* ListNotificationField.swift */; };
-		4938DE16259379EB00F4F1AB /* SimpleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE15259379EB00F4F1AB /* SimpleCell.swift */; };
+		4938DE16259379EB00F4F1AB /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE15259379EB00F4F1AB /* ListCell.swift */; };
 		4938DE1E25937A1800F4F1AB /* ListDateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE1D25937A1800F4F1AB /* ListDateField.swift */; };
 		49A2B0922592EAB500E169FC /* EventColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0912592EAB500E169FC /* EventColor.swift */; };
 		49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0962592F51A00E169FC /* ColorPalette.swift */; };
@@ -95,7 +95,7 @@
 		4938DDF925936DD900F4F1AB /* ListSearchField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSearchField.swift; sourceTree = "<group>"; };
 		4938DE06259374DC00F4F1AB /* ListPulldownField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPulldownField.swift; sourceTree = "<group>"; };
 		4938DE102593754000F4F1AB /* ListNotificationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationField.swift; sourceTree = "<group>"; };
-		4938DE15259379EB00F4F1AB /* SimpleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCell.swift; sourceTree = "<group>"; };
+		4938DE15259379EB00F4F1AB /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		4938DE1D25937A1800F4F1AB /* ListDateField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDateField.swift; sourceTree = "<group>"; };
 		49A2B0912592EAB500E169FC /* EventColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventColor.swift; sourceTree = "<group>"; };
 		49A2B0962592F51A00E169FC /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
@@ -255,7 +255,7 @@
 				49A94673258F13870048DA05 /* CreateEventButton.swift */,
 				49A2B0962592F51A00E169FC /* ColorPalette.swift */,
 				4938DDF125936D9F00F4F1AB /* SimpleDivider.swift */,
-				4938DE15259379EB00F4F1AB /* SimpleCell.swift */,
+				4938DE15259379EB00F4F1AB /* ListCell.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -613,7 +613,7 @@
 				49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */,
 				49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */,
 				4938DDFA25936DD900F4F1AB /* ListSearchField.swift in Sources */,
-				4938DE16259379EB00F4F1AB /* SimpleCell.swift in Sources */,
+				4938DE16259379EB00F4F1AB /* ListCell.swift in Sources */,
 				49A9466C258F0D070048DA05 /* CalendarDateDetail.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
 				4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */,
