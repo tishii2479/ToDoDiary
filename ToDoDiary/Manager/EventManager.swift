@@ -27,15 +27,20 @@ class EventManager {
     func setUpEventDictionary() -> Dictionary<String, [Event]> {
         var dic: Dictionary<String, [Event]> = [:]
         
-        for _ in 0 ... 2 {
-            let event: Event = Event.test
-            let date: String = CalendarManager.shared.formatFullDate(date: event.startTime)
+        do {
+            let realm = try Realm()
+            let events = realm.objects(Event.self)
             
-            if dic[date] == nil {
-                dic[date] = []
-            }
+            for event in events {
+                let date: String = CalendarManager.shared.formatFullDate(date: event.startTime)
+                if dic[date] == nil {
+                    dic[date] = []
+                }
 
-            dic[date]?.append(Event.test)
+                dic[date]?.append(event)
+            }
+        } catch {
+            print("[error] realm fail")
         }
         
         return dic
@@ -48,10 +53,29 @@ class EventManager {
     }
     
     // イベントを辞書に追加する
-    func addEventToDictionary(event: Event) {}
+    func addEventToDictionary(event: Event) {
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                realm.add(event)
+            }
+        } catch {
+            print("[error] realm fail")
+        }
+    }
     
-    // TODOのイベントを返す
-    func getToDoArray() -> [Event] {
-        return eventDictionary[CalendarManager.shared.formatFullDate(date: Date())]!
+    // TODO:
+    // ToDoのイベントを返す
+    func getToDoArray(searchText: String) -> [Event] {
+        do {
+            let realm = try Realm()
+            let events = realm.objects(Event.self)
+            
+            return Array(events)
+        } catch {
+            print("[error] realm fail")
+            return []
+        }
     }
 }

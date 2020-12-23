@@ -24,7 +24,7 @@ fileprivate struct ColorTile: View {
                 }
                 
                 Circle()
-                    .fill(eventColor.color())
+                    .fill(eventColor.color)
                     .frame(width: 24, height: 24)
                     .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
                     .padding(3) // 枠線の大きさと同じにすることで位置がずれないように

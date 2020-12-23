@@ -40,7 +40,7 @@ class Event: Object {
     static let test = Event(title: "アルバイトをする", startTime: Date())
     
     var eventColor: Color {
-        return color.color()
+        return color.color
     }
     
     required init() {
@@ -57,6 +57,7 @@ class Event: Object {
         self.detail = detail
         self.rawNotification = notification
         
+        // colorが設定されていなかったらランダムで割り付ける
         if color == -1 {
             self.rawColor = EventColor.random()
         } else {
