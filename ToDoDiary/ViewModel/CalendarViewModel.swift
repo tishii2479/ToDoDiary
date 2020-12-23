@@ -5,7 +5,6 @@
 //  Created by Tatsuya Ishii on 2020/12/20.
 //
 
-import Foundation
 import SwiftUI
 
 class CalendarViewModel: ObservableObject {
