@@ -89,5 +89,4 @@ class Event: Object {
         
         return result
     }
-    
 }

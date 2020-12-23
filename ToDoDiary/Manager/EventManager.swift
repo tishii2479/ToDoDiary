@@ -80,4 +80,17 @@ class EventManager {
             return []
         }
     }
+    
+    // イベントの削除
+    func deleteEvent(event: Event) {
+        do {
+            let realm = try Realm()
+            
+            try realm.write {
+                realm.delete(event)
+            }
+        } catch {
+            print("[error] realm fail")
+        }
+    }
 }

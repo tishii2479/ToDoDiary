@@ -32,7 +32,6 @@ fileprivate struct DetailEventLabel: View {
 }
 
 struct CalendarDateDetail: View {
-    
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var calendar: CalendarViewModel
     
@@ -59,6 +58,7 @@ struct CalendarDateDetail: View {
                     VStack (spacing: 0) {
                         ForEach(0 ..< calendar.selectedEventArray.count, id: \.self) { index in
                             Button(action: {
+                                viewSwitcher.targetEvent = calendar.selectedEventArray[index]
                                 viewSwitcher.isShowingModal = true
                             }) {
                                 DetailEventLabel(event: calendar.selectedEventArray[index])
