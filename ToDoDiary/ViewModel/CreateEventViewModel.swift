@@ -13,15 +13,28 @@ class CreateEventViewModel: ObservableObject {
     @Published var color: EventColor = .none
     @Published var notification: NotificationType = .none
     @Published var detail: String = ""
-    @Published var rawStartTime: Date = Date()
-    @Published var rawEndTime: Date = Date()
+    @Published var rawStartTime: Date = Date() {
+        didSet {
+            didSetStart = true
+        }
+    }
+    @Published var rawEndTime: Date = Date() {
+        didSet {
+            didSetEnd = true
+        }
+    }
     
     var selectedDates: [Date] = []
     var event: Event?
     
+    // TODO: 改善する
+    var didSetStart: Bool = false
+    var didSetEnd: Bool = false
+    
     var startTime: Date? {
         get {
-            return rawStartTime
+            if didSetStart { return rawStartTime }
+            else { return nil }
         }
         set {
             if let value = newValue {
@@ -32,7 +45,8 @@ class CreateEventViewModel: ObservableObject {
     
     var endTime: Date? {
         get {
-            return rawEndTime
+            if didSetEnd { return rawEndTime }
+            else { return nil }
         }
         set {
             if let value = newValue {
