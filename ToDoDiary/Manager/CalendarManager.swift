@@ -51,7 +51,9 @@ class CalendarManager {
     }
     
     // 時間の表示
-    func formatTime(date: Date) -> String {
+    func formatTime(date _date: Date?) -> String? {
+        guard let date = _date else { return nil }
+        
         let formatter = DateFormatter()
         
         formatter.dateFormat = "h:m"

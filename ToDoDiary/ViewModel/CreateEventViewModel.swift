@@ -11,18 +11,40 @@ class CreateEventViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var place: String = ""
     @Published var color: EventColor = .none
-    @Published var startTime: Date?
-    @Published var endTime: Date?
     @Published var notification: NotificationType = .none
     @Published var detail: String = ""
+    @Published var rawStartTime: Date = Date()
+    @Published var rawEndTime: Date = Date()
     
     var selectedDates: [Date] = []
     var event: Event?
     
+    var startTime: Date? {
+        get {
+            return rawStartTime
+        }
+        set {
+            if let value = newValue {
+                rawStartTime = value
+            }
+        }
+    }
+    
+    var endTime: Date? {
+        get {
+            return rawEndTime
+        }
+        set {
+            if let value = newValue {
+                rawEndTime = value
+            }
+        }
+    }
+    
     // イベントの作成
     func createEvent() {
         guard title != "" else { return }
-        
+
         // 前後の改行をなくす
         let _detail = detail.trimmingCharacters(in: .whitespacesAndNewlines)
         

@@ -99,10 +99,6 @@ fileprivate struct DateSelecter: View {
                     Text("next")
                 }
             }
-            // TODO: 月が変わった時に都度呼び出す
-            .onAppear {
-                dateSelecter.update()
-            }
         }
     }
     
@@ -114,8 +110,6 @@ fileprivate struct DateSelecter: View {
 struct ListDateField: View {
     @EnvironmentObject var createEvent: CreateEventViewModel
     @ObservedObject var dateSelecter = DateSelecterDirector()
-    @State var startTime: Date = Date()
-    @State var endTime: Date = Date()
     
     // どのプルダウンを見せているか
     @State fileprivate var nowOpen: DateFieldType = .none
@@ -164,7 +158,7 @@ struct ListDateField: View {
                             ListCellTitle(title: "開始時刻")
                             
                             // 値
-                            ListCellValue(value: CalendarManager.shared.formatTime(date: startTime))
+                            ListCellValue(value: CalendarManager.shared.formatTime(date: createEvent.startTime) ?? "")
                         }
                     }
                     
@@ -172,7 +166,7 @@ struct ListDateField: View {
                     if nowOpen == .start {
                         ListDivider()
                         
-                        TimeSelecter(title: "開始時刻", time: $startTime)
+                        TimeSelecter(title: "開始時刻", time: $createEvent.rawStartTime)
                     }
                 }
             }
@@ -193,7 +187,7 @@ struct ListDateField: View {
                             ListCellTitle(title: "終了時刻")
                             
                             // 値
-                            ListCellValue(value: CalendarManager.shared.formatTime(date: endTime))
+                            ListCellValue(value: CalendarManager.shared.formatTime(date: createEvent.endTime) ?? "")
                         }
                     }
                     
@@ -201,7 +195,7 @@ struct ListDateField: View {
                     if nowOpen == .end {
                         ListDivider()
                         
-                        TimeSelecter(title: "終了時刻", time: $endTime)
+                        TimeSelecter(title: "終了時刻", time: $createEvent.rawEndTime)
                     }
                 }
             }
