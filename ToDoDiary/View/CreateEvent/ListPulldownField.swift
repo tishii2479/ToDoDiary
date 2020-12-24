@@ -20,6 +20,7 @@ struct ListPulldownField: View {
     // 開いているかどうか
     @State var isOpen: Bool = false
     
+    // TODO:
     // 編集しているイベント
     @Binding var event: Event?
     
@@ -37,13 +38,7 @@ struct ListPulldownField: View {
                     ListCellTitle(title: title)
                     
                     // 値
-                    HStack {
-                        Spacer()
-                        Text(value)
-                            .foregroundColor(ColorManager.lightCharacter)
-                            .font(Font.custom(FontManager.japanese, size: 14))
-                    }
-                    .padding(.horizontal, 10)
+                    ListCellValue(value: value)
                 }
             }
             .background(

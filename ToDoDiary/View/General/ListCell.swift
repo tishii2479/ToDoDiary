@@ -7,6 +7,20 @@
 
 import SwiftUI
 
+struct ListCellValue: View {
+    var value: String
+    
+    var body: some View {
+        HStack {
+            Spacer()
+            Text(value)
+                .foregroundColor(ColorManager.lightCharacter)
+                .font(Font.custom(FontManager.japanese, size: 14))
+        }
+        .padding(.horizontal, 10)
+    }
+}
+
 struct ListCellTitle: View {
     var title: String
     

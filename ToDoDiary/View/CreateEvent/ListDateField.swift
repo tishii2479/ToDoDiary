@@ -15,7 +15,8 @@ fileprivate enum DateFieldType {
 }
 
 fileprivate struct TimeSelecter: View {
-    @State private var departureDate = Date()
+    var title: String
+    @Binding var time: Date
     
     var body: some View {
         ZStack {
@@ -24,7 +25,9 @@ fileprivate struct TimeSelecter: View {
                 .fill(ColorManager.back)
                 .frame(height: 200)
             
-            DatePicker("出国日時", selection: $departureDate, displayedComponents: .hourAndMinute)
+            // TODO: 間隔を変える
+            // https://d1v1b.com/swiftui/datepicker
+            DatePicker(title, selection: $time, displayedComponents: .hourAndMinute)
                 .datePickerStyle(WheelDatePickerStyle())
                 .labelsHidden()
                 .padding(-10)   // paddingの打ち消し
@@ -32,7 +35,37 @@ fileprivate struct TimeSelecter: View {
     }
 }
 
+fileprivate struct DateSelecterCell: View {
+    @ObservedObject var dateSelecter: DateSelecterDirector
+    @State var isSelected: Bool = false
+    var index: Int
+    
+    var body: some View {
+        Button(action: {
+            dateSelecter.selectDate(index: index)
+            isSelected.toggle()
+        }) {
+            ZStack {
+                Circle()
+                    .fill(ColorManager.border)
+                    .frame(width: 32, height: 32)
+                
+                Circle()
+                    .fill(isSelected ? ColorManager.character : ColorManager.main)
+                    .frame(width: 30, height: 30)
+                    .padding(1)
+                
+                Text(dateSelecter.formatDay(date: dateSelecter.getDateForDateSelecter(index: index)))
+                    .foregroundColor(isSelected ? ColorManager.main : ColorManager.character)
+                    .font(Font.custom(FontManager.japanese, size: 12))
+            }
+        }
+    }
+}
+
 fileprivate struct DateSelecter: View {
+    @ObservedObject var dateSelecter = DateSelecterDirector()
+    
     var body: some View {
         ZStack {
             // 背景
@@ -40,34 +73,52 @@ fileprivate struct DateSelecter: View {
                 .fill(ColorManager.back)
                 .frame(height: 300)
             
-            VStack {
-                Text("2020/1")
-                    .foregroundColor(ColorManager.character)
-                    .font(Font.custom(FontManager.japanese, size: 20))
-                    .bold()
-                
-                ForEach(0..<5) { y in
-                    HStack {
-                        ForEach(0..<7) { x in
-                            ZStack {
-                                Circle()
-                                    .fill(ColorManager.main)
-                                    .frame(width: 40, height: 40)
-                                    
-                                Text("\(y * 7 + x)")
-                                    .foregroundColor(ColorManager.character)
-                                    .font(Font.custom(FontManager.japanese, size: 12))
+            HStack {
+                Button(action: {
+                    dateSelecter.prevMonth()
+                }) {
+                    Text("prev")
+                }
+            
+                VStack {
+                    // タイトル
+                    Text(dateSelecter.title())
+                        .foregroundColor(ColorManager.character)
+                        .font(Font.custom(FontManager.japanese, size: 20))
+                        .bold()
+                    
+                    // カレンダー
+                    ForEach(0..<5) { y in
+                        HStack {
+                            ForEach(0..<7) { x in
+                                // ボタン
+                                DateSelecterCell(dateSelecter: dateSelecter, index: index(x, y))
                             }
                         }
                     }
                 }
+                
+                Button(action: {
+                    dateSelecter.nextMonth()
+                }) {
+                    Text("next")
+                }
+            }
+            // TODO: 月が変わった時に都度呼び出す
+            .onAppear {
+                dateSelecter.update()
             }
         }
+    }
+    
+    private func index(_ x: Int, _ y: Int) -> Int {
+        return x + y * 7
     }
 }
 
 struct ListDateField: View {
-    @State var startDate: Date = Date()
+    @State var startTime: Date = Date()
+    @State var endTime: Date = Date()
     
     // どのプルダウンを見せているか
     @State fileprivate var nowOpen: DateFieldType = .none
@@ -86,9 +137,13 @@ struct ListDateField: View {
                         
                         // タイトル
                         ListCellTitle(title: "日にち")
+                        
+                        // 値
+                        ListCellValue(value: "2020/1/1")
                     }
                 }
                 
+                // プルダウン
                 if nowOpen == .date {
                     ListDivider()
                     
@@ -110,13 +165,17 @@ struct ListDateField: View {
                             
                             // タイトル
                             ListCellTitle(title: "開始時刻")
+                            
+                            // 値
+                            ListCellValue(value: CalendarManager.shared.formatTime(date: startTime))
                         }
                     }
                     
+                    // プルダウン
                     if nowOpen == .start {
                         ListDivider()
                         
-                        TimeSelecter()
+                        TimeSelecter(title: "開始時刻", time: $startTime)
                     }
                 }
             }
@@ -135,13 +194,17 @@ struct ListDateField: View {
                             
                             // タイトル
                             ListCellTitle(title: "終了時刻")
+                            
+                            // 値
+                            ListCellValue(value: CalendarManager.shared.formatTime(date: endTime))
                         }
                     }
-                 
+                    
+                    // プルダウン
                     if nowOpen == .end {
                         ListDivider()
                         
-                        TimeSelecter()
+                        TimeSelecter(title: "終了時刻", time: $endTime)
                     }
                 }
             }
