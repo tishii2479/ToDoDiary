@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateEventView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
-    @ObservedObject var createEvent: CreateEventViewModel = CreateEventViewModel()
+    @EnvironmentObject var createEvent: CreateEventViewModel
     
     var body: some View {
         // TextEditorの背景色を透明に
@@ -57,7 +57,7 @@ struct CreateEventView: View {
                         
                         Group {
                             ListDivider()
-                            ListPulldownField(type: .date, title: "時刻", value: "未設定", event: $createEvent.event)
+                            ListPulldownField(type: .date, title: "時刻", value: "未設定")
                             ListDivider()
                         }
                         
@@ -65,7 +65,7 @@ struct CreateEventView: View {
                         
                         Group {
                             ListDivider()
-                            ListPulldownField(type: .notification, title: "通知", value: "未設定", event: $createEvent.event)
+                            ListPulldownField(type: .notification, title: "通知", value: "未設定")
                             ListDivider()
                         }
                         

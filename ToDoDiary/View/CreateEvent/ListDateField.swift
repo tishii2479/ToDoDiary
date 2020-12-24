@@ -35,36 +35,9 @@ fileprivate struct TimeSelecter: View {
     }
 }
 
-fileprivate struct DateSelecterCell: View {
-    @ObservedObject var dateSelecter: DateSelecterDirector
-    @State var isSelected: Bool = false
-    var index: Int
-    
-    var body: some View {
-        Button(action: {
-            dateSelecter.selectDate(index: index)
-            isSelected.toggle()
-        }) {
-            ZStack {
-                Circle()
-                    .fill(ColorManager.border)
-                    .frame(width: 32, height: 32)
-                
-                Circle()
-                    .fill(isSelected ? ColorManager.character : ColorManager.main)
-                    .frame(width: 30, height: 30)
-                    .padding(1)
-                
-                Text(dateSelecter.formatDay(date: dateSelecter.getDateForDateSelecter(index: index)))
-                    .foregroundColor(isSelected ? ColorManager.main : ColorManager.character)
-                    .font(Font.custom(FontManager.japanese, size: 12))
-            }
-        }
-    }
-}
-
 fileprivate struct DateSelecter: View {
-    @ObservedObject var dateSelecter = DateSelecterDirector()
+    @ObservedObject var dateSelecter: DateSelecterDirector
+    @EnvironmentObject var createEvent: CreateEventViewModel
     
     var body: some View {
         ZStack {
@@ -92,7 +65,29 @@ fileprivate struct DateSelecter: View {
                         HStack {
                             ForEach(0..<7) { x in
                                 // ボタン
-                                DateSelecterCell(dateSelecter: dateSelecter, index: index(x, y))
+                                Button(action: {
+                                    dateSelecter.selectDate(index: index(x, y))
+                                    dateSelecter.selectedIndexes[index(x, y)].toggle()
+                                    createEvent.selectedDates = dateSelecter.selectedDates
+                                }) {
+                                    ZStack {
+                                        // 枠線
+                                        Circle()
+                                            .fill(ColorManager.border)
+                                            .frame(width: 32, height: 32)
+                                        
+                                        // 背景
+                                        Circle()
+                                            .fill(dateSelecter.selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
+                                            .frame(width: 30, height: 30)
+                                            .padding(1)
+                                        
+                                        // 文字
+                                        Text(dateSelecter.formatDay(date: dateSelecter.getDateForDateSelecter(index: index(x, y))))
+                                            .foregroundColor(dateSelecter.selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
+                                            .font(Font.custom(FontManager.japanese, size: 12))
+                                    }
+                                }
                             }
                         }
                     }
@@ -117,6 +112,8 @@ fileprivate struct DateSelecter: View {
 }
 
 struct ListDateField: View {
+    @EnvironmentObject var createEvent: CreateEventViewModel
+    @ObservedObject var dateSelecter = DateSelecterDirector()
     @State var startTime: Date = Date()
     @State var endTime: Date = Date()
     
@@ -139,7 +136,7 @@ struct ListDateField: View {
                         ListCellTitle(title: "日にち")
                         
                         // 値
-                        ListCellValue(value: "2020/1/1")
+                        ListCellValue(value: dateSelecter.formatSelectedDates())
                     }
                 }
                 
@@ -147,7 +144,7 @@ struct ListDateField: View {
                 if nowOpen == .date {
                     ListDivider()
                     
-                    DateSelecter()
+                    DateSelecter(dateSelecter: dateSelecter)
                 }
             }
             

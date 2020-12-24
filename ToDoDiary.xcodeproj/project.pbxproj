@@ -241,7 +241,6 @@
 		491316E3258A3DFD00CF2B6C /* View */ = {
 			isa = PBXGroup;
 			children = (
-				496BA46025943239008E6EF9 /* Util */,
 				4938DDE625936D1800F4F1AB /* Shared */,
 				4938DDDC25936CBD00F4F1AB /* CreateEvent */,
 				49A946B5258F5C350048DA05 /* Setting */,
@@ -293,13 +292,6 @@
 				491316FA258A42B900CF2B6C /* CurrentView.swift */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		496BA46025943239008E6EF9 /* Util */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Util;
 			sourceTree = "<group>";
 		};
 		49A2B0A02593001100E169FC /* Util */ = {

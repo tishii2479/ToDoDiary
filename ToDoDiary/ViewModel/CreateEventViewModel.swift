@@ -16,6 +16,7 @@ class CreateEventViewModel: ObservableObject {
     @Published var notification: NotificationType = .none
     @Published var detail: String = ""
     
+    var selectedDates: [Date] = []
     var event: Event?
     
     // イベントの作成
@@ -52,4 +53,5 @@ class CreateEventViewModel: ObservableObject {
         
         self.event = event
     }
+    
 }

@@ -12,17 +12,13 @@ enum PulldownType {
     case notification
 }
 
-struct ListPulldownField: View {
+struct ListPulldownField: View {    
     var type: PulldownType
     var title: String
     @State var value: String = ""
         
     // 開いているかどうか
     @State var isOpen: Bool = false
-    
-    // TODO:
-    // 編集しているイベント
-    @Binding var event: Event?
     
     var body: some View {
         VStack(spacing: 0) {
@@ -63,6 +59,6 @@ struct ListPulldownField: View {
 
 struct ListPulldownField_Previews: PreviewProvider {
     static var previews: some View {
-        ListPulldownField(type: .date, title: "日付", event: .constant(Event.test))
+        ListPulldownField(type: .date, title: "日付")
     }
 }

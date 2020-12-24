@@ -12,6 +12,9 @@ class DateSelecterDirector: ObservableObject {
     @Published var year: Int = 2021
     @Published var month: Int = 1
     @Published var offset: Int = 0
+    @Published var selectedIndexes: [Bool] = [Bool](repeating: false, count: 50)
+    
+    @Published var selectedDates: [Date] = []
     
     // 日にち選択用に月の最初の曜日を取得する
     func getOffsetForDateSelecter(year: Int, month: Int) -> Int {
@@ -67,7 +70,9 @@ class DateSelecterDirector: ObservableObject {
     }
     
     func selectDate(index: Int) {
-        print(getDateForDateSelecter(index: index))
+        selectedDates.append(getDateForDateSelecter(index: index))
+        
+        print(selectedDates)
     }
     
     // 前の月
@@ -85,5 +90,22 @@ class DateSelecterDirector: ObservableObject {
     // 選択している年、月が変わった時に呼ばれる
     func update() {
         offset = getOffsetForDateSelecter(year: year, month: month)
+        selectedIndexes = [Bool](repeating: false, count: 50)
+        
+        // TODO:
+        // 選択されている日は選択済みにする
+        
+    }
+    
+    // 選択された日付のフォーマット
+    func formatSelectedDates() -> String {
+        var result: String = ""
+        
+        for date in selectedDates {
+            // TODO: 月、日だけ
+            result += CalendarManager.shared.formatFullDate(date: date)
+        }
+        
+        return result
     }
 }
