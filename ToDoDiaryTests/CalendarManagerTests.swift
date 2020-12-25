@@ -18,40 +18,72 @@ class CalendarManagerTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-    func testCalendarFormatOfFirstDay() throws {
-        let calendarManager = CalendarManager()
-        
+    func testCalendarFormat() throws {
         let firstDayOfMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 1))!
         
         let excepted = "1/1"
         
-        let actual = calendarManager.formatForCalendar(date: firstDayOfMonth)
+        let actual = CalendarManager.shared.formatDateForCalendar(date: firstDayOfMonth)
         
         XCTAssertEqual(actual, excepted)
-    }
-    
-    func testCalendarFormatOfOtherDay() throws {
-        let calendarManager = CalendarManager()
 
         let otherDayOfMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 3))!
 
-        let excepted = "3"
+        let otherExcepted = "3"
 
-        let actual = calendarManager.formatForCalendar(date: otherDayOfMonth)
+        let otherActual = CalendarManager.shared.formatDateForCalendar(date: otherDayOfMonth)
 
+        XCTAssertEqual(otherActual, otherExcepted)
+    }
+    
+    func testFormatFullDate() throws {
+        let day = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 25))
+        
+        let excepted = "2020/12/25 (金)"
+        
+        let actual = CalendarManager.shared.formatFullDate(date: day)
+        
         XCTAssertEqual(actual, excepted)
+        
+        let day2 = Calendar.current.date(from: DateComponents(year: 2021, month: 1, day: 1))
+        
+        let excepted2 = "2021/1/1 (金)"
+        
+        let actual2 = CalendarManager.shared.formatFullDate(date: day2)
+        
+        XCTAssertEqual(actual2, excepted2)
     }
     
     func testDayOffset() throws {
-        let calendarManager = CalendarManager()
-        
         let thursday = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 24))!
         
         let excepeted = 4
         
-        let actual = calendarManager.getDayOffset(date: thursday)
+        let actual = CalendarManager.shared.getDayOffset(date: thursday)
         
         XCTAssertEqual(excepeted, actual)
+        
+        let minus = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: -1))!    // sunday
+        
+        let excepeted2 = 0
+        
+        let actual2 = CalendarManager.shared.getDayOffset(date: minus)
+        
+        XCTAssertEqual(excepeted2, actual2)
+    }
+    
+    func testOddMonth() throws {
+        let oddMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 11, day: 12))!
+        
+        XCTAssertTrue(CalendarManager.shared.isOddMonth(date: oddMonth))
+        
+        let evenMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 12))!
+        
+        XCTAssertFalse(CalendarManager.shared.isOddMonth(date: evenMonth))
+        
+        let minusMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: -1))!
+        
+        XCTAssertTrue(CalendarManager.shared.isOddMonth(date: minusMonth))
     }
 
 }

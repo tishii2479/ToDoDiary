@@ -56,7 +56,7 @@ class CalendarManager {
         
         let formatter = DateFormatter()
         
-        formatter.dateFormat = "h:m"
+        formatter.dateFormat = "h:mm"
         
         return formatter.string(from: date)
     }

@@ -57,7 +57,7 @@ struct CreateEventView: View {
                         
                         Group {
                             ListDivider()
-                            ListPulldownField(type: .date, title: "時刻", value: "未設定")
+                            ListPulldownField(type: .date, title: "時刻", value: "未設定", isAlwaysOpen: false)
                             ListDivider()
                         }
                         
@@ -89,7 +89,7 @@ struct CreateEventView: View {
         .colorScheme(.dark) // FIXME: これだけカラーが反映されない
         .onAppear {
             print("appear create event")
-            createEvent.setUpEvents(event: viewSwitcher.targetEvent)
+            createEvent.setUpEvent(event: viewSwitcher.targetEvent)
         }
     }
 }

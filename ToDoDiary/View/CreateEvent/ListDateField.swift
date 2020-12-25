@@ -36,7 +36,6 @@ fileprivate struct TimeSelecter: View {
 }
 
 fileprivate struct DateSelecter: View {
-    @ObservedObject var dateSelecter: DateSelecterDirector
     @EnvironmentObject var createEvent: CreateEventViewModel
     
     var body: some View {
@@ -48,27 +47,27 @@ fileprivate struct DateSelecter: View {
             
             HStack {
                 Button(action: {
-                    dateSelecter.prevMonth()
+                    createEvent.prevMonth()
                 }) {
                     Text("prev")
                 }
             
                 VStack {
                     // タイトル
-                    Text(dateSelecter.title())
+                    Text(createEvent.calendarTitle())
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 20))
                         .bold()
                     
                     // カレンダー
+                    // TODO: 範囲を変更
                     ForEach(0..<5) { y in
                         HStack {
                             ForEach(0..<7) { x in
                                 // ボタン
                                 Button(action: {
-                                    dateSelecter.selectDate(index: index(x, y))
-                                    dateSelecter.selectedIndexes[index(x, y)].toggle()
-                                    createEvent.selectedDates = dateSelecter.selectedDates
+                                    createEvent.selectDate(index: index(x, y))
+                                    createEvent.selectedIndexes[index(x, y)].toggle()
                                 }) {
                                     ZStack {
                                         // 枠線
@@ -78,13 +77,13 @@ fileprivate struct DateSelecter: View {
                                         
                                         // 背景
                                         Circle()
-                                            .fill(dateSelecter.selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
+                                            .fill(createEvent.selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
                                             .frame(width: 30, height: 30)
                                             .padding(1)
                                         
                                         // 文字
-                                        Text(dateSelecter.formatDay(date: dateSelecter.getDateForDateSelecter(index: index(x, y))))
-                                            .foregroundColor(dateSelecter.selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
+                                        Text(createEvent.formatDay(date: createEvent.getDateForDateSelecter(index: index(x, y))))
+                                            .foregroundColor(createEvent.selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
                                             .font(Font.custom(FontManager.japanese, size: 12))
                                     }
                                 }
@@ -94,7 +93,7 @@ fileprivate struct DateSelecter: View {
                 }
                 
                 Button(action: {
-                    dateSelecter.nextMonth()
+                    createEvent.nextMonth()
                 }) {
                     Text("next")
                 }
@@ -109,7 +108,6 @@ fileprivate struct DateSelecter: View {
 
 struct ListDateField: View {
     @EnvironmentObject var createEvent: CreateEventViewModel
-    @ObservedObject var dateSelecter = DateSelecterDirector()
     
     // どのプルダウンを見せているか
     @State fileprivate var nowOpen: DateFieldType = .none
@@ -120,7 +118,7 @@ struct ListDateField: View {
             // 日にち
             Group {
                 Button(action: {
-                    nowOpen = .date
+                    toggleOpen(type: .date)
                 }) {
                     ZStack {
                         // 背景
@@ -130,7 +128,7 @@ struct ListDateField: View {
                         ListCellTitle(title: "日にち")
                         
                         // 値
-                        ListCellValue(value: dateSelecter.formatSelectedDates())
+                        ListCellValue(value: createEvent.formatSelectedDates())
                     }
                 }
                 
@@ -138,7 +136,7 @@ struct ListDateField: View {
                 if nowOpen == .date {
                     ListDivider()
                     
-                    DateSelecter(dateSelecter: dateSelecter)
+                    DateSelecter()
                 }
             }
             
@@ -148,7 +146,7 @@ struct ListDateField: View {
             Group {
                 VStack(spacing: 0) {
                     Button(action: {
-                        nowOpen = .start
+                        toggleOpen(type: .start)
                     }) {
                         ZStack {
                             // 背景
@@ -177,7 +175,7 @@ struct ListDateField: View {
             Group {
                 VStack(spacing: 0) {
                     Button(action: {
-                        nowOpen = .end
+                        toggleOpen(type: .end)
                     }) {
                         ZStack {
                             // 背景
@@ -199,6 +197,14 @@ struct ListDateField: View {
                     }
                 }
             }
+        }
+    }
+    
+    private func toggleOpen(type: DateFieldType) {
+        if nowOpen == type {
+            nowOpen = .none
+        } else {
+            nowOpen = type
         }
     }
 }

@@ -20,6 +20,8 @@ struct ListPulldownField: View {
     // 開いているかどうか
     @State var isOpen: Bool = false
     
+    var isAlwaysOpen: Bool = false
+    
     var body: some View {
         VStack(spacing: 0) {
             Button(action: {
@@ -41,7 +43,7 @@ struct ListPulldownField: View {
                 ColorManager.back.frame(height: 40)
             )
             
-            if isOpen {
+            if isOpen || isAlwaysOpen {
                 ListDivider()
                 
                 Group {
