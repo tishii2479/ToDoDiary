@@ -62,7 +62,6 @@ class CreateEventViewModel: ObservableObject {
         let _detail = detail.trimmingCharacters(in: .whitespacesAndNewlines)
         
         // 編集中である場合、重複させないためにそれを削除する
-        // TODO: buggy
         if let _event = self.event {
             EventManager.shared.deleteEvent(event: _event)
         }
@@ -145,39 +144,7 @@ class CreateEventViewModel: ObservableObject {
             return 0
         }
         
-        return offset - 1
-    }
-    
-    // 日にち選択用に日だけ取得
-    func formatDay(date: Date) -> String {
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "d"
-        
-        return formatter.string(from: date)
-    }
-    
-    func formatMonthAndDay(date: Date) -> String {
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "M/d"
-        
-        return formatter.string(from: date)
-    }
-    
-    // year and date
-    func calendarTitle() -> String {
-        let components = DateComponents(calendar: Calendar.current, year: year, month: month)
-        guard let date = components.date else {
-            print("[Error] GetDateFromIndex Failed")
-            return ""
-        }
-        
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "y/M"
-        
-        return formatter.string(from: date)
+        return (offset % 7) - 1
     }
     
     // 日にち選択用の日付取得
@@ -211,9 +178,10 @@ class CreateEventViewModel: ObservableObject {
         if selectedDates.contains(selectedDate) {
             selectedDates.remove(value: selectedDate)
         } else {
-            selectedDates.append(getDateForDateSelecter(index: index))
+            selectedDates.append(selectedDate)
         }
         
+        // 選択された日付を昇順にソート
         // ISSUE: selectedDatesが増えてくると重いかも
         selectedDates = selectedDates.sorted(by: <)
     }
@@ -262,6 +230,58 @@ class CreateEventViewModel: ObservableObject {
             }
         }
     }
+
+    // ISSUE: 重いかも
+    // 対象の日付が表示すべきかを返す
+    func isTargetDate(date: Date) -> Bool {
+        let comp = Calendar.current.dateComponents([.year, .month], from: date)
+        guard let _year = comp.year, let _month = comp.month else {
+            print("[error] earn components failed")
+            return false
+        }
+        
+        if year == _year && month == _month {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    //
+    // MARK: Formatter
+    //
+    
+    // 日にち選択用に日だけ取得
+    func formatDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "d"
+        
+        return formatter.string(from: date)
+    }
+    
+    func formatMonthAndDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "M/d"
+        
+        return formatter.string(from: date)
+    }
+    
+    // year and date
+    func calendarTitle() -> String {
+        let components = DateComponents(calendar: Calendar.current, year: year, month: month)
+        guard let date = components.date else {
+            print("[Error] GetDateFromIndex Failed")
+            return ""
+        }
+        
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "y/M"
+        
+        return formatter.string(from: date)
+    }
     
     // 選択された日付のフォーマット
     // FIXME: 何かを変更すると常に呼ばれる
@@ -279,4 +299,5 @@ class CreateEventViewModel: ObservableObject {
         
         return result
     }
+
 }

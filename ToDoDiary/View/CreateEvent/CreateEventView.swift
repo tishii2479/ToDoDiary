@@ -90,7 +90,6 @@ struct CreateEventView: View {
         }
         .colorScheme(.dark) // FIXME: これだけカラーが反映されない
         .onAppear {
-            print("appear create event")
             createEvent.setUpEvent(event: viewSwitcher.targetEvent)
         }
     }

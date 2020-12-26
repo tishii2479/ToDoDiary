@@ -19,6 +19,7 @@
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
 		49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* CalendarView.swift */; };
 		492157652597379700D9C63E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492157642597379700D9C63E /* Array.swift */; };
+		4921576D2597425100D9C63E /* DayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921576C2597425100D9C63E /* DayBar.swift */; };
 		4938DDD8259352FE00F4F1AB /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */; };
 		4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */; };
 		4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDE725936D5000F4F1AB /* ListTextField.swift */; };
@@ -90,6 +91,7 @@
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
 		49131700258A43EB00CF2B6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 		492157642597379700D9C63E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		4921576C2597425100D9C63E /* DayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBar.swift; sourceTree = "<group>"; };
 		4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTextField.swift; sourceTree = "<group>"; };
 		4938DDE725936D5000F4F1AB /* ListTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextField.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 				49A2B0962592F51A00E169FC /* ColorPalette.swift */,
 				4938DDF125936D9F00F4F1AB /* SimpleDivider.swift */,
 				4938DE15259379EB00F4F1AB /* ListCell.swift */,
+				4921576C2597425100D9C63E /* DayBar.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -619,6 +622,7 @@
 				4938DE16259379EB00F4F1AB /* ListCell.swift in Sources */,
 				49A9466C258F0D070048DA05 /* CalendarDateDetail.swift in Sources */,
 				492157652597379700D9C63E /* Array.swift in Sources */,
+				4921576D2597425100D9C63E /* DayBar.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
 				4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */,
 				49A94681258F228C0048DA05 /* Event.swift in Sources */,

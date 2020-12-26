@@ -43,7 +43,6 @@ fileprivate struct DateSelecter: View {
             // 背景
             Rectangle()
                 .fill(ColorManager.back)
-                .frame(height: 300)
             
             HStack {
                 Button(action: {
@@ -58,34 +57,45 @@ fileprivate struct DateSelecter: View {
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 20))
                         .bold()
+                 
+                    // 曜日のバー
+                    DayBar()
                     
                     // カレンダー
                     // TODO: 範囲を変更
-                    ForEach(0..<5) { y in
+                    ForEach(0..<6) { y in
                         HStack {
                             ForEach(0..<7) { x in
-                                // ボタン
-                                Button(action: {
-                                    createEvent.selectDate(index: index(x, y))
-                                    createEvent.selectedIndexes[index(x, y)].toggle()
-                                }) {
-                                    ZStack {
-                                        // 枠線
-                                        Circle()
-                                            .fill(ColorManager.border)
-                                            .frame(width: 32, height: 32)
-                                        
-                                        // 背景
-                                        Circle()
-                                            .fill(createEvent.selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
-                                            .frame(width: 30, height: 30)
-                                            .padding(1)
-                                        
-                                        // 文字
-                                        Text(createEvent.formatDay(date: createEvent.getDateForDateSelecter(index: index(x, y))))
-                                            .foregroundColor(createEvent.selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
-                                            .font(Font.custom(FontManager.japanese, size: 12))
+                                // 表示されている年月の範囲内であれば表示する
+                                if createEvent.isTargetDate(date: createEvent.getDateForDateSelecter(index: index(x, y))) {
+                                    // ボタン
+                                    Button(action: {
+                                        createEvent.selectDate(index: index(x, y))
+                                        createEvent.selectedIndexes[index(x, y)].toggle()
+                                    }) {
+                                        ZStack {
+                                            // 枠線
+                                            Circle()
+                                                .fill(ColorManager.border)
+                                                .frame(minWidth: 32, minHeight: 32)
+                                            
+                                            // 背景
+                                            Circle()
+                                                // 選択されて入れば色を変える
+                                                .fill(createEvent.selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
+                                                .frame(minWidth: 30, minHeight: 30)
+                                                .padding(1)
+                                            
+                                            // 文字
+                                            Text(createEvent.formatDay(date: createEvent.getDateForDateSelecter(index: index(x, y))))
+                                                .foregroundColor(createEvent.selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
+                                                .font(Font.custom(FontManager.japanese, size: 12))
+                                        }
                                     }
+                                } else {
+                                    Circle()
+                                        .fill(Color.clear)
+                                        .frame(minWidth: 32, minHeight: 32)
                                 }
                             }
                         }
@@ -98,6 +108,7 @@ fileprivate struct DateSelecter: View {
                     Text("next")
                 }
             }
+            .padding(.vertical, 10)
             .onAppear {
                 createEvent.offset = createEvent.getOffsetForDateSelecter()
             }

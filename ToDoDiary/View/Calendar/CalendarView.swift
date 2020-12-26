@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-fileprivate struct DayBar: View {
-    let days: [String] = ["日", "月", "火", "水", "木", "金", "土"]
-    
-    var body: some View {
-        HStack(alignment: .center) {
-            ForEach(0 ..< days.count) { i in
-                Spacer()
-                Text(days[i])
-                    .font(Font.custom(FontManager.japanese, size: 14))
-                    .foregroundColor(i == 0 ? ColorManager.redCharacter : ColorManager.character)
-                    .frame(height: 20)
-                    .padding(.top, 15)
-                Spacer()
-            }
-        }
-        .frame(height: 20)
-        .background(ColorManager.back)
-    }
-}
-
 struct CalendarView: View {
     
     @EnvironmentObject var viewSwitcher: ViewSwitcher
@@ -36,6 +16,7 @@ struct CalendarView: View {
         VStack {
             // 曜日表示のバー
             DayBar()
+                .padding(.top, 15)
             
             // カレンダー
             ScrollViewReader { (proxy: ScrollViewProxy) in

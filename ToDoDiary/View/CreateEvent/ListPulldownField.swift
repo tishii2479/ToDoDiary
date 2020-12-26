@@ -25,7 +25,6 @@ struct ListPulldownField: View {
     var body: some View {
         VStack(spacing: 0) {
             Button(action: {
-                print("tap")
                 isOpen.toggle()
             }) {
                 ZStack {
