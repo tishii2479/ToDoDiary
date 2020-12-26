@@ -111,6 +111,7 @@ fileprivate struct DateSelecter: View {
             .padding(.vertical, 10)
             .onAppear {
                 createEvent.offset = createEvent.getOffsetForDateSelecter()
+                createEvent.update()
             }
         }
     }
