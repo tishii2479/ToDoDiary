@@ -87,7 +87,7 @@ fileprivate struct DateSelecter: View {
                                                 .padding(1)
                                             
                                             // 文字
-                                            Text(createEvent.formatDay(date: createEvent.getDateForDateSelecter(index: index(x, y))))
+                                            Text(DateFormatter.format(date: createEvent.getDateForDateSelecter(index: index(x, y)), format: "d"))
                                                 .foregroundColor(createEvent.selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
                                                 .font(Font.custom(FontManager.japanese, size: 12))
                                         }
@@ -170,7 +170,7 @@ struct ListDateField: View {
                             ListCellTitle(title: "開始時刻")
                             
                             // 値
-                            ListCellValue(value: CalendarManager.shared.formatTime(date: createEvent.startTime) ?? "")
+                            ListCellValue(value: DateFormatter.format(date: createEvent.startTime, format: "h:mm"))
                         }
                     }
                     
@@ -199,7 +199,7 @@ struct ListDateField: View {
                             ListCellTitle(title: "終了時刻")
                             
                             // 値
-                            ListCellValue(value: CalendarManager.shared.formatTime(date: createEvent.endTime) ?? "")
+                            ListCellValue(value: DateFormatter.format(date: createEvent.endTime, format: "h:mm"))
                         }
                     }
                     

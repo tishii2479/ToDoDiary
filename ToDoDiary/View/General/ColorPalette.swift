@@ -13,7 +13,11 @@ fileprivate struct ColorTile: View {
     
     var body: some View {
         Button(action: {
-            selectedColor = eventColor
+            if selectedColor == eventColor {
+                selectedColor = .none
+            } else {
+                selectedColor = eventColor
+            }
         }) {
             ZStack {
                 // 選択されていたら枠線がつく

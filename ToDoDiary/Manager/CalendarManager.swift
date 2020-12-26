@@ -50,17 +50,6 @@ class CalendarManager {
         return formatter.string(from: date)
     }
     
-    // 時間の表示
-    func formatTime(date _date: Date?) -> String? {
-        guard let date = _date else { return nil }
-        
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "h:mm"
-        
-        return formatter.string(from: date)
-    }
-    
     // 全体のカレンダーの表示
     // dateがnilの場合は空文字列を返す
     func formatFullDate(date: Date?) -> String {

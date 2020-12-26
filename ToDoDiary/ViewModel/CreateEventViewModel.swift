@@ -283,23 +283,6 @@ class CreateEventViewModel: ObservableObject {
     // MARK: Formatter
     //
     
-    // 日にち選択用に日だけ取得
-    func formatDay(date: Date) -> String {
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "d"
-        
-        return formatter.string(from: date)
-    }
-    
-    func formatMonthAndDay(date: Date) -> String {
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "M/d"
-        
-        return formatter.string(from: date)
-    }
-    
     // year and date
     func calendarTitle() -> String {
         let components = DateComponents(calendar: Calendar.current, year: year, month: month)
@@ -322,7 +305,7 @@ class CreateEventViewModel: ObservableObject {
         
         for date in selectedDates {
             // TODO: 昇順or降順で表示する
-            result += formatMonthAndDay(date: date)
+            result += DateFormatter.format(date: date, format: "M/d")
             result += ", "
         }
         
