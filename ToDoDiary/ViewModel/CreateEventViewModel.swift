@@ -11,6 +11,7 @@ class CreateEventViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var place: String = ""
     @Published var color: EventColor = .none
+    @Published var selectedDates: [Date] = []
     @Published var notification: NotificationType = .none {
         didSet {
             print(notification)
@@ -31,6 +32,7 @@ class CreateEventViewModel: ObservableObject {
     var event: Event?
     
     // TODO: 改善する
+    var didSetDate: Bool = false
     var didSetStart: Bool = false
     var didSetEnd: Bool = false
     
@@ -78,6 +80,20 @@ class CreateEventViewModel: ObservableObject {
             EventManager.shared.deleteEvent(event: _event)
         }
         
+        // 日時が選択されていない場合、ToDoとしてのみ追加する
+        if selectedDates.count == 0 {
+            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: nil, startTime: startTime, endTime: endTime, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
+            
+            EventManager.shared.addEventToDictionary(event: event)
+            
+            // 作成後に編集する場合のために設定
+            self.event = event
+            
+            print("[debug] create event")
+            print(event)
+            return
+        }
+        
         for date in selectedDates {
             let year = Calendar.current.component(.year, from: date)
             let month = Calendar.current.component(.month, from: date)
@@ -94,6 +110,7 @@ class CreateEventViewModel: ObservableObject {
                 
                 start = Calendar.current.date(from: components)
             }
+            
             if endTime != nil {
                 var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: endTime!)
                 components.year = year
@@ -103,12 +120,16 @@ class CreateEventViewModel: ObservableObject {
                 end = Calendar.current.date(from: components)
             }
             
-            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
+            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
             
             EventManager.shared.addEventToDictionary(event: event)
                 
+            // 作成後に編集する場合のために設定
             // TODO: 複数イベント作成時に対応
             self.event = event
+            
+            print("[debug] create event")
+            print(event)
         }
     }
     
@@ -125,7 +146,7 @@ class CreateEventViewModel: ObservableObject {
         notification = event.notification
         detail = event.detail ?? ""
         
-        selectedDates = event.startTime != nil ? [event.startTime!] : []
+        selectedDates = event.date != nil ? [event.date!] : []
         
         self.event = event
     }
@@ -139,7 +160,6 @@ class CreateEventViewModel: ObservableObject {
     @Published var month: Int = 12
     @Published var offset: Int = 0
     @Published var selectedIndexes: [Bool] = [Bool](repeating: false, count: 50)
-    @Published var selectedDates: [Date] = []
     
     // 日にち選択用に月の最初の曜日を取得する
     func getOffsetForDateSelecter() -> Int {

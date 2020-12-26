@@ -53,7 +53,11 @@ struct CreateEventView: View {
                             ListDivider()
                         }
                         
-                        Spacer().frame(height: 50)
+                        Spacer().frame(height: 20)
+                        
+                        ColorPalette(selectedColor: $createEvent.color)
+                        
+                        Spacer().frame(height: 20)
                         
                         Group {
                             ListDivider()

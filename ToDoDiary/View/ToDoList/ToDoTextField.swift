@@ -37,6 +37,7 @@ struct ToDoTextField: View {
                 
                 // TODO: 位置検討
                 Button(action: {
+                    viewSwitcher.targetEvent = nil
                     viewSwitcher.isShowingModal = true
                 }) {
                     Text("詳細")

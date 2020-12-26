@@ -12,6 +12,7 @@ class Event: Object {
     @objc dynamic var title: String
     @objc dynamic var rawColor: Int
     @objc dynamic var place: String?
+    @objc dynamic var date: Date?
     @objc dynamic var startTime: Date?
     @objc dynamic var endTime: Date?
     @objc dynamic var rawNotification: Int
@@ -49,9 +50,10 @@ class Event: Object {
         rawColor = 0
     }
     
-    init (title: String, color: Int = -1, place: String? = nil, startTime: Date? = nil, endTime: Date? = nil, notification: Int = 0, detail: String? = nil) {
+    init (title: String, color: Int = -1, place: String? = nil, date: Date? = nil, startTime: Date? = nil, endTime: Date? = nil, notification: Int = 0, detail: String? = nil) {
         self.title = title
         self.place = place
+        self.date = date
         self.startTime = startTime
         self.endTime = endTime
         self.detail = detail
@@ -71,7 +73,7 @@ class Event: Object {
         
         var result = ""
         
-        if startTime == nil && endTime == nil { return "" }
+        if startTime == nil && endTime == nil { return "終日" }
         
         if let start = startTime {
             result += formatter.string(from: start)

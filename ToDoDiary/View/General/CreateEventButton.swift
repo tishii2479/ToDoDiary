@@ -16,6 +16,7 @@ struct CreateEventButton: View {
             HStack {
                 Spacer()
                 Button(action: {
+                    viewSwitcher.targetEvent = nil
                     viewSwitcher.isShowingModal = true
                 }) {
                     Circle()

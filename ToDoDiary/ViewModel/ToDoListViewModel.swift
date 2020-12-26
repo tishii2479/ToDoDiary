@@ -42,7 +42,6 @@ class ToDoListViewModel: ObservableObject {
     
     func updateEvents() {
         events = EventManager.shared.getToDoArray(searchText: searchText)
-        print(events)
     }
     
     // 作成欄のリセット

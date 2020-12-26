@@ -146,7 +146,7 @@ struct ListDateField: View {
                     }
                 }
                 
-                // プルダウン
+                // プルダウン            
                 if nowOpen == .date {
                     ListDivider()
                     

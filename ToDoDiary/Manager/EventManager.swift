@@ -19,11 +19,14 @@ class EventManager {
         print("[debug] EventManager init")
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
+        // realmのマイグレーション
+        migrate()
+        
         eventDictionary = setUpEventDictionary()
     }
     
     // イベント辞書構築
-    // startTimeがnilの場合は、dic[""]にイベントをまとめている
+    // dateがnilの場合は、dic[""]にイベントをまとめている
     // TODO: データベースからイベント検索
     func setUpEventDictionary() -> Dictionary<String, [Event]> {
         var dic: Dictionary<String, [Event]> = [:]
@@ -33,7 +36,7 @@ class EventManager {
             let events = realm.objects(Event.self)
             
             for event in events {
-                let date: String = CalendarManager.shared.formatFullDate(date: event.startTime)
+                let date: String = CalendarManager.shared.formatFullDate(date: event.date)
                 if dic[date] == nil {
                     dic[date] = []
                 }
@@ -98,5 +101,10 @@ class EventManager {
         
         // TODO: 軽量化
         eventDictionary = setUpEventDictionary()
+    }
+    
+    private func migrate() {
+        let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
+        let _ = try! Realm(configuration: config)
     }
 }
