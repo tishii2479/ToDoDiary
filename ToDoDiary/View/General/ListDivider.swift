@@ -7,6 +7,13 @@
 
 import SwiftUI
 
+struct RedListDivider: View {
+    var body: some View {
+        Divider()
+            .background(ColorManager.redCharacter)
+    }
+}
+
 struct ListDivider: View {
     var body: some View {
         Divider()

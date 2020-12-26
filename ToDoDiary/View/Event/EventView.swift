@@ -52,14 +52,15 @@ struct EventView: View {
                             ListDivider()
                             ListTextField(value: $createEvent.place, placeHolder: "場所")
                             ListDivider()
+                            
                         }
                         
-                        Spacer().frame(height: 20)
-                        
                         // 色
-                        ColorPalette(selectedColor: $createEvent.color)
-                        
-                        Spacer().frame(height: 20)
+                        Group {
+                            Spacer().frame(height: 20)
+                            ColorPalette(selectedColor: $createEvent.color)
+                            Spacer().frame(height: 20)
+                        }
                         
                         // 時刻
                         Group {
@@ -97,12 +98,13 @@ struct EventView: View {
                         // 削除
                         // イベント編集時に表示される
                         if createEvent.event != nil {
-                            Button(action: {
-                                createEvent.deleteEvent()
-                            }) {
-                                Text("削除する")
-                            }
+                            Spacer().frame(height: 50)
+                            RedListDivider()
+                            ListDeleteField()
+                            RedListDivider()
                         }
+                        
+                        Spacer().frame(height: 200)
                     }
                 }
             }
