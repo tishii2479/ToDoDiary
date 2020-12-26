@@ -36,7 +36,7 @@ fileprivate struct TimeSelecter: View {
 }
 
 fileprivate struct DateSelecter: View {
-    @EnvironmentObject var createEvent: CreateEventViewModel
+    @EnvironmentObject var createEvent: EventViewModel
     
     var body: some View {
         ZStack {
@@ -121,7 +121,7 @@ fileprivate struct DateSelecter: View {
 }
 
 struct ListDateField: View {
-    @EnvironmentObject var createEvent: CreateEventViewModel
+    @EnvironmentObject var createEvent: EventViewModel
     
     // どのプルダウンを見せているか
     @State fileprivate var nowOpen: DateFieldType = .none

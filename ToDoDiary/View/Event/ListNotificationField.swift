@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ListNotificationField: View {
-    @EnvironmentObject var createEvent: CreateEventViewModel
+    @EnvironmentObject var createEvent: EventViewModel
     
     var body: some View {
         ZStack {

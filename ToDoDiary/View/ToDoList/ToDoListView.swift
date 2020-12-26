@@ -62,8 +62,8 @@ struct ToDoListView: View {
                 ToDoTextField(toDoList: toDoList)
             }
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
-                CreateEventView()
-                    .environmentObject(CreateEventViewModel())
+                EventView()
+                    .environmentObject(EventViewModel())
             }
         }
     }

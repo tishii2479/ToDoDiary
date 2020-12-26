@@ -21,7 +21,7 @@
 		492157652597379700D9C63E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492157642597379700D9C63E /* Array.swift */; };
 		4921576D2597425100D9C63E /* DayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921576C2597425100D9C63E /* DayBar.swift */; };
 		492157722597562000D9C63E /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492157712597562000D9C63E /* DateFormatter.swift */; };
-		4938DDD8259352FE00F4F1AB /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */; };
+		4938DDD8259352FE00F4F1AB /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* EventViewModel.swift */; };
 		4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */; };
 		4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDE725936D5000F4F1AB /* ListTextField.swift */; };
 		4938DDF225936D9F00F4F1AB /* SimpleDivider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDF125936D9F00F4F1AB /* SimpleDivider.swift */; };
@@ -41,7 +41,7 @@
 		49A94674258F13870048DA05 /* CreateEventButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94673258F13870048DA05 /* CreateEventButton.swift */; };
 		49A9467B258F15680048DA05 /* CalendarManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94652258EF2FB0048DA05 /* CalendarManagerTests.swift */; };
 		49A94681258F228C0048DA05 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94680258F228C0048DA05 /* Event.swift */; };
-		49A94689258F32550048DA05 /* CreateEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94688258F32550048DA05 /* CreateEventView.swift */; };
+		49A94689258F32550048DA05 /* EventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94688258F32550048DA05 /* EventView.swift */; };
 		49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A94693258F49BC0048DA05 /* ToDoListView.swift */; };
 		49A9469C258F575A0048DA05 /* ViewSwitcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A9469B258F575A0048DA05 /* ViewSwitcher.swift */; };
 		49A946A2258F58840048DA05 /* ViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A946A1258F58840048DA05 /* ViewType.swift */; };
@@ -94,7 +94,7 @@
 		492157642597379700D9C63E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4921576C2597425100D9C63E /* DayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBar.swift; sourceTree = "<group>"; };
 		492157712597562000D9C63E /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
-		4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
+		4938DDD7259352FE00F4F1AB /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTextField.swift; sourceTree = "<group>"; };
 		4938DDE725936D5000F4F1AB /* ListTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextField.swift; sourceTree = "<group>"; };
 		4938DDF125936D9F00F4F1AB /* SimpleDivider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDivider.swift; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 		49A9466B258F0D070048DA05 /* CalendarDateDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarDateDetail.swift; sourceTree = "<group>"; };
 		49A94673258F13870048DA05 /* CreateEventButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventButton.swift; sourceTree = "<group>"; };
 		49A94680258F228C0048DA05 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
-		49A94688258F32550048DA05 /* CreateEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventView.swift; sourceTree = "<group>"; };
+		49A94688258F32550048DA05 /* EventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventView.swift; sourceTree = "<group>"; };
 		49A94693258F49BC0048DA05 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
 		49A9469B258F575A0048DA05 /* ViewSwitcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewSwitcher.swift; sourceTree = "<group>"; };
 		49A946A1258F58840048DA05 /* ViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewType.swift; sourceTree = "<group>"; };
@@ -246,7 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				4938DDE625936D1800F4F1AB /* Shared */,
-				4938DDDC25936CBD00F4F1AB /* CreateEvent */,
+				4938DDDC25936CBD00F4F1AB /* Event */,
 				49A946B5258F5C350048DA05 /* Setting */,
 				49A94692258F49880048DA05 /* ToDoList */,
 				491316FF258A43B800CF2B6C /* Calendar */,
@@ -277,16 +277,16 @@
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		4938DDDC25936CBD00F4F1AB /* CreateEvent */ = {
+		4938DDDC25936CBD00F4F1AB /* Event */ = {
 			isa = PBXGroup;
 			children = (
-				49A94688258F32550048DA05 /* CreateEventView.swift */,
+				49A94688258F32550048DA05 /* EventView.swift */,
 				4938DDE725936D5000F4F1AB /* ListTextField.swift */,
 				4938DE06259374DC00F4F1AB /* ListPulldownField.swift */,
 				4938DE1D25937A1800F4F1AB /* ListDateField.swift */,
 				4938DE102593754000F4F1AB /* ListNotificationField.swift */,
 			);
-			path = CreateEvent;
+			path = Event;
 			sourceTree = "<group>";
 		};
 		4938DDE625936D1800F4F1AB /* Shared */ = {
@@ -315,7 +315,7 @@
 				49A94661258EF8E00048DA05 /* CalendarViewModel.swift */,
 				49A9469B258F575A0048DA05 /* ViewSwitcher.swift */,
 				49A2B0A12593006300E169FC /* ToDoListViewModel.swift */,
-				4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */,
+				4938DDD7259352FE00F4F1AB /* EventViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -616,7 +616,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A94662258EF8E00048DA05 /* CalendarViewModel.swift in Sources */,
-				49A94689258F32550048DA05 /* CreateEventView.swift in Sources */,
+				49A94689258F32550048DA05 /* EventView.swift in Sources */,
 				49A946A2258F58840048DA05 /* ViewType.swift in Sources */,
 				4938DDF225936D9F00F4F1AB /* SimpleDivider.swift in Sources */,
 				49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */,
@@ -641,7 +641,7 @@
 				49A2B0C425931E9F00E169FC /* NotificationType.swift in Sources */,
 				491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */,
 				49A94694258F49BC0048DA05 /* ToDoListView.swift in Sources */,
-				4938DDD8259352FE00F4F1AB /* CreateEventViewModel.swift in Sources */,
+				4938DDD8259352FE00F4F1AB /* EventViewModel.swift in Sources */,
 				49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */,
 				4938DE07259374DC00F4F1AB /* ListPulldownField.swift in Sources */,
 				49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */,

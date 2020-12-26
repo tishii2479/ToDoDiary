@@ -1,5 +1,5 @@
 //
-//  CreateEventView.swift
+//  EventView.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/20.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct CreateEventView: View {
+struct EventView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
-    @EnvironmentObject var createEvent: CreateEventViewModel
+    @EnvironmentObject var createEvent: EventViewModel
     
     var body: some View {
         // TextEditorの背景色を透明に
@@ -99,8 +99,8 @@ struct CreateEventView: View {
     }
 }
 
-struct CreateEventView_Previews: PreviewProvider {
+struct EventView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateEventView()
+        EventView()
     }
 }

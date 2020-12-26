@@ -1,5 +1,5 @@
 //
-//  CreateEventViewModel.swift
+//  EventViewModel.swift
 //  ToDoDiary
 //
 //  Created by Tatsuya Ishii on 2020/12/23.
@@ -7,16 +7,12 @@
 
 import SwiftUI
 
-class CreateEventViewModel: ObservableObject {
+class EventViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var place: String = ""
     @Published var color: EventColor = .none
     @Published var selectedDates: [Date] = []
-    @Published var notification: NotificationType = .none {
-        didSet {
-            print(notification)
-        }
-    }
+    @Published var notification: NotificationType = .none
     @Published var detail: String = ""
     @Published var rawStartTime: Date = Date() {
         didSet {
