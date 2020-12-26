@@ -56,6 +56,7 @@ class CreateEventViewModel: ObservableObject {
     
     // イベントの作成
     func createEvent() {
+        print(notification)
         guard title != "" else { return }
 
         // 前後の改行をなくす
