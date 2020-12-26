@@ -95,29 +95,29 @@ class CreateEventViewModel: ObservableObject {
         }
         
         for date in selectedDates {
-            let year = Calendar.current.component(.year, from: date)
-            let month = Calendar.current.component(.month, from: date)
-            let day = Calendar.current.component(.day, from: date)
+            let year = Calendar(identifier: .gregorian).component(.year, from: date)
+            let month = Calendar(identifier: .gregorian).component(.month, from: date)
+            let day = Calendar(identifier: .gregorian).component(.day, from: date)
             
             var start: Date? = startTime
             var end: Date? = endTime
             
             if startTime != nil {
-                var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: startTime!)
+                var components = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: startTime!)
                 components.year = year
                 components.month = month
                 components.day = day
                 
-                start = Calendar.current.date(from: components)
+                start = Calendar(identifier: .gregorian).date(from: components)
             }
             
             if endTime != nil {
-                var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: endTime!)
+                var components = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: endTime!)
                 components.year = year
                 components.month = month
                 components.day = day
                 
-                end = Calendar.current.date(from: components)
+                end = Calendar(identifier: .gregorian).date(from: components)
             }
             
             let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
@@ -163,13 +163,13 @@ class CreateEventViewModel: ObservableObject {
     
     // 日にち選択用に月の最初の曜日を取得する
     func getOffsetForDateSelecter() -> Int {
-        let components = DateComponents(calendar: Calendar.current, year: year, month: month, day: 0)
+        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: 0)
         guard let date = components.date else {
             print("[Error] GetDayOffset Failed")
             return 0
         }
         
-        let comp = Calendar.current.dateComponents([.weekday], from: date)
+        let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: date)
         
         guard let offset: Int = comp.weekday else {
             print("[Error] GetDayOffset Failed")
@@ -181,7 +181,7 @@ class CreateEventViewModel: ObservableObject {
     
     // 日にち選択用の日付取得
     func getDateForDateSelecter(index: Int) -> Date {
-        let components = DateComponents(calendar: Calendar.current, year: year, month: month, day: index - offset)
+        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: index - offset)
         guard let date = components.date else {
             print("[Error] GetDateFromIndex Failed")
             return Date()
@@ -192,7 +192,7 @@ class CreateEventViewModel: ObservableObject {
     
     // 日付からindexを取得する
     func getIndexForDateSelecter(date: Date) -> Int {
-        let comp = Calendar.current.dateComponents([.day], from: date)
+        let comp = Calendar(identifier: .gregorian).dateComponents([.day], from: date)
         
         guard let day = comp.day else {
             print("[error] component earn failed")
@@ -250,7 +250,7 @@ class CreateEventViewModel: ObservableObject {
         // 選択されている日は選択済みにする
         // ISSUE: selectedDatesが増えてくると重いかも
         for date in selectedDates {
-            let comp = Calendar.current.dateComponents([.year, .month], from: date)
+            let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: date)
             
             guard let _year = comp.year, let _month = comp.month else {
                 print("[error] earn components failed")
@@ -266,7 +266,7 @@ class CreateEventViewModel: ObservableObject {
     // ISSUE: 重いかも
     // 対象の日付が表示すべきかを返す
     func isTargetDate(date: Date) -> Bool {
-        let comp = Calendar.current.dateComponents([.year, .month], from: date)
+        let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: date)
         guard let _year = comp.year, let _month = comp.month else {
             print("[error] earn components failed")
             return false
@@ -285,17 +285,13 @@ class CreateEventViewModel: ObservableObject {
     
     // year and date
     func calendarTitle() -> String {
-        let components = DateComponents(calendar: Calendar.current, year: year, month: month)
+        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month)
         guard let date = components.date else {
             print("[Error] GetDateFromIndex Failed")
             return ""
         }
         
-        let formatter = DateFormatter()
-        
-        formatter.dateFormat = "y/M"
-        
-        return formatter.string(from: date)
+        return DateFormatter.format(date: date, format: "y/M")
     }
     
     // 選択された日付のフォーマット

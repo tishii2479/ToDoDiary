@@ -19,7 +19,7 @@ class CalendarManagerTests: XCTestCase {
     }
 
     func testCalendarFormat() throws {
-        let firstDayOfMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 1))!
+        let firstDayOfMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 1, day: 1))!
         
         let excepted = "1/1"
         
@@ -27,7 +27,7 @@ class CalendarManagerTests: XCTestCase {
         
         XCTAssertEqual(actual, excepted)
 
-        let otherDayOfMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 1, day: 3))!
+        let otherDayOfMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 1, day: 3))!
 
         let otherExcepted = "3"
 
@@ -37,7 +37,7 @@ class CalendarManagerTests: XCTestCase {
     }
     
     func testFormatFullDate() throws {
-        let day = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 25))
+        let day = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 12, day: 25))
         
         let excepted = "2020/12/25 (金)"
         
@@ -45,7 +45,7 @@ class CalendarManagerTests: XCTestCase {
         
         XCTAssertEqual(actual, excepted)
         
-        let day2 = Calendar.current.date(from: DateComponents(year: 2021, month: 1, day: 1))
+        let day2 = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2021, month: 1, day: 1))
         
         let excepted2 = "2021/1/1 (金)"
         
@@ -55,7 +55,7 @@ class CalendarManagerTests: XCTestCase {
     }
     
     func testDayOffset() throws {
-        let thursday = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 24))!
+        let thursday = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 12, day: 24))!
         
         let excepeted = 4
         
@@ -63,7 +63,7 @@ class CalendarManagerTests: XCTestCase {
         
         XCTAssertEqual(excepeted, actual)
         
-        let minus = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: -1))!    // sunday
+        let minus = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 12, day: -1))!    // sunday
         
         let excepeted2 = 0
         
@@ -73,15 +73,15 @@ class CalendarManagerTests: XCTestCase {
     }
     
     func testOddMonth() throws {
-        let oddMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 11, day: 12))!
+        let oddMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 11, day: 12))!
         
         XCTAssertTrue(CalendarManager.shared.isOddMonth(date: oddMonth))
         
-        let evenMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: 12))!
+        let evenMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 12, day: 12))!
         
         XCTAssertFalse(CalendarManager.shared.isOddMonth(date: evenMonth))
         
-        let minusMonth = Calendar.current.date(from: DateComponents(year: 2020, month: 12, day: -1))!
+        let minusMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 12, day: -1))!
         
         XCTAssertTrue(CalendarManager.shared.isOddMonth(date: minusMonth))
     }

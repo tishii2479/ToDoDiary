@@ -27,7 +27,7 @@ class CalendarManager {
     
     // TODO: スクロールカウントを含めた処理
     func getDateFromIndex(index: Int) -> Date {
-        guard let date = Calendar.current.date(byAdding: .day, value: index - dayOffset, to: Date()) else {
+        guard let date = Calendar(identifier: .gregorian).date(byAdding: .day, value: index - dayOffset, to: Date()) else {
             print("[Error] GetDateFromIndex Failed")
             return Date()
         }
@@ -38,7 +38,7 @@ class CalendarManager {
     // カレンダー用の日付の文字列を返す
     // 1日ならば月を最初につける
     func formatDateForCalendar(date: Date) -> String {
-        let comp = Calendar.current.dateComponents([.day], from: date)
+        let comp = Calendar(identifier: .gregorian).dateComponents([.day], from: date)
         let formatter = DateFormatter()
         
         if comp.day == 1 {
@@ -64,7 +64,7 @@ class CalendarManager {
     
     // カレンダー用に、月が奇数か偶数かを判断する
     func isOddMonth(date: Date) -> Bool {
-        let comp = Calendar.current.dateComponents([.month], from: date)
+        let comp = Calendar(identifier: .gregorian).dateComponents([.month], from: date)
         
         guard let month = comp.month else {
             print("[Error] IsOddMonth Failed")
@@ -77,7 +77,7 @@ class CalendarManager {
     // 曜日計算用のoffSetを計算する
     // 曜日(1...7) - 1を返す
     func getDayOffset(date: Date) -> Int {
-        let comp = Calendar.current.dateComponents([.weekday], from: date)
+        let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: date)
         
         guard let offset = comp.weekday else {
             print("[Error] GetDayOffset Failed")
