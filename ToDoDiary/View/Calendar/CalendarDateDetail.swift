@@ -48,6 +48,7 @@ struct CalendarDateDetail: View {
                     Spacer()
                     
                     Button("作成") {
+                        // 選択状態のリセット
                         viewSwitcher.targetEvent = nil
                         viewSwitcher.selectedDate = CalendarManager.shared.getDateFromIndex(index: calendar.selectedIndex)
                         viewSwitcher.isShowingModal = true
@@ -68,11 +69,14 @@ struct CalendarDateDetail: View {
                                 Button(action: {
                                     // Set target event to selected event
                                     viewSwitcher.targetEvent = calendar.selectedEventArray[index]
+                                    viewSwitcher.selectedDate = nil
                                     viewSwitcher.isShowingModal = true
                                 }) {
                                     DetailEventLabel(event: calendar.selectedEventArray[index])
                                 }
                             }
+                            
+                            Spacer().frame(height: 20)
                         } else {
                             Text("まだ予定はありません")
                                 .foregroundColor(ColorManager.character)

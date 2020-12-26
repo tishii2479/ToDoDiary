@@ -17,6 +17,7 @@ struct CreateEventButton: View {
                 Spacer()
                 Button(action: {
                     viewSwitcher.targetEvent = nil
+                    viewSwitcher.selectedDate = nil
                     viewSwitcher.isShowingModal = true
                 }) {
                     Circle()

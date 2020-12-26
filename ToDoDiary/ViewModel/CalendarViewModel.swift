@@ -14,7 +14,6 @@ class CalendarViewModel: ObservableObject {
     
     // カレンダーの日付選択時に呼ばれる
     func selectIndex(index: Int) {
-        print("[debug] select \(index)")
         let selectedDate: Date = CalendarManager.shared.getDateFromIndex(index: index)
         
         let formatDate: String = CalendarManager.shared.formatFullDate(date: selectedDate)

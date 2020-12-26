@@ -22,12 +22,12 @@ class CalendarManager {
     init () {
         print("[debug] CalendarManager init")
         
-        dayOffset = getDayOffset(date: Date())
+        dayOffset = getDayOffset(date: Calendar(identifier: .gregorian).startOfDay(for: Date()))
     }
     
     // TODO: スクロールカウントを含めた処理
     func getDateFromIndex(index: Int) -> Date {
-        guard let date = Calendar(identifier: .gregorian).date(byAdding: .day, value: index - dayOffset, to: Date()) else {
+        guard let date = Calendar(identifier: .gregorian).date(byAdding: .day, value: index - dayOffset, to: Calendar(identifier: .gregorian).startOfDay(for: Date())) else {
             print("[Error] GetDateFromIndex Failed")
             return Date()
         }

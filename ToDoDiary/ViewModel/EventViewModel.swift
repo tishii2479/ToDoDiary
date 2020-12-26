@@ -120,6 +120,14 @@ class EventViewModel: ObservableObject {
             return
         }
         
+        // 色の設定
+        // 色が設定されていなかった場合、ランダムに色を割り当てる
+        // 複数ある場合には、それを全て同じ色にする
+        var rawColor: Int = -1
+        if color == .none {
+            rawColor = EventColor.random()
+        }
+        
         for date in selectedDates {
             let year = Calendar(identifier: .gregorian).component(.year, from: date)
             let month = Calendar(identifier: .gregorian).component(.month, from: date)
@@ -146,7 +154,7 @@ class EventViewModel: ObservableObject {
                 end = Calendar(identifier: .gregorian).date(from: components)
             }
             
-            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
+            let event = Event(title: title, color: color != .none ? color.rawValue : rawColor, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
             
             EventManager.shared.addEventToDictionary(event: event)
                 
@@ -161,11 +169,7 @@ class EventViewModel: ObservableObject {
         // 作成ページを閉じる
         ViewSwitcher.shared.isShowingModal = false
     }
-    
-    // 日付で選択する
-    func setUpWithDate(date: Date) {
-    }
-    
+
     // 入力欄の初期化
     func setUpEvent(date _date: Date?, event _event: Event?) {
         // 日付が設定されていればそれを設定する

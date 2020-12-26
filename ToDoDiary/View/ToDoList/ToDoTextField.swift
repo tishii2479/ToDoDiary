@@ -37,6 +37,9 @@ struct ToDoTextField: View {
                 
                 // TODO: 位置検討
                 Button(action: {
+                    // 選択状態のリセット
+                    viewSwitcher.selectedDate = nil
+                    // Set target event to selected event
                     viewSwitcher.targetEvent = nil
                     viewSwitcher.isShowingModal = true
                 }) {
