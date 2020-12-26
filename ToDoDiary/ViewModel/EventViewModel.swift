@@ -147,6 +147,16 @@ class EventViewModel: ObservableObject {
         self.event = event
     }
     
+    func deleteEvent() {
+        guard let _event = event else {
+            print("[error] failed to delete event")
+            return
+        }
+
+        ViewSwitcher.shared.isShowingModal = false
+        EventManager.shared.deleteEvent(event: _event)
+    }
+    
     //
     // MARK: DateSelecter
     //

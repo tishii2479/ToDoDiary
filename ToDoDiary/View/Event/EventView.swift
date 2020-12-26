@@ -45,6 +45,7 @@ struct EventView: View {
                 // 入力欄
                 ScrollView {
                     VStack(spacing: 0) {
+                        // 件名、場所
                         Group {
                             ListDivider()
                             ListTextField(value: $createEvent.title, placeHolder: "件名")
@@ -55,10 +56,12 @@ struct EventView: View {
                         
                         Spacer().frame(height: 20)
                         
+                        // 色
                         ColorPalette(selectedColor: $createEvent.color)
                         
                         Spacer().frame(height: 20)
                         
+                        // 時刻
                         Group {
                             ListDivider()
                             ListPulldownField(type: .date, title: "時刻", value: createEvent.dateText, isAlwaysOpen: true)
@@ -67,6 +70,7 @@ struct EventView: View {
                         
                         Spacer().frame(height: 50)
                         
+                        // 通知
                         Group {
                             ListDivider()
                             ListPulldownField(type: .notification, title: "通知", value: createEvent.notificationText)
@@ -75,6 +79,7 @@ struct EventView: View {
                         
                         Spacer().frame(height: 50)
                         
+                        // 詳細
                         ZStack {
                             ColorManager.back
                             
@@ -88,6 +93,16 @@ struct EventView: View {
                             }
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 160)
+                        
+                        // 削除
+                        // イベント編集時に表示される
+                        if createEvent.event != nil {
+                            Button(action: {
+                                createEvent.deleteEvent()
+                            }) {
+                                Text("削除する")
+                            }
+                        }
                     }
                 }
             }

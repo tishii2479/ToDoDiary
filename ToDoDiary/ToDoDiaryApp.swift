@@ -12,9 +12,11 @@ struct ToDoDiaryApp: App {
     @State var colorTheme: ColorScheme = .dark
     
     var body: some Scene {
-        WindowGroup {
+        // viewswitchernの設定
+        ViewSwitcher.shared = ViewSwitcher()
+        return WindowGroup {
             MainView()
-                .environmentObject(ViewSwitcher())
+                .environmentObject(ViewSwitcher.shared)
                 .colorScheme(colorTheme)
 //                .onTapGesture(count: 2, perform: {  // ダブルタップでカラーテーマを変える（テスト用）
 //                    if colorTheme == .dark {

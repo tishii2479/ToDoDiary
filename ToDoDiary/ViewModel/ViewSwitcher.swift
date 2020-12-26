@@ -14,4 +14,6 @@ class ViewSwitcher: ObservableObject {
     
     // 選択されたイベントの保持
     @Published var targetEvent: Event? = nil
+    
+    static var shared: ViewSwitcher!
 }

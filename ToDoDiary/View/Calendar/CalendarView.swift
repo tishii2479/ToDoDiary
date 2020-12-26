@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct CalendarView: View {
-    
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var calendar: CalendarViewModel = CalendarViewModel()
     
@@ -42,8 +41,6 @@ struct CalendarView: View {
                     if calendar.isShowingDetail {
                         CalendarDateDetail(calendar: calendar)
                     }
-                    
-// proxy.scrollTo(0, anchor: .center)
                     
                     CreateEventButton()
                 }
