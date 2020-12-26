@@ -57,7 +57,7 @@ struct CreateEventView: View {
                         
                         Group {
                             ListDivider()
-                            ListPulldownField(type: .date, title: "時刻", value: "未設定", isAlwaysOpen: false)
+                            ListPulldownField(type: .date, title: "時刻", value: createEvent.dateText, isAlwaysOpen: true)
                             ListDivider()
                         }
                         
@@ -65,7 +65,7 @@ struct CreateEventView: View {
                         
                         Group {
                             ListDivider()
-                            ListPulldownField(type: .notification, title: "通知", value: "未設定")
+                            ListPulldownField(type: .notification, title: "通知", value: createEvent.notificationText)
                             ListDivider()
                         }
                         

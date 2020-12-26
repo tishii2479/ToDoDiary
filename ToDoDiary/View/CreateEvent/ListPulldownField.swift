@@ -12,10 +12,10 @@ enum PulldownType {
     case notification
 }
 
-struct ListPulldownField: View {    
+struct ListPulldownField: View {
     var type: PulldownType
     var title: String
-    @State var value: String = ""
+    var value: String
         
     // 開いているかどうか
     @State var isOpen: Bool = false
@@ -60,6 +60,6 @@ struct ListPulldownField: View {
 
 struct ListPulldownField_Previews: PreviewProvider {
     static var previews: some View {
-        ListPulldownField(type: .date, title: "日付")
+        ListPulldownField(type: .date, title: "日付", value: "未設定")
     }
 }

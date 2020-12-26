@@ -11,7 +11,11 @@ class CreateEventViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var place: String = ""
     @Published var color: EventColor = .none
-    @Published var notification: NotificationType = .none
+    @Published var notification: NotificationType = .none {
+        didSet {
+            print(notification)
+        }
+    }
     @Published var detail: String = ""
     @Published var rawStartTime: Date = Date() {
         didSet {
@@ -54,9 +58,16 @@ class CreateEventViewModel: ObservableObject {
         }
     }
     
+    var dateText: String {
+        return ""
+    }
+    
+    var notificationText: String {
+        return notification.text
+    }
+    
     // イベントの作成
     func createEvent() {
-        print(notification)
         guard title != "" else { return }
 
         // 前後の改行をなくす
