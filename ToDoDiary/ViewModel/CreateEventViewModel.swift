@@ -102,10 +102,9 @@ class CreateEventViewModel: ObservableObject {
             
             let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
             
-            print(event)
-            
             EventManager.shared.addEventToDictionary(event: event)
                 
+            // TODO: 複数イベント作成時に対応
             self.event = event
         }
     }

@@ -64,6 +64,9 @@ class EventManager {
         } catch {
             print("[error] realm fail")
         }
+        
+        // TODO: 軽量化
+        eventDictionary = setUpEventDictionary()
     }
     
     // ToDoのイベントを返す
@@ -92,5 +95,8 @@ class EventManager {
         } catch {
             print("[error] realm fail")
         }
+        
+        // TODO: 軽量化
+        eventDictionary = setUpEventDictionary()
     }
 }
