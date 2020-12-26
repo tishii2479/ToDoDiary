@@ -47,7 +47,7 @@ struct CalendarView: View {
             }
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 EventView()
-                    .environmentObject(EventViewModel())
+                    .environmentObject(EventViewModel(content: .event))
             }
         }
     }

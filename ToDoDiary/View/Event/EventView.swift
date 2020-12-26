@@ -22,7 +22,7 @@ struct EventView: View {
             VStack {
                 // ヘッダー
                 ZStack {
-                    Text("予定の作成")
+                    Text(createEvent.pageTitle)
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 14))
                     
@@ -32,7 +32,7 @@ struct EventView: View {
                         Button(action: {
                             createEvent.createEvent()
                         }) {
-                            Text("追加")
+                            Text(createEvent.mode.action)
                                 .foregroundColor(ColorManager.redCharacter)
                                 .font(Font.custom(FontManager.japanese, size: 14))
                         }
@@ -104,7 +104,7 @@ struct EventView: View {
                             RedListDivider()
                         }
                         
-                        Spacer().frame(height: 200)
+                        Spacer().frame(height: 100)
                     }
                 }
             }

@@ -7,6 +7,25 @@
 
 import SwiftUI
 
+enum EventMode: String {
+    case new = "作成"
+    case edit = "編集"
+    
+    var action: String {
+        switch self {
+        case .new:
+            return "作成"
+        case .edit:
+            return "完了"
+        }
+    }
+}
+
+enum EventType: String {
+    case event = "予定"
+    case todo = "ToDo"
+}
+
 class EventViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var place: String = ""
@@ -23,6 +42,12 @@ class EventViewModel: ObservableObject {
         didSet {
             didSetEnd = true
         }
+    }
+    
+    var mode: EventMode = .new
+    var content: EventType = .event
+    var pageTitle: String {
+        return content.rawValue + "の" + mode.rawValue
     }
     
     var event: Event?
@@ -62,6 +87,11 @@ class EventViewModel: ObservableObject {
     
     var notificationText: String {
         return notification.text
+    }
+    
+    // 初期化
+    init(content: EventType = .event) {
+        self.content = content
     }
     
     // イベントの作成
@@ -127,12 +157,18 @@ class EventViewModel: ObservableObject {
             print("[debug] create event")
             print(event)
         }
+        
+        // 作成ページを閉じる
+        ViewSwitcher.shared.isShowingModal = false
     }
     
     // 入力欄の初期化
     func setUpEvent(event _event: Event?) {
         // イベントが設定されていなければreturn
         guard let event = _event else { return }
+        
+        // 編集モード
+        mode = .edit
         
         title = event.title
         place = event.place ?? ""
