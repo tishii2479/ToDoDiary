@@ -9,22 +9,29 @@ import SwiftUI
 
 // TODOのセル
 fileprivate struct ToDoListCell: View {
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
     var event: Event
     
     var body: some View {
-        HStack {
-            event.eventColor.frame(width: 2)
-                .padding(.horizontal, 15)
-            
-            Text(event.title)
-                .font(Font.custom(FontManager.japanese, size: 14))
-                .foregroundColor(ColorManager.character)
-            Spacer()
+        Button(action: {
+            // Set target event to selected event
+            viewSwitcher.targetEvent = event
+            viewSwitcher.isShowingModal = true
+        }) {
+            HStack {
+                event.eventColor.frame(width: 2)
+                    .padding(.horizontal, 15)
+                
+                Text(event.title)
+                    .font(Font.custom(FontManager.japanese, size: 14))
+                    .foregroundColor(ColorManager.character)
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 5)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+            .background(ColorManager.back)
         }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
-        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-        .background(ColorManager.back)
     }
 }
 
@@ -56,6 +63,7 @@ struct ToDoListView: View {
             }
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 CreateEventView()
+                    .environmentObject(CreateEventViewModel())
             }
         }
     }

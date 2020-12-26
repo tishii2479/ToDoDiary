@@ -58,6 +58,7 @@ struct CalendarDateDetail: View {
                     VStack (spacing: 0) {
                         ForEach(0 ..< calendar.selectedEventArray.count, id: \.self) { index in
                             Button(action: {
+                                // Set target event to selected event
                                 viewSwitcher.targetEvent = calendar.selectedEventArray[index]
                                 viewSwitcher.isShowingModal = true
                             }) {

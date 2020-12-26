@@ -24,14 +24,6 @@ class CreateEventViewModel: ObservableObject {
         }
     }
     
-    // DateSelecter
-    // TODO: 初期値の設定
-    @Published var year: Int = 2021
-    @Published var month: Int = 1
-    @Published var offset: Int = 0
-    @Published var selectedIndexes: [Bool] = [Bool](repeating: false, count: 50)
-    @Published var selectedDates: [Date] = []
-    
     var event: Event?
     
     // TODO: 改善する
@@ -122,6 +114,8 @@ class CreateEventViewModel: ObservableObject {
         notification = event.notification
         detail = event.detail ?? ""
         
+        selectedDates = event.startTime != nil ? [event.startTime!] : []
+        
         self.event = event
     }
     
@@ -129,8 +123,15 @@ class CreateEventViewModel: ObservableObject {
     // MARK: DateSelecter
     //
     
+    // TODO: 初期値の設定
+    @Published var year: Int = 2020
+    @Published var month: Int = 12
+    @Published var offset: Int = 0
+    @Published var selectedIndexes: [Bool] = [Bool](repeating: false, count: 50)
+    @Published var selectedDates: [Date] = []
+    
     // 日にち選択用に月の最初の曜日を取得する
-    func getOffsetForDateSelecter(year: Int, month: Int) -> Int {
+    func getOffsetForDateSelecter() -> Int {
         let components = DateComponents(calendar: Calendar.current, year: year, month: month, day: 0)
         guard let date = components.date else {
             print("[Error] GetDayOffset Failed")
@@ -139,7 +140,7 @@ class CreateEventViewModel: ObservableObject {
         
         let comp = Calendar.current.dateComponents([.weekday], from: date)
         
-        guard let offset = comp.weekday else {
+        guard let offset: Int = comp.weekday else {
             print("[Error] GetDayOffset Failed")
             return 0
         }
@@ -152,6 +153,14 @@ class CreateEventViewModel: ObservableObject {
         let formatter = DateFormatter()
         
         formatter.dateFormat = "d"
+        
+        return formatter.string(from: date)
+    }
+    
+    func formatMonthAndDay(date: Date) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.dateFormat = "M/d"
         
         return formatter.string(from: date)
     }
@@ -182,31 +191,76 @@ class CreateEventViewModel: ObservableObject {
         return date
     }
     
+    // 日付からindexを取得する
+    func getIndexForDateSelecter(date: Date) -> Int {
+        let comp = Calendar.current.dateComponents([.day], from: date)
+        
+        guard let day = comp.day else {
+            print("[error] component earn failed")
+            return 0
+        }
+        
+        return day + offset
+    }
+    
     // 日付を選択した時に呼ばれる
+    // selectedDatesに日付を追加する
+    // すでに含まれていたら削除する
     func selectDate(index: Int) {
-        selectedDates.append(getDateForDateSelecter(index: index))
+        let selectedDate: Date = getDateForDateSelecter(index: index)
+        if selectedDates.contains(selectedDate) {
+            selectedDates.remove(value: selectedDate)
+        } else {
+            selectedDates.append(getDateForDateSelecter(index: index))
+        }
+        
+        // ISSUE: selectedDatesが増えてくると重いかも
+        selectedDates = selectedDates.sorted(by: <)
     }
     
     // 前の月
     func prevMonth() {
         month -= 1
+    
+        if month == 0 {
+            // 去年へ
+            year -= 1
+            month = 12
+        }
         update()
     }
     
     // 次の月
     func nextMonth() {
         month += 1
+        if month == 13 {
+            // 来年へ
+            year += 1
+            month = 1
+        }
+        
         update()
     }
     
     // 選択している年、月が変わった時に呼ばれる
     func update() {
-        offset = getOffsetForDateSelecter(year: year, month: month)
+        offset = getOffsetForDateSelecter()
         selectedIndexes = [Bool](repeating: false, count: 50)
         
-        // TODO:
         // 選択されている日は選択済みにする
-        
+        // ISSUE: selectedDatesが増えてくると重いかも
+        for date in selectedDates {
+            let comp = Calendar.current.dateComponents([.year, .month], from: date)
+            
+            guard let _year = comp.year, let _month = comp.month else {
+                print("[error] earn components failed")
+                continue
+            }
+            
+            if year == _year && month == _month {
+                selectedIndexes[getIndexForDateSelecter(date: date)] = true
+            }
+        }
     }
     
     // 選択された日付のフォーマット
@@ -215,12 +269,13 @@ class CreateEventViewModel: ObservableObject {
         var result: String = ""
         
         for date in selectedDates {
-            // TODO: 月、日だけ
-            // 昇順or降順で表示する
-            result += CalendarManager.shared.formatFullDate(date: date)
+            // TODO: 昇順or降順で表示する
+            result += formatMonthAndDay(date: date)
+            result += ", "
         }
         
-        print(result)
+        // 最後のカンマと空白を削除する
+        if selectedDates.count > 0 { result = String(result.dropLast(2)) }
         
         return result
     }

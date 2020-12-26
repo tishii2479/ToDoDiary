@@ -78,6 +78,8 @@ struct CreateEventView: View {
                                 ListDivider()
                                 TextEditor(text: $createEvent.detail)
                                     .padding(.horizontal, 10)
+                                    .foregroundColor(ColorManager.character)
+                                    .font(Font.custom(FontManager.japanese, size: 14))
                                 ListDivider()
                             }
                         }

@@ -98,6 +98,9 @@ fileprivate struct DateSelecter: View {
                     Text("next")
                 }
             }
+            .onAppear {
+                createEvent.offset = createEvent.getOffsetForDateSelecter()
+            }
         }
     }
     

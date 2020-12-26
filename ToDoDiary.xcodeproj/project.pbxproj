@@ -18,6 +18,7 @@
 		491316F3258A425600CF2B6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316F2258A425600CF2B6C /* MainView.swift */; };
 		491316FB258A42B900CF2B6C /* CurrentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316FA258A42B900CF2B6C /* CurrentView.swift */; };
 		49131701258A43EB00CF2B6C /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49131700258A43EB00CF2B6C /* CalendarView.swift */; };
+		492157652597379700D9C63E /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492157642597379700D9C63E /* Array.swift */; };
 		4938DDD8259352FE00F4F1AB /* CreateEventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */; };
 		4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */; };
 		4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDE725936D5000F4F1AB /* ListTextField.swift */; };
@@ -27,7 +28,6 @@
 		4938DE112593754000F4F1AB /* ListNotificationField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE102593754000F4F1AB /* ListNotificationField.swift */; };
 		4938DE16259379EB00F4F1AB /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE15259379EB00F4F1AB /* ListCell.swift */; };
 		4938DE1E25937A1800F4F1AB /* ListDateField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DE1D25937A1800F4F1AB /* ListDateField.swift */; };
-		496BA45425942E21008E6EF9 /* DateSelecterDirector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496BA45325942E21008E6EF9 /* DateSelecterDirector.swift */; };
 		49A2B0922592EAB500E169FC /* EventColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0912592EAB500E169FC /* EventColor.swift */; };
 		49A2B0972592F51A00E169FC /* ColorPalette.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B0962592F51A00E169FC /* ColorPalette.swift */; };
 		49A2B09C2592F88C00E169FC /* KeyboardResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */; };
@@ -89,6 +89,7 @@
 		491316F2258A425600CF2B6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		491316FA258A42B900CF2B6C /* CurrentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentView.swift; sourceTree = "<group>"; };
 		49131700258A43EB00CF2B6C /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		492157642597379700D9C63E /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		4938DDD7259352FE00F4F1AB /* CreateEventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEventViewModel.swift; sourceTree = "<group>"; };
 		4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTextField.swift; sourceTree = "<group>"; };
 		4938DDE725936D5000F4F1AB /* ListTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextField.swift; sourceTree = "<group>"; };
@@ -98,7 +99,6 @@
 		4938DE102593754000F4F1AB /* ListNotificationField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListNotificationField.swift; sourceTree = "<group>"; };
 		4938DE15259379EB00F4F1AB /* ListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListCell.swift; sourceTree = "<group>"; };
 		4938DE1D25937A1800F4F1AB /* ListDateField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListDateField.swift; sourceTree = "<group>"; };
-		496BA45325942E21008E6EF9 /* DateSelecterDirector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelecterDirector.swift; sourceTree = "<group>"; };
 		49A2B0912592EAB500E169FC /* EventColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventColor.swift; sourceTree = "<group>"; };
 		49A2B0962592F51A00E169FC /* ColorPalette.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPalette.swift; sourceTree = "<group>"; };
 		49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponder.swift; sourceTree = "<group>"; };
@@ -298,7 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */,
-				496BA45325942E21008E6EF9 /* DateSelecterDirector.swift */,
+				492157642597379700D9C63E /* Array.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -618,13 +618,13 @@
 				4938DDFA25936DD900F4F1AB /* ListSearchField.swift in Sources */,
 				4938DE16259379EB00F4F1AB /* ListCell.swift in Sources */,
 				49A9466C258F0D070048DA05 /* CalendarDateDetail.swift in Sources */,
+				492157652597379700D9C63E /* Array.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
 				4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */,
 				49A94681258F228C0048DA05 /* Event.swift in Sources */,
 				4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */,
 				49A2B0A22593006300E169FC /* ToDoListViewModel.swift in Sources */,
 				49A94674258F13870048DA05 /* CreateEventButton.swift in Sources */,
-				496BA45425942E21008E6EF9 /* DateSelecterDirector.swift in Sources */,
 				49A9469C258F575A0048DA05 /* ViewSwitcher.swift in Sources */,
 				490D02812588B42F00A2F038 /* ToDoDiaryApp.swift in Sources */,
 				49A946B7258F5C400048DA05 /* SettingView.swift in Sources */,
