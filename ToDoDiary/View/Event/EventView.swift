@@ -111,7 +111,10 @@ struct EventView: View {
         }
         .colorScheme(.dark) // FIXME: これだけカラーが反映されない
         .onAppear {
-            createEvent.setUpEvent(event: viewSwitcher.targetEvent)
+            // イベントの初期設定
+            // 日付が設定されていれば日付を設定して作成モード
+            // イベントが設定されていれば編集モードに
+            createEvent.setUpEvent(date: viewSwitcher.selectedDate, event: viewSwitcher.targetEvent)
         }
     }
 }

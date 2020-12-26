@@ -34,6 +34,7 @@ fileprivate struct DetailEventLabel: View {
 struct CalendarDateDetail: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var calendar: CalendarViewModel
+    let height: CGFloat = 150
     
     var body: some View {
         if calendar.isShowingDetail {
@@ -46,6 +47,12 @@ struct CalendarDateDetail: View {
                         .font(Font.custom(FontManager.number, size: 14))
                     Spacer()
                     
+                    Button("作成") {
+                        viewSwitcher.targetEvent = nil
+                        viewSwitcher.selectedDate = CalendarManager.shared.getDateFromIndex(index: calendar.selectedIndex)
+                        viewSwitcher.isShowingModal = true
+                    }
+                    
                     Button("閉じる") {
                         calendar.isShowingDetail = false
                     }
@@ -56,18 +63,25 @@ struct CalendarDateDetail: View {
                 
                 ScrollView {
                     VStack (spacing: 0) {
-                        ForEach(0 ..< calendar.selectedEventArray.count, id: \.self) { index in
-                            Button(action: {
-                                // Set target event to selected event
-                                viewSwitcher.targetEvent = calendar.selectedEventArray[index]
-                                viewSwitcher.isShowingModal = true
-                            }) {
-                                DetailEventLabel(event: calendar.selectedEventArray[index])
+                        if calendar.selectedEventArray.count > 0 {
+                            ForEach(0 ..< calendar.selectedEventArray.count, id: \.self) { index in
+                                Button(action: {
+                                    // Set target event to selected event
+                                    viewSwitcher.targetEvent = calendar.selectedEventArray[index]
+                                    viewSwitcher.isShowingModal = true
+                                }) {
+                                    DetailEventLabel(event: calendar.selectedEventArray[index])
+                                }
                             }
+                        } else {
+                            Text("まだ予定はありません")
+                                .foregroundColor(ColorManager.character)
+                                .font(Font.custom(FontManager.number, size: 14))
+                                .frame(minWidth: 0, maxWidth: .infinity, minHeight: height, maxHeight: height)
                         }
                     }
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 200, maxHeight: 200)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: height, maxHeight: height)
                 .background(ColorManager.back)
             }
         } else {

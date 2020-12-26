@@ -162,10 +162,24 @@ class EventViewModel: ObservableObject {
         ViewSwitcher.shared.isShowingModal = false
     }
     
+    // 日付で選択する
+    func setUpWithDate(date: Date) {
+    }
+    
     // 入力欄の初期化
-    func setUpEvent(event _event: Event?) {
+    func setUpEvent(date _date: Date?, event _event: Event?) {
+        // 日付が設定されていればそれを設定する
+        if let date = _date {
+            mode = .new
+            selectedDates = [date]
+            return
+        }
+    
         // イベントが設定されていなければreturn
-        guard let event = _event else { return }
+        guard let event = _event else {
+            mode = .new
+            return
+        }
         
         // 編集モード
         mode = .edit

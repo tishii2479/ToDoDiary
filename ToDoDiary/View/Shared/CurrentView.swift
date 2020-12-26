@@ -11,6 +11,10 @@ struct CurrentView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     var body: some View {
         ZStack {
+            // 背景
+            ColorManager.back
+                .edgesIgnoringSafeArea(.all)
+            
             switch viewSwitcher.currentView {
             case .calendar:
                 CalendarView()

@@ -32,6 +32,10 @@ fileprivate struct ToDoListCell: View {
                             .font(Font.custom(FontManager.japanese, size: 14))
                             .foregroundColor(ColorManager.character)
                         Spacer()
+                        
+                        Text(event.formatTime())
+                            .font(Font.custom(FontManager.japanese, size: 14))
+                            .foregroundColor(ColorManager.character)
                     }
                     .padding(.horizontal, 10)
                     .padding(.vertical, 5)
@@ -59,6 +63,8 @@ struct ToDoListView: View {
                         ForEach(0 ..< toDoList.events.count, id: \.self) { index in
                             ToDoListCell(event: toDoList.events[index])
                         }
+                        
+                        Spacer().frame(height: 180)
                     }
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
