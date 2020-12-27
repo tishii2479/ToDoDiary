@@ -112,7 +112,6 @@ struct EventView: View {
                 }
             }
         }
-        .colorScheme(.dark) // FIXME: これだけカラーが反映されない
         .onAppear {
             // イベントの初期設定
             // 日付が設定されていれば日付を設定して作成モード

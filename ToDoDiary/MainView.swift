@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var keyboard = KeyboardResponder()
     
     var body: some View {
@@ -20,6 +21,7 @@ struct MainView: View {
             }
         }
         .background(ColorManager.back)
+        .colorScheme(viewSwitcher.colorTheme)
     }
 }
 

@@ -17,7 +17,7 @@ fileprivate struct SettingHeader: View {
                 .foregroundColor(ColorManager.character)
                 .font(Font.custom(FontManager.japanese, size: 20))
         }
-        .listRowBackground(ColorManager.back)
+        .listRowBackground(ColorManager.main)
     }
 }
 
@@ -29,22 +29,35 @@ fileprivate struct SettingLink: View {
             .foregroundColor(ColorManager.character)
             .font(Font.custom(FontManager.japanese, size: 14))
             .listRowBackground(ColorManager.back)
-            .frame(height: 40)
     }
 }
 
 struct SettingView: View {
+    @EnvironmentObject var viewSwitcher: ViewSwitcher
     @State var text: String = ""
     
     var body: some View {
-        // リストの色の設定
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().backgroundColor = UIColor(ColorManager.back)
-        return NavigationView {
+        NavigationView {
             List {
                 SettingHeader(title: "タイトル")
                     .padding(.top, 20)
                         
+                Picker(selection: $viewSwitcher.colorTheme, label:
+                        Text("カラーテーマ")
+                            .foregroundColor(ColorManager.character)
+                            .font(Font.custom(FontManager.japanese, size: 14))
+                ) {
+                    Text("ライト")
+                        .foregroundColor(ColorManager.character)
+                        .font(Font.custom(FontManager.japanese, size: 14))
+                        .tag(ColorScheme.light)
+                    Text("ダーク")
+                        .foregroundColor(ColorManager.character)
+                        .font(Font.custom(FontManager.japanese, size: 14))
+                        .tag(ColorScheme.dark)
+                }
+                .listRowBackground(ColorManager.back)
+                
                 SettingLink(title: "設定")
                 SettingLink(title: "設定")
                 
@@ -56,8 +69,14 @@ struct SettingView: View {
                 SettingLink(title: "設定")
                 SettingLink(title: "設定")
             }
+            .listStyle(GroupedListStyle())
             .navigationTitle("")
             .navigationBarHidden(true)
+        }
+        .onAppear {
+            // リストの色の設定
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().backgroundColor = UIColor(ColorManager.main)
         }
     }
 }

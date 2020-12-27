@@ -31,21 +31,24 @@ fileprivate struct ToDoListCell: View {
                             .foregroundColor(ColorManager.character)
                         Spacer()
                         
-                        Text(event.formatTime())
-                            .font(Font.custom(FontManager.japanese, size: 14))
-                            .foregroundColor(ColorManager.character)
+                        // 複数選択モードでないとき
+                        if editMode?.wrappedValue != .active {
+                            Text(event.formatTime())
+                                .font(Font.custom(FontManager.japanese, size: 14))
+                                .foregroundColor(ColorManager.character)
+                        }
                     }
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 5)
-                    .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, minHeight: 50, maxHeight: 50)
-                    .background(ColorManager.back)
+//                    .padding(.horizontal, 15)
+                    .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, minHeight: 40, maxHeight: 40)
                 }
             }
         }
+        .listRowBackground(ColorManager.back)
     }
 }
 
 struct ToDoListView: View {
+    @Environment(\.editMode) var editMode
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var toDoList: ToDoListViewModel = ToDoListViewModel()
     
@@ -56,15 +59,15 @@ struct ToDoListView: View {
             VStack(spacing: 0) {
                 ListSearchField(toDoList: toDoList)
                 
-                ScrollView {
-                    VStack(spacing: 0) {
-                        ForEach(0 ..< toDoList.events.count, id: \.self) { index in
-                            ToDoListCell(event: toDoList.events[index])
-                        }
-                        
-                        Spacer().frame(height: 180)
+                List(selection: $toDoList.selectedIndexes) {
+                    ForEach(toDoList.events, id: \.self) { event in
+                        ToDoListCell(event: event)
                     }
+                    .onDelete(perform: toDoList.rowDelete)
+                    .onMove(perform: toDoList.rowReplace)
+                    
                 }
+//                .listStyle(GroupedListStyle())
                 .frame(minWidth: 0, maxWidth: .infinity)
             }
             
@@ -76,13 +79,23 @@ struct ToDoListView: View {
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 EventView()
                     .environmentObject(EventViewModel(content: .todo))
+                    .colorScheme(viewSwitcher.colorTheme) // FIXME: これだけカラーが反映されない
             }
+        }
+        .onAppear {
+            // リストの色の設定
+            UITableView.appearance().separatorStyle = .none
+            UITableView.appearance().backgroundColor = UIColor(ColorManager.back)
+        }
+        .onDisappear {
+            // 編集状態をやめる
+            editMode?.wrappedValue = .inactive
         }
     }
 }
 
 struct ToDoListView_Previews: PreviewProvider {
     static var previews: some View {
-        ToDoListView()
+        ToDoListView().environmentObject(ViewSwitcher())
     }
 }

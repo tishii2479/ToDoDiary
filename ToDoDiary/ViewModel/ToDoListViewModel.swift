@@ -17,6 +17,7 @@ class ToDoListViewModel: ObservableObject {
     @Published var createText: String = ""
     @Published var selectedColor: EventColor = .none
     @Published var events: [Event] = []
+    @Published var selectedIndexes = Set<String>()
     
     init() {
         setUpEvents()
@@ -53,5 +54,22 @@ class ToDoListViewModel: ObservableObject {
     // 検索欄のリセット
     func resetSearchInput() {
         searchText = ""
+    }
+    
+    // 行入れ替え処理
+    func rowReplace(_ from: IndexSet, _ to: Int) {
+        events.move(fromOffsets: from, toOffset: to)
+    }
+    
+    // 行削除処理
+    func rowDelete(at offsets: IndexSet) {
+        guard let index = offsets.first else {
+            print("[error] failed to delete row")
+            return
+        }
+        
+        EventManager.shared.deleteEvent(event: events[index])
+        
+        events.remove(atOffsets: offsets)
     }
 }

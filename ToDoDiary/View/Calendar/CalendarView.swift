@@ -48,6 +48,7 @@ struct CalendarView: View {
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 EventView()
                     .environmentObject(EventViewModel(content: .event))
+                    .colorScheme(viewSwitcher.colorTheme) // FIXME: これだけカラーが反映されない
             }
         }
     }

@@ -76,11 +76,16 @@ class EventManager {
     
     // ToDoのイベントを返す
     func getToDoArray(searchText: String) -> [Event] {
+//        TODO: ソート基準を変える
+//        let sortProperties = [
+//            SortDescriptor(keyPath: "date", ascending: false)
+//        ]
+        
         do {
             let realm = try Realm()
             let search: String = "*" + searchText + "*"
             
-            let events = realm.objects(Event.self).filter("title LIKE '\(search)'")
+            let events = realm.objects(Event.self).filter("title LIKE '\(search)'").filter("date == nil")//.sorted(by: sortProperties)
             
             return Array(events)
         } catch {
