@@ -17,7 +17,7 @@ struct ToDoTextField: View {
             // 背景
             RoundedRectangle(cornerRadius: 25)
                 .fill(ColorManager.main)
-                .frame(minWidth: 0, maxWidth: 400, minHeight: 50, maxHeight: 50)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                 .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
             
             TextField("新規...", text: $toDoList.createText, onCommit: toDoList.createEvent)

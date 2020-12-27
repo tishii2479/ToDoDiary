@@ -99,9 +99,9 @@ struct EventView: View {
                         // イベント編集時に表示される
                         if createEvent.event != nil {
                             Spacer().frame(height: 50)
-                            RedListDivider()
+                            ListDivider()
                             ListDeleteField()
-                            RedListDivider()
+                            ListDivider()
                         }
                         
                         Spacer().frame(height: 100)

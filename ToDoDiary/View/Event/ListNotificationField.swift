@@ -22,7 +22,7 @@ struct ListNotificationField: View {
                 Text(NotificationType.once.text).tag(NotificationType.once)
             }
             .labelsHidden()
-            .padding(-10)   // paddingの打ち消し
+            .padding(.vertical, -10)   // paddingの打ち消し
         }
     }
 }

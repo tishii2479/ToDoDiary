@@ -9,9 +9,11 @@ import XCTest
 @testable import ToDoDiary
 
 class CalendarManagerTests: XCTestCase {
-
+    
+    var calendarManager: CalendarManager!
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        calendarManager = CalendarManager()
     }
 
     override func tearDownWithError() throws {
@@ -23,7 +25,7 @@ class CalendarManagerTests: XCTestCase {
         
         let excepted = "1/1"
         
-        let actual = CalendarManager.shared.formatDateForCalendar(date: firstDayOfMonth)
+        let actual = calendarManager.formatDateForCalendar(date: firstDayOfMonth)
         
         XCTAssertEqual(actual, excepted)
 
@@ -31,7 +33,7 @@ class CalendarManagerTests: XCTestCase {
 
         let otherExcepted = "3"
 
-        let otherActual = CalendarManager.shared.formatDateForCalendar(date: otherDayOfMonth)
+        let otherActual = calendarManager.formatDateForCalendar(date: otherDayOfMonth)
 
         XCTAssertEqual(otherActual, otherExcepted)
     }
@@ -41,7 +43,7 @@ class CalendarManagerTests: XCTestCase {
         
         let excepted = "2020/12/25 (金)"
         
-        let actual = CalendarManager.shared.formatFullDate(date: day)
+        let actual = calendarManager.formatFullDate(date: day)
         
         XCTAssertEqual(actual, excepted)
         
@@ -49,7 +51,7 @@ class CalendarManagerTests: XCTestCase {
         
         let excepted2 = "2021/1/1 (金)"
         
-        let actual2 = CalendarManager.shared.formatFullDate(date: day2)
+        let actual2 = calendarManager.formatFullDate(date: day2)
         
         XCTAssertEqual(actual2, excepted2)
     }
@@ -59,7 +61,7 @@ class CalendarManagerTests: XCTestCase {
         
         let excepeted = 4
         
-        let actual = CalendarManager.shared.getDayOffset(date: thursday)
+        let actual = calendarManager.getDayOffset(date: thursday)
         
         XCTAssertEqual(excepeted, actual)
         
@@ -67,7 +69,7 @@ class CalendarManagerTests: XCTestCase {
         
         let excepeted2 = 0
         
-        let actual2 = CalendarManager.shared.getDayOffset(date: minus)
+        let actual2 = calendarManager.getDayOffset(date: minus)
         
         XCTAssertEqual(excepeted2, actual2)
     }
@@ -75,15 +77,15 @@ class CalendarManagerTests: XCTestCase {
     func testOddMonth() throws {
         let oddMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 11, day: 12))!
         
-        XCTAssertTrue(CalendarManager.shared.isOddMonth(date: oddMonth))
+        XCTAssertTrue(calendarManager.isOddMonth(date: oddMonth))
         
         let evenMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 12, day: 12))!
         
-        XCTAssertFalse(CalendarManager.shared.isOddMonth(date: evenMonth))
+        XCTAssertFalse(calendarManager.isOddMonth(date: evenMonth))
         
         let minusMonth = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2020, month: 12, day: -1))!
         
-        XCTAssertTrue(CalendarManager.shared.isOddMonth(date: minusMonth))
+        XCTAssertTrue(calendarManager.isOddMonth(date: minusMonth))
     }
 
 }

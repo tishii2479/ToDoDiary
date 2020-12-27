@@ -15,8 +15,8 @@ struct ListTextField: View {
         TextField(placeHolder, text: $value)
             .foregroundColor(ColorManager.character)
             .font(Font.custom(FontManager.japanese, size: 14))
-            .frame(height: 40)
             .padding(.horizontal, 10)
+            .frame(width: UIScreen.main.bounds.width, height: 40)
             .background(ColorManager.back)
     }
 }

@@ -18,6 +18,7 @@ struct ListCellValue: View {
                 .font(Font.custom(FontManager.japanese, size: 14))
         }
         .padding(.horizontal, 10)
+        .frame(maxWidth: UIScreen.main.bounds.width)
     }
 }
 
@@ -34,7 +35,7 @@ struct ListCellTitle: View {
             Spacer()
         }
         .padding(.horizontal, 10)
-        .frame(height: 40)
+        .frame(width: UIScreen.main.bounds.width, height: 40)
     }
 }
 

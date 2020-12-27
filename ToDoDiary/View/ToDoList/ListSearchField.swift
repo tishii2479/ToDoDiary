@@ -35,7 +35,7 @@ struct ListSearchField: View {
             .padding(.horizontal, 20)
         }
         .padding(10)
-        .frame(height: 60)
+        .frame(width: UIScreen.main.bounds.width, height: 60)
     }
 }
 

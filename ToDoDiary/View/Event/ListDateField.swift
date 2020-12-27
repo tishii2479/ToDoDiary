@@ -30,7 +30,7 @@ fileprivate struct TimeSelecter: View {
             DatePicker(title, selection: $time, displayedComponents: .hourAndMinute)
                 .datePickerStyle(WheelDatePickerStyle())
                 .labelsHidden()
-                .padding(-10)   // paddingの打ち消し
+                .padding(.vertical, -10)   // paddingの打ち消し
         }
     }
 }
@@ -227,6 +227,5 @@ struct ListDateField: View {
 struct ListDateField_Previews: PreviewProvider {
     static var previews: some View {
         ListDateField()
-            .colorScheme(.dark)
     }
 }

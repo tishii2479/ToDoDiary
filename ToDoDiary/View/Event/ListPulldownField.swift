@@ -38,9 +38,8 @@ struct ListPulldownField: View {
                     ListCellValue(value: value)
                 }
             }
-            .background(
-                ColorManager.back.frame(height: 40)
-            )
+            .background(ColorManager.back)
+            .frame(width: UIScreen.main.bounds.width, height: 40)
             
             if isOpen || isAlwaysOpen {
                 ListDivider()

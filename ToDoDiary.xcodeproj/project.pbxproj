@@ -52,6 +52,7 @@
 		49D83947258DAEEF00BA9AA6 /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */; };
 		49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8394B258DB9A600BA9AA6 /* FontManager.swift */; };
 		49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD8BA0258DA07D005219C5 /* CalendarCell.swift */; };
+		49FDF5FA25982F53007E0176 /* EventViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FDF5F925982F53007E0176 /* EventViewUITests.swift */; };
 		7C5A909A97D631141443675E /* Pods_ToDoDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11973117896E135AB73E2E3D /* Pods_ToDoDiaryTests.framework */; };
 		DE90F6096C240C1823D5592F /* Pods_ToDoDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6172620485D71F283A0F429C /* Pods_ToDoDiary.framework */; };
 /* End PBXBuildFile section */
@@ -126,6 +127,7 @@
 		49D83946258DAEEF00BA9AA6 /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		49D8394B258DB9A600BA9AA6 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		49FD8BA0258DA07D005219C5 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
+		49FDF5F925982F53007E0176 /* EventViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewUITests.swift; sourceTree = "<group>"; };
 		522401C550B32E33C052D8E9 /* Pods-ToDoDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-ToDoDiaryTests/Pods-ToDoDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6172620485D71F283A0F429C /* Pods_ToDoDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D21BE65B96CBAB24316CC06 /* Pods-ToDoDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-ToDoDiaryTests/Pods-ToDoDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				490D029D2588B43000A2F038 /* ToDoDiaryUITests.swift */,
+				49FDF5F925982F53007E0176 /* EventViewUITests.swift */,
 				490D029F2588B43000A2F038 /* Info.plist */,
 			);
 			path = ToDoDiaryUITests;
@@ -673,6 +676,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490D029E2588B43000A2F038 /* ToDoDiaryUITests.swift in Sources */,
+				49FDF5FA25982F53007E0176 /* EventViewUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

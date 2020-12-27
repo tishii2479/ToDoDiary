@@ -12,7 +12,7 @@ struct ToDoDiaryApp: App {
     @State var colorTheme: ColorScheme = .dark
     
     var body: some Scene {
-        // viewswitchernの設定
+        // viewswitcherの設定
         ViewSwitcher.shared = ViewSwitcher()
         return WindowGroup {
             MainView()

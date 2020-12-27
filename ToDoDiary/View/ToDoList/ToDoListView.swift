@@ -28,7 +28,7 @@ fileprivate struct ToDoListCell: View {
                 }) {
                     HStack {
                         event.eventColor.frame(width: 2)
-                            .padding(.horizontal, 15)
+                            .padding(.trailing, 10)
                         
                         Text(event.title)
                             .font(Font.custom(FontManager.japanese, size: 14))
@@ -39,9 +39,9 @@ fileprivate struct ToDoListCell: View {
                             .font(Font.custom(FontManager.japanese, size: 14))
                             .foregroundColor(ColorManager.character)
                     }
-                    .padding(.horizontal, 10)
+                    .padding(.horizontal, 15)
                     .padding(.vertical, 5)
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                    .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, minHeight: 50, maxHeight: 50)
                     .background(ColorManager.back)
                 }
             }
