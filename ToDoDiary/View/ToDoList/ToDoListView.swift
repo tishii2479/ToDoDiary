@@ -38,9 +38,8 @@ fileprivate struct ToDoListCell: View {
                                 .foregroundColor(ColorManager.character)
                         }
                     }
-//                    .padding(.horizontal, 15)
-                    .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, minHeight: 40, maxHeight: 40)
                 }
+                .frame(minWidth: 0, maxWidth: UIScreen.main.bounds.width, minHeight: 40, maxHeight: 40)
             }
         }
         .listRowBackground(ColorManager.back)
@@ -65,9 +64,8 @@ struct ToDoListView: View {
                     }
                     .onDelete(perform: toDoList.rowDelete)
                     .onMove(perform: toDoList.rowReplace)
-                    
                 }
-//                .listStyle(GroupedListStyle())
+                .padding(.horizontal, 10)
                 .frame(minWidth: 0, maxWidth: .infinity)
             }
             
@@ -86,6 +84,7 @@ struct ToDoListView: View {
             // リストの色の設定
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = UIColor(ColorManager.back)
+//            UITableViewCell.appearance().tintColor = UIColor(ColorManager.redCharacter)
         }
         .onDisappear {
             // 編集状態をやめる

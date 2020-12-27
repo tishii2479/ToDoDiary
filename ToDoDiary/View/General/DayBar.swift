@@ -11,17 +11,21 @@ struct DayBar: View {
     let days: [String] = ["日", "月", "火", "水", "木", "金", "土"]
     
     var body: some View {
-        HStack(alignment: .center) {
-            ForEach(0 ..< days.count) { i in
-                Spacer()
-                Text(days[i])
-                    .font(Font.custom(FontManager.japanese, size: 14))
-                    .foregroundColor(i == 0 ? ColorManager.redCharacter : ColorManager.character)
-                    .frame(height: 20)
-                Spacer()
+        VStack {
+            Spacer()
+            HStack(alignment: .center) {
+                ForEach(0 ..< days.count) { i in
+                    Spacer()
+                    Text(days[i])
+                        .font(Font.custom(FontManager.japanese, size: 14))
+                        .foregroundColor(i == 0 ? ColorManager.redCharacter : ColorManager.character)
+                        .frame(height: 20)
+                    Spacer()
+                }
             }
+            Spacer()
         }
-        .frame(height: 20)
+        .frame(height: 30)
         .background(ColorManager.back)
     }
 }

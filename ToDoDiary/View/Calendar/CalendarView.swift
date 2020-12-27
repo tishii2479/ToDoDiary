@@ -15,7 +15,6 @@ struct CalendarView: View {
         VStack {
             // 曜日表示のバー
             DayBar()
-                .padding(.top, 15)
             
             // カレンダー
             ScrollViewReader { (proxy: ScrollViewProxy) in

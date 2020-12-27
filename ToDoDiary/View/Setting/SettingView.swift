@@ -51,10 +51,17 @@ struct SettingView: View {
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 14))
                         .tag(ColorScheme.light)
+                    
                     Text("ダーク")
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 14))
                         .tag(ColorScheme.dark)
+                        .onAppear {
+                            // リストの色の設定
+                            UITableView.appearance().separatorStyle = .none
+                            UITableView.appearance().backgroundColor = UIColor(ColorManager.main)
+                            UITableViewCell.appearance().backgroundColor = UIColor(ColorManager.back)
+                        }
                 }
                 .listRowBackground(ColorManager.back)
                 
@@ -77,6 +84,7 @@ struct SettingView: View {
             // リストの色の設定
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = UIColor(ColorManager.main)
+            UITableViewCell.appearance().backgroundColor = UIColor(ColorManager.back)
         }
     }
 }

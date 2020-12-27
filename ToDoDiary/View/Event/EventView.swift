@@ -40,7 +40,7 @@ struct EventView: View {
                     }
                 }
                 .background(ColorManager.main)
-                .frame(height: 60)
+                .frame(width: UIScreen.main.bounds.width, height: 60)
                 
                 // 入力欄
                 ScrollView {
