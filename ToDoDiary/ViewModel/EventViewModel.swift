@@ -96,78 +96,15 @@ class EventViewModel: ObservableObject {
     
     // イベントの作成
     func createEvent() {
-        guard title != "" else { return }
-
-        // 前後の改行をなくす
-        let _detail = detail.trimmingCharacters(in: .whitespacesAndNewlines)
-        
-        // 編集中である場合、重複させないためにそれを削除する
-        if let _event = self.event {
-            EventManager.shared.deleteEvent(event: _event)
+        if let events = createEventData() {
+            EventManager.shared.addEventToDictionary(events: events)
+            
+            // 作成ページを閉じる
+            ViewSwitcher.shared.isShowingModal = false
+        } else {
+            // 作成時エラー
+            
         }
-        
-        // 日時が選択されていない場合、ToDoとしてのみ追加する
-        if selectedDates.count == 0 {
-            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: nil, startTime: startTime, endTime: endTime, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
-            
-            EventManager.shared.addEventToDictionary(event: event)
-            
-            // 作成後に編集する場合のために設定
-            self.event = event
-            
-            print("[debug] create event")
-            print(event)
-            return
-        }
-        
-        // 色の設定
-        // 色が設定されていなかった場合、ランダムに色を割り当てる
-        // 複数ある場合には、それを全て同じ色にする
-        var rawColor: Int = -1
-        if color == .none {
-            rawColor = EventColor.random()
-        }
-        
-        for date in selectedDates {
-            let year = Calendar(identifier: .gregorian).component(.year, from: date)
-            let month = Calendar(identifier: .gregorian).component(.month, from: date)
-            let day = Calendar(identifier: .gregorian).component(.day, from: date)
-            
-            var start: Date? = startTime
-            var end: Date? = endTime
-            
-            if startTime != nil {
-                var components = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: startTime!)
-                components.year = year
-                components.month = month
-                components.day = day
-                
-                start = Calendar(identifier: .gregorian).date(from: components)
-            }
-            
-            if endTime != nil {
-                var components = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: endTime!)
-                components.year = year
-                components.month = month
-                components.day = day
-                
-                end = Calendar(identifier: .gregorian).date(from: components)
-            }
-            
-            let event = Event(title: title, color: color != .none ? color.rawValue : rawColor, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
-            
-            EventManager.shared.addEventToDictionary(event: event)
-                
-            // 作成後に編集する場合のために設定
-            // TODO: 複数イベント作成時に対応
-            self.event = event
-            
-            print("[debug] create event")
-            print(event)
-        }
-        
-        // 作成ページを閉じる
-        ViewSwitcher.shared.isShowingModal = false
     }
 
     // 入力欄の初期化
@@ -209,6 +146,83 @@ class EventViewModel: ObservableObject {
 
         ViewSwitcher.shared.isShowingModal = false
         EventManager.shared.deleteEvent(event: _event)
+    }
+    
+    // イベントデータの作成
+    func createEventData() -> [Event]? {
+        guard title != "" else { return nil }
+
+        // 前後の改行をなくす
+        let _detail = detail.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // 編集中である場合、重複させないためにそれを削除する
+        if let _event = self.event {
+            EventManager.shared.deleteEvent(event: _event)
+        }
+        
+        var result: [Event] = []
+        
+        // 日時が選択されていない場合、ToDoとしてのみ追加する
+        if selectedDates.count == 0 {
+            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: nil, startTime: startTime, endTime: endTime, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
+            
+            // 作成後に編集する場合のために設定
+//            self.event = event
+            
+            print("[debug] create event")
+            print(event)
+            
+            result = [event]
+            return result
+        }
+        
+        // 色の設定
+        // 色が設定されていなかった場合、ランダムに色を割り当てる
+        // 複数ある場合には、それを全て同じ色にする
+        var rawColor: Int = -1
+        if color == .none {
+            rawColor = EventColor.random()
+        }
+        
+        for date in selectedDates {
+            let year = Calendar(identifier: .gregorian).component(.year, from: date)
+            let month = Calendar(identifier: .gregorian).component(.month, from: date)
+            let day = Calendar(identifier: .gregorian).component(.day, from: date)
+            
+            var start: Date? = startTime
+            var end: Date? = endTime
+            
+            if startTime != nil {
+                var components = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: startTime!)
+                components.year = year
+                components.month = month
+                components.day = day
+                
+                start = Calendar(identifier: .gregorian).date(from: components)
+            }
+            
+            if endTime != nil {
+                var components = Calendar(identifier: .gregorian).dateComponents([.year, .month, .day, .hour, .minute, .second, .nanosecond], from: endTime!)
+                components.year = year
+                components.month = month
+                components.day = day
+                
+                end = Calendar(identifier: .gregorian).date(from: components)
+            }
+            
+            let event = Event(title: title, color: color != .none ? color.rawValue : rawColor, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
+                
+            // 作成後に編集する場合のために設定
+            // TODO: 複数イベント作成時に対応
+//            self.event = event
+            
+            print("[debug] create event")
+            print(event)
+            
+            result.append(event)
+        }
+            
+        return result
     }
     
     //

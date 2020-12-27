@@ -57,12 +57,14 @@ class EventManager {
     }
     
     // イベントを辞書に追加する
-    func addEventToDictionary(event: Event) {
+    func addEventToDictionary(events: [Event]) {
         do {
             let realm = try Realm()
             
             try realm.write {
-                realm.add(event)
+                for event in events {
+                    realm.add(event)
+                }
             }
         } catch {
             print("[error] realm fail")

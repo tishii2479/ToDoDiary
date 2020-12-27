@@ -48,10 +48,7 @@ struct CalendarDateDetail: View {
                     Spacer()
                     
                     Button("作成") {
-                        // 選択状態のリセット
-                        viewSwitcher.targetEvent = nil
-                        viewSwitcher.selectedDate = CalendarManager.shared.getDateFromIndex(index: calendar.selectedIndex)
-                        viewSwitcher.isShowingModal = true
+                        viewSwitcher.showModal(selectedDate: CalendarManager.shared.getDateFromIndex(index: calendar.selectedIndex))
                     }
                     
                     Button("閉じる") {
@@ -68,9 +65,7 @@ struct CalendarDateDetail: View {
                             ForEach(0 ..< calendar.selectedEventArray.count, id: \.self) { index in
                                 Button(action: {
                                     // Set target event to selected event
-                                    viewSwitcher.targetEvent = calendar.selectedEventArray[index]
-                                    viewSwitcher.selectedDate = nil
-                                    viewSwitcher.isShowingModal = true
+                                    viewSwitcher.showModal(targetEvent: calendar.selectedEventArray[index])
                                 }) {
                                     DetailEventLabel(event: calendar.selectedEventArray[index])
                                 }

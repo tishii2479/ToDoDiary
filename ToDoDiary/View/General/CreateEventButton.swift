@@ -16,15 +16,14 @@ struct CreateEventButton: View {
             HStack {
                 Spacer()
                 Button(action: {
-                    viewSwitcher.targetEvent = nil
-                    viewSwitcher.selectedDate = nil
-                    viewSwitcher.isShowingModal = true
+                    viewSwitcher.showModal()
                 }) {
                     Circle()
                         .fill(ColorManager.main)
                         .frame(width: 60, height: 60)
                         .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
                 }
+                .accessibility(identifier: "CreateEventButton")
             }
         }
         .padding(.trailing, 20)

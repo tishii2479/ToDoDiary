@@ -49,8 +49,10 @@ struct EventView: View {
                         Group {
                             ListDivider()
                             ListTextField(value: $createEvent.title, placeHolder: "件名")
+                                .accessibility(identifier: "TitleField")
                             ListDivider()
                             ListTextField(value: $createEvent.place, placeHolder: "場所")
+                                .accessibility(identifier: "PlaceField")
                             ListDivider()
                             
                         }
@@ -59,6 +61,7 @@ struct EventView: View {
                         Group {
                             Spacer().frame(height: 20)
                             ColorPalette(selectedColor: $createEvent.color)
+                                .accessibility(identifier: "ColorPalette")
                             Spacer().frame(height: 20)
                         }
                         

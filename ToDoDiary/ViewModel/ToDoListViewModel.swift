@@ -30,7 +30,7 @@ class ToDoListViewModel: ObservableObject {
         let event = Event(title: createText, color: selectedColor.rawValue)
         events.append(event)
         
-        EventManager.shared.addEventToDictionary(event: event)
+        EventManager.shared.addEventToDictionary(events: [event])
         
         resetCreateInput()
     }

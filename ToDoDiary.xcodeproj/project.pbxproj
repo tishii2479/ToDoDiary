@@ -53,6 +53,7 @@
 		49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D8394B258DB9A600BA9AA6 /* FontManager.swift */; };
 		49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FD8BA0258DA07D005219C5 /* CalendarCell.swift */; };
 		49FDF5FA25982F53007E0176 /* EventViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FDF5F925982F53007E0176 /* EventViewUITests.swift */; };
+		49FDF5FF25983EB4007E0176 /* EventViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FDF5FE25983EB4007E0176 /* EventViewModelTests.swift */; };
 		7C5A909A97D631141443675E /* Pods_ToDoDiaryTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11973117896E135AB73E2E3D /* Pods_ToDoDiaryTests.framework */; };
 		DE90F6096C240C1823D5592F /* Pods_ToDoDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6172620485D71F283A0F429C /* Pods_ToDoDiary.framework */; };
 /* End PBXBuildFile section */
@@ -128,6 +129,7 @@
 		49D8394B258DB9A600BA9AA6 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		49FD8BA0258DA07D005219C5 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		49FDF5F925982F53007E0176 /* EventViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewUITests.swift; sourceTree = "<group>"; };
+		49FDF5FE25983EB4007E0176 /* EventViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModelTests.swift; sourceTree = "<group>"; };
 		522401C550B32E33C052D8E9 /* Pods-ToDoDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-ToDoDiaryTests/Pods-ToDoDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6172620485D71F283A0F429C /* Pods_ToDoDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D21BE65B96CBAB24316CC06 /* Pods-ToDoDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoDiaryTests.release.xcconfig"; path = "Target Support Files/Pods-ToDoDiaryTests/Pods-ToDoDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			children = (
 				490D02922588B43000A2F038 /* ToDoDiaryTests.swift */,
 				49A94652258EF2FB0048DA05 /* CalendarManagerTests.swift */,
+				49FDF5FE25983EB4007E0176 /* EventViewModelTests.swift */,
 				490D02942588B43000A2F038 /* Info.plist */,
 			);
 			path = ToDoDiaryTests;
@@ -668,6 +671,7 @@
 			files = (
 				490D02932588B43000A2F038 /* ToDoDiaryTests.swift in Sources */,
 				49A9467B258F15680048DA05 /* CalendarManagerTests.swift in Sources */,
+				49FDF5FF25983EB4007E0176 /* EventViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

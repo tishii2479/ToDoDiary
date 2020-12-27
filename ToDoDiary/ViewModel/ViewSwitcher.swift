@@ -19,4 +19,10 @@ class ViewSwitcher: ObservableObject {
     @Published var selectedDate: Date? = nil
     
     static var shared: ViewSwitcher!
+
+    func showModal(targetEvent: Event? = nil, selectedDate: Date? = nil) {
+        self.targetEvent = targetEvent
+        self.selectedDate = selectedDate
+        self.isShowingModal = true
+    }
 }
