@@ -11,6 +11,7 @@ class CalendarViewModel: ObservableObject {
     @Published var isShowingDetail: Bool = false
     @Published var selectedIndex: Int = 0
     @Published var selectedEventArray: [Event] = []
+    @Published var nowIndex = 0
     
     // カレンダーの日付選択時に呼ばれる
     func selectIndex(index: Int) {
@@ -31,5 +32,15 @@ class CalendarViewModel: ObservableObject {
     // スクロールされた時に呼ばれる
     func onScroll(offset: CGFloat) {
         print(offset)
+    }
+    
+    // 次の範囲
+    func before() {
+        nowIndex -= 28
+    }
+    
+    // 前の範囲
+    func next() {
+        nowIndex += 28
     }
 }

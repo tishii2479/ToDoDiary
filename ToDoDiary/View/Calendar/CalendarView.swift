@@ -46,6 +46,25 @@ struct CalendarView: View {
                         }
                     }
                     
+                    HStack {
+                        Button(action: {
+                            calendar.before()
+                            withAnimation(.linear(duration: 10)) {
+                                proxy.scrollTo(calendar.nowIndex, anchor: .center)
+                            }
+                        }) {
+                            Text("before")
+                        }
+                        Button(action: {
+                            calendar.next()
+                            withAnimation(.linear(duration: 10)) {
+                                proxy.scrollTo(calendar.nowIndex, anchor: .center)
+                            }
+                        }) {
+                            Text("next")
+                        }
+                    }
+                    
                     // 日時イベント詳細ウィンドウ
                     if calendar.isShowingDetail {
                         CalendarDateDetail(calendar: calendar)
@@ -54,8 +73,9 @@ struct CalendarView: View {
                     CreateEventButton()
                 }
                 .onAppear {
-                    proxy.scrollTo(0)
+                    proxy.scrollTo(0, anchor: .center)
                 }
+                .animation(.easeInOut)
             }
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 EventView()
