@@ -38,6 +38,12 @@ fileprivate struct TimeSelecter: View {
 fileprivate struct DateSelecter: View {
     @EnvironmentObject var createEvent: EventViewModel
     
+    // TODO: 初期値
+    @State var year: Int = 2020
+    @State var month: Int = 12
+    @State var offset: Int = 0
+    @State var selectedIndexes: [Bool] = [Bool](repeating: false, count: 50)
+    
     var body: some View {
         ZStack {
             // 背景
@@ -46,14 +52,14 @@ fileprivate struct DateSelecter: View {
             
             HStack {
                 Button(action: {
-                    createEvent.prevMonth()
+                    prevMonth()
                 }) {
                     Text("prev")
                 }
             
                 VStack {
                     // タイトル
-                    Text(createEvent.calendarTitle())
+                    Text(calendarTitle())
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 20))
                         .bold()
@@ -67,11 +73,11 @@ fileprivate struct DateSelecter: View {
                         HStack {
                             ForEach(0..<7) { x in
                                 // 表示されている年月の範囲内であれば表示する
-                                if createEvent.isTargetDate(date: createEvent.getDateForDateSelecter(index: index(x, y))) {
+                                if isTargetDate(date: getDateForDateSelecter(index: index(x, y))) {
                                     // ボタン
                                     Button(action: {
-                                        createEvent.selectDate(index: index(x, y))
-                                        createEvent.selectedIndexes[index(x, y)].toggle()
+                                        selectDate(index: index(x, y))
+                                        selectedIndexes[index(x, y)].toggle()
                                     }) {
                                         ZStack {
                                             // 枠線
@@ -82,13 +88,13 @@ fileprivate struct DateSelecter: View {
                                             // 背景
                                             Circle()
                                                 // 選択されて入れば色を変える
-                                                .fill(createEvent.selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
+                                                .fill(selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
                                                 .frame(minWidth: 30, minHeight: 30)
                                                 .padding(1)
                                             
                                             // 文字
-                                            Text(DateFormatter.format(date: createEvent.getDateForDateSelecter(index: index(x, y)), format: "d"))
-                                                .foregroundColor(createEvent.selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
+                                            Text(DateFormatter.format(date: getDateForDateSelecter(index: index(x, y)), format: "d"))
+                                                .foregroundColor(selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
                                                 .font(Font.custom(FontManager.japanese, size: 12))
                                         }
                                     }
@@ -103,15 +109,15 @@ fileprivate struct DateSelecter: View {
                 }
                 
                 Button(action: {
-                    createEvent.nextMonth()
+                    nextMonth()
                 }) {
                     Text("next")
                 }
             }
             .padding(.vertical, 10)
             .onAppear {
-                createEvent.offset = createEvent.getOffsetForDateSelecter()
-                createEvent.update()
+                offset = getOffsetForDateSelecter()
+                update()
             }
         }
     }
@@ -119,6 +125,136 @@ fileprivate struct DateSelecter: View {
     private func index(_ x: Int, _ y: Int) -> Int {
         return x + y * 7
     }
+    
+    // year and date
+    private func calendarTitle() -> String {
+        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month)
+        guard let date = components.date else {
+            print("[Error] GetDateFromIndex Failed")
+            return ""
+        }
+        
+        return DateFormatter.format(date: date, format: "y/M")
+    }
+    
+    // 日にち選択用に月の最初の曜日を取得する
+    private func getOffsetForDateSelecter() -> Int {
+        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: 0)
+        guard let date = components.date else {
+            print("[Error] GetDayOffset Failed")
+            return 0
+        }
+        
+        let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: date)
+        
+        guard let offset: Int = comp.weekday else {
+            print("[Error] GetDayOffset Failed")
+            return 0
+        }
+        
+        return (offset % 7) - 1
+    }
+    
+    // 日にち選択用の日付取得
+    private func getDateForDateSelecter(index: Int) -> Date {
+        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: index - offset)
+        guard let date = components.date else {
+            print("[Error] GetDateFromIndex Failed")
+            return Date()
+        }
+        
+        return date
+    }
+    
+    // 日付からindexを取得する
+    private func getIndexForDateSelecter(date: Date) -> Int {
+        let comp = Calendar(identifier: .gregorian).dateComponents([.day], from: date)
+        
+        guard let day = comp.day else {
+            print("[error] component earn failed")
+            return 0
+        }
+        
+        return day + offset
+    }
+    
+    // 日付を選択した時に呼ばれる
+    // selectedDatesに日付を追加する
+    // すでに含まれていたら削除する
+    private func selectDate(index: Int) {
+        let selectedDate: Date = getDateForDateSelecter(index: index)
+        if createEvent.selectedDates.contains(selectedDate) {
+            createEvent.selectedDates.remove(value: selectedDate)
+        } else {
+            createEvent.selectedDates.append(selectedDate)
+        }
+        
+        // 選択された日付を昇順にソート
+        // ISSUE: selectedDatesが増えてくると重いかも
+        createEvent.selectedDates = createEvent.selectedDates.sorted(by: <)
+    }
+    
+    // 選択している年、月が変わった時に呼ばれる
+    private func update() {
+        offset = getOffsetForDateSelecter()
+        selectedIndexes = [Bool](repeating: false, count: 50)
+        
+        // 選択されている日は選択済みにする
+        // ISSUE: selectedDatesが増えてくると重いかも
+        for date in createEvent.selectedDates {
+            let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: date)
+            
+            guard let _year = comp.year, let _month = comp.month else {
+                print("[error] earn components failed")
+                continue
+            }
+            
+            if year == _year && month == _month {
+                selectedIndexes[getIndexForDateSelecter(date: date)] = true
+            }
+        }
+    }
+    
+    // 前の月
+    private func prevMonth() {
+        month -= 1
+    
+        if month == 0 {
+            // 去年へ
+            year -= 1
+            month = 12
+        }
+        update()
+    }
+    
+    // 次の月
+    private func nextMonth() {
+        month += 1
+        if month == 13 {
+            // 来年へ
+            year += 1
+            month = 1
+        }
+        
+        update()
+    }
+    
+    // ISSUE: 重いかも
+    // 対象の日付が表示すべきかを返す
+    private func isTargetDate(date: Date) -> Bool {
+        let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: date)
+        guard let _year = comp.year, let _month = comp.month else {
+            print("[error] earn components failed")
+            return false
+        }
+        
+        if year == _year && month == _month {
+            return true
+        } else {
+            return false
+        }
+    }
+    
 }
 
 struct ListDateField: View {
