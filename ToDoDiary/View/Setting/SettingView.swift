@@ -73,7 +73,6 @@ struct SettingView: View {
             // リストの色の設定
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = UIColor(ColorManager.main)
-            UITableViewCell.appearance().backgroundColor = UIColor(ColorManager.back)
         }
     }
 }

@@ -11,6 +11,14 @@ struct CalendarView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var calendar: CalendarViewModel = CalendarViewModel()
     
+    @State private var scrollOffset: CGFloat = 0 {
+        didSet {
+            print(scrollOffset)
+        }
+    }
+    
+    private let LIMIT: Int = 210
+    
     var body: some View {
         VStack {
             // 曜日表示のバー
@@ -23,17 +31,19 @@ struct CalendarView: View {
                     ColorManager.calendarBorder
                     
                     // カレンダーコンテンツ
-                    ScrollView {
-                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
-                            ForEach((-49 ... 48), id: \.self) { index in
-                                Button(action: {
-                                    calendar.selectIndex(index: index)
-                                }) {
-                                    CalendarCell(index: index).id(index)
+                    TrackableScrollView(.vertical, showIndicators: false, contentOffset: $scrollOffset, calendarViewModel: calendar) {
+                        ZStack {
+                            LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
+                                ForEach((-LIMIT ..< LIMIT), id: \.self) { index in
+                                    Button(action: {
+                                        calendar.selectIndex(index: index)
+                                    }) {
+                                        CalendarCell(index: index).id(index)
+                                    }
                                 }
                             }
+                            .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
                         }
-                        .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
                     }
                     
                     // 日時イベント詳細ウィンドウ
@@ -42,6 +52,9 @@ struct CalendarView: View {
                     }
                     
                     CreateEventButton()
+                }
+                .onAppear {
+                    proxy.scrollTo(0)
                 }
             }
             .sheet(isPresented: $viewSwitcher.isShowingModal) {

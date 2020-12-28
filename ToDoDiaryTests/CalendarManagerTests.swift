@@ -107,5 +107,19 @@ class CalendarManagerTests: XCTestCase {
         }
         
     }
+    
+    func testPeformanceOfCalendar() throws {
+        let eventManager = EventManager()
+        self.measure {
+            for i in -2100 ..< 2100 {
+                let date = calendarManager.getDateFromIndex(index: i)
+                let dateStr = calendarManager.formatFullDate(date: date)
+                let _events = eventManager.getEventArrayFromDate(date: dateStr)
+                if let events = _events {
+                    if events.count > 0 { print(events) }
+                }
+            }
+        }
+    }
 
 }

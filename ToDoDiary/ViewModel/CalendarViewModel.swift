@@ -27,4 +27,9 @@ class CalendarViewModel: ObservableObject {
         isShowingDetail = true
         selectedIndex = index
     }
+    
+    // スクロールされた時に呼ばれる
+    func onScroll(offset: CGFloat) {
+        print(offset)
+    }
 }
