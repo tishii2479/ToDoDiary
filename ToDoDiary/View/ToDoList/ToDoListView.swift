@@ -9,6 +9,7 @@ import SwiftUI
 
 // TODOのセル
 fileprivate struct ToDoListCell: View {
+    @Environment(\.editMode) var editMode
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     var event: Event
     

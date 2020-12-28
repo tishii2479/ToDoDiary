@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class ViewSwitcher: ObservableObject {
-    @Published var colorTheme: ColorScheme = .dark
+    @Published var colorTheme: ColorScheme = .light
     @Published var currentView: ViewType = .calendar
     @Published var isShowingModal: Bool = false
     

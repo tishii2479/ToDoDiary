@@ -37,48 +37,37 @@ struct SettingView: View {
     @State var text: String = ""
     
     var body: some View {
-        NavigationView {
-            List {
-                SettingHeader(title: "タイトル")
-                    .padding(.top, 20)
-                        
-                Picker(selection: $viewSwitcher.colorTheme, label:
-                        Text("カラーテーマ")
-                            .foregroundColor(ColorManager.character)
-                            .font(Font.custom(FontManager.japanese, size: 14))
-                ) {
-                    Text("ライト")
-                        .foregroundColor(ColorManager.character)
-                        .font(Font.custom(FontManager.japanese, size: 14))
-                        .tag(ColorScheme.light)
+        List {
+            SettingHeader(title: "タイトル")
+                .padding(.top, 20)
                     
-                    Text("ダーク")
+            Picker(selection: $viewSwitcher.colorTheme, label:
+                    Text("カラーテーマ")
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 14))
-                        .tag(ColorScheme.dark)
-                        .onAppear {
-                            // リストの色の設定
-                            UITableView.appearance().separatorStyle = .none
-                            UITableView.appearance().backgroundColor = UIColor(ColorManager.main)
-                            UITableViewCell.appearance().backgroundColor = UIColor(ColorManager.back)
-                        }
-                }
-                .listRowBackground(ColorManager.back)
+            ) {
+                Text("ライト")
+                    .foregroundColor(ColorManager.character)
+                    .font(Font.custom(FontManager.japanese, size: 14))
+                    .tag(ColorScheme.light)
                 
-                SettingLink(title: "設定")
-                SettingLink(title: "設定")
-                
-                SettingHeader(title: "タイトル")
-                    .padding(.top, 40)
-                
-                SettingLink(title: "設定")
-                SettingLink(title: "設定")
-                SettingLink(title: "設定")
-                SettingLink(title: "設定")
+                Text("ダーク")
+                    .foregroundColor(ColorManager.character)
+                    .font(Font.custom(FontManager.japanese, size: 14))
+                    .tag(ColorScheme.dark)
             }
-            .listStyle(GroupedListStyle())
-            .navigationTitle("")
-            .navigationBarHidden(true)
+            .listRowBackground(ColorManager.back)
+            
+            SettingLink(title: "設定")
+            SettingLink(title: "設定")
+            
+            SettingHeader(title: "タイトル")
+                .padding(.top, 40)
+            
+            SettingLink(title: "設定")
+            SettingLink(title: "設定")
+            SettingLink(title: "設定")
+            SettingLink(title: "設定")
         }
         .onAppear {
             // リストの色の設定
