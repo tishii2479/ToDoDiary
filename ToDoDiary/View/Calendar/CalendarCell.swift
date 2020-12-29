@@ -33,8 +33,8 @@ struct CalendarCell: View {
     var date: Date = Date()
     var events: [Event] = []
     
-    init (index: Int) {
-        self.date = CalendarManager.shared.getDateFromIndex(index: index)
+    init (date: Date) {
+        self.date = date
         let dateStr: String = CalendarManager.shared.formatFullDate(date: self.date)
         
         if let _events = EventManager.shared.getEventArrayFromDate(date: dateStr) {
@@ -85,6 +85,6 @@ struct CalendarCell: View {
 
 struct CalendarCell_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarCell(index: 0)
+        CalendarCell(date: Date())
     }
 }

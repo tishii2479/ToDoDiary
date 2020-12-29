@@ -42,13 +42,13 @@ struct CalendarDateDetail: View {
                 Spacer()
                 
                 HStack {
-                    Text(CalendarManager.shared.formatFullDate(date: CalendarManager.shared.getDateFromIndex(index: calendar.selectedIndex)))
+                    Text(CalendarManager.shared.formatFullDate(date: calendar.getDateFromIndex(index: calendar.selectedIndex)))
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.number, size: 14))
                     Spacer()
                     
                     Button("作成") {
-                        viewSwitcher.showModal(selectedDate: CalendarManager.shared.getDateFromIndex(index: calendar.selectedIndex))
+                        viewSwitcher.showModal(selectedDate: calendar.getDateFromIndex(index: calendar.selectedIndex))
                     }
                     
                     Button("閉じる") {

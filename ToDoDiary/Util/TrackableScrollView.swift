@@ -39,7 +39,6 @@ struct TrackableScrollView<Content>: View where Content: View {
             }
             .onPreferenceChange(ScrollOffsetPreferenceKey.self) { value in
                 self.contentOffset = value[0]
-                self.calendar.onScroll(offset: self.contentOffset)
             }
         }
     }

@@ -11,13 +11,7 @@ struct CalendarView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @ObservedObject var calendar: CalendarViewModel = CalendarViewModel()
     
-    @State private var scrollOffset: CGFloat = 0 {
-        didSet {
-            print(scrollOffset)
-        }
-    }
-    
-    private let LIMIT: Int = 210
+    @State private var scrollOffset: CGFloat = 0
     
     var body: some View {
         VStack {
@@ -31,14 +25,14 @@ struct CalendarView: View {
                     ColorManager.calendarBorder
                     
                     // カレンダーコンテンツ
-                    TrackableScrollView(.vertical, showIndicators: false, contentOffset: $scrollOffset, calendarViewModel: calendar) {
+                    ScrollView {
                         ZStack {
                             LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
-                                ForEach((-LIMIT ..< LIMIT), id: \.self) { index in
+                                ForEach((-7 ..< 378), id: \.self) { index in
                                     Button(action: {
                                         calendar.selectIndex(index: index)
                                     }) {
-                                        CalendarCell(index: index).id(index)
+                                        CalendarCell(date: calendar.getDateFromIndex(index: index)).id(index)
                                     }
                                 }
                             }
@@ -48,20 +42,17 @@ struct CalendarView: View {
                     
                     HStack {
                         Button(action: {
-                            calendar.before()
-                            withAnimation(.linear(duration: 10)) {
-                                proxy.scrollTo(calendar.nowIndex, anchor: .center)
-                            }
-                        }) {
-                            Text("before")
-                        }
-                        Button(action: {
-                            calendar.next()
-                            withAnimation(.linear(duration: 10)) {
-                                proxy.scrollTo(calendar.nowIndex, anchor: .center)
-                            }
+                            calendar.nextYear()
+                            proxy.scrollTo(calendar.today)
                         }) {
                             Text("next")
+                        }
+                        
+                        Button(action: {
+                            calendar.lastYear()
+                            proxy.scrollTo(calendar.today)
+                        }) {
+                            Text("last")
                         }
                     }
                     
@@ -73,9 +64,8 @@ struct CalendarView: View {
                     CreateEventButton()
                 }
                 .onAppear {
-                    proxy.scrollTo(0, anchor: .center)
+                    proxy.scrollTo(calendar.today)
                 }
-                .animation(.easeInOut)
             }
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 EventView()
