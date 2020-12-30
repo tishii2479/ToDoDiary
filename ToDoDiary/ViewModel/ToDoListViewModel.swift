@@ -43,6 +43,7 @@ class ToDoListViewModel: ObservableObject {
         events = EventManager.shared.getToDoArray(searchText: "")
     }
     
+    // 検索ワードを基にリストをアップデートする
     func updateEvents() {
         events = EventManager.shared.getToDoArray(searchText: searchText)
     }
@@ -77,10 +78,12 @@ class ToDoListViewModel: ObservableObject {
     }
     
     // 選択されたイベントの削除
+    // 降順で削除することで、indexのズレを防ぐ
     func completeSelectedEvents() {
+        var arr = Array(selectedIndexes)
+        arr.sort { $1 < $0 }
         
-        for index in selectedIndexes {
-            print(index)
+        for index in arr {
             EventManager.shared.deleteEvent(event: events[index])
             
             events.remove(at: index)

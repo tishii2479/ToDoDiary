@@ -42,11 +42,14 @@ struct CalendarDateDetail: View {
                 Spacer()
                 
                 HStack {
+                    // 日付
                     Text(CalendarManager.shared.formatFullDate(date: calendar.getDateFromIndex(index: calendar.selectedIndex)))
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.number, size: 14))
+                    
                     Spacer()
                     
+                    // 作成ボタン
                     Button(action: {
                         viewSwitcher.showModal(selectedDate: calendar.getDateFromIndex(index: calendar.selectedIndex))
                     }) {
@@ -56,6 +59,7 @@ struct CalendarDateDetail: View {
                             .foregroundColor(ColorManager.image)
                     }
                     
+                    // 閉じるボタン
                     Button(action: {
                         calendar.isShowingDetail = false
                     }) {
@@ -73,11 +77,14 @@ struct CalendarDateDetail: View {
                     VStack (spacing: 0) {
                         if calendar.selectedEventArray.count > 0 {
                             ForEach(0 ..< calendar.selectedEventArray.count, id: \.self) { index in
-                                Button(action: {
-                                    // Set target event to selected event
-                                    viewSwitcher.showModal(targetEvent: calendar.selectedEventArray[index])
-                                }) {
-                                    DetailEventLabel(event: calendar.selectedEventArray[index])
+                                // 削除のチェック
+                                if calendar.selectedEventArray[index].isInvalidated == false {
+                                    Button(action: {
+                                        // Set target event to selected event
+                                        viewSwitcher.showModal(targetEvent: calendar.selectedEventArray[index])
+                                    }) {
+                                        DetailEventLabel(event: calendar.selectedEventArray[index])
+                                    }
                                 }
                             }
                             

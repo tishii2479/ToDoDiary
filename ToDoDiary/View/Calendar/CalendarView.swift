@@ -26,9 +26,9 @@ struct CalendarView: View {
                     // カレンダーコンテンツ
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 0) {
-                            ForEach(0 ..< calendar.rowCount) { y in
+                            ForEach(0 ..< calendar.rowCount, id: \.self) { y in
                                 HStack(spacing: 0) {
-                                    ForEach(0 ..< 7) { x in
+                                    ForEach(0 ..< 7, id: \.self) { x in
                                         CalendarCell(date: calendar.getDateFromIndex(index: index(x, y)), calendar: calendar).id(index(x, y))
                                             .onTapGesture(count: 1, perform: {
                                                 calendar.selectIndex(index: index(x, y))
@@ -51,6 +51,7 @@ struct CalendarView: View {
                     CreateEventButton()
                 }
             }
+            // 横スライドによって月を変える
             .gesture(
                 DragGesture(minimumDistance: 100)
                     .onEnded { value in

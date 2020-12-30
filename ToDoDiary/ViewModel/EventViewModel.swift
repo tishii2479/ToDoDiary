@@ -101,6 +101,13 @@ class EventViewModel: ObservableObject {
             
             // 作成ページを閉じる
             ViewSwitcher.shared.isShowingModal = false
+            
+            // ToDoListの更新
+            ToDoListViewModel.shared.setUpEvents()
+            
+            // 詳細表示を閉じる
+            // 編集した場合、消去したイベントが表示されるのを防ぐため
+            CalendarViewModel.shared.isShowingDetail = false
         } else {
             // 作成時エラー
             
