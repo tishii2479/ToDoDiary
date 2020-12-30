@@ -51,7 +51,7 @@ struct ToDoListView: View {
     @Environment(\.editMode) var editMode
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @EnvironmentObject var userSetting: UserSetting
-    @ObservedObject var toDoList: ToDoListViewModel = ToDoListViewModel()
+    @ObservedObject var toDoList: ToDoListViewModel = ToDoListViewModel.shared
     
     var body: some View {
         ZStack {
@@ -61,8 +61,8 @@ struct ToDoListView: View {
                 ListSearchField(toDoList: toDoList)
                 
                 List(selection: $toDoList.selectedIndexes) {
-                    ForEach(toDoList.events, id: \.self) { event in
-                        ToDoListCell(event: event)
+                    ForEach(0 ..< toDoList.events.count, id: \.self) { index in
+                        ToDoListCell(event: toDoList.events[index])
                     }
                     .onDelete(perform: toDoList.rowDelete)
                     .onMove(perform: toDoList.rowReplace)

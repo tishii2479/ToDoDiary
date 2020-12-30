@@ -17,7 +17,9 @@ class ToDoListViewModel: ObservableObject {
     @Published var createText: String = ""
     @Published var selectedColor: EventColor = .none
     @Published var events: [Event] = []
-    @Published var selectedIndexes = Set<String>()
+    @Published var selectedIndexes = Set<Int>()
+    
+    static let shared = ToDoListViewModel()
     
     init() {
         setUpEvents()
@@ -59,6 +61,7 @@ class ToDoListViewModel: ObservableObject {
     // 行入れ替え処理
     func rowReplace(_ from: IndexSet, _ to: Int) {
         events.move(fromOffsets: from, toOffset: to)
+        print(selectedIndexes)
     }
     
     // 行削除処理
@@ -71,5 +74,10 @@ class ToDoListViewModel: ObservableObject {
         EventManager.shared.deleteEvent(event: events[index])
         
         events.remove(atOffsets: offsets)
+    }
+    
+    // 選択されたイベントの削除
+    func completeSelectedEvents() {
+        print(selectedIndexes)
     }
 }

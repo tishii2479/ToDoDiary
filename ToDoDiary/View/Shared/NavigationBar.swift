@@ -40,6 +40,7 @@ struct NavigationBar: View {
             case .calendar:
                 HStack {
                     Button(action: {
+                        // 先月へ
                         CalendarViewModel.shared.lastMonth()
                     }) {
                         Image(systemName: "chevron.left")
@@ -50,6 +51,7 @@ struct NavigationBar: View {
                     .padding(.trailing, 20)
                     
                     Button(action: {
+                        // 来月へ
                         CalendarViewModel.shared.nextMonth()
                     }) {
                         Image(systemName: "chevron.right")
@@ -59,19 +61,34 @@ struct NavigationBar: View {
                     }
                 }
             case .toDoList:
-                Button(action: {
-                    self.editMode?.wrappedValue.toggle()
-                }) {
+                HStack {
+                    Button(action: {
+                        // 編集モードの切り替え
+                        self.editMode?.wrappedValue.toggle()
+                    }) {
+                        if self.editMode?.wrappedValue == .active {
+                            Image(systemName: "multiply")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(ColorManager.image)
+                        } else {
+                            Image(systemName: "arrow.up.arrow.down")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(ColorManager.image)
+                        }
+                    }
+                    
+                    // 編集モードの時
                     if self.editMode?.wrappedValue == .active {
-                        Image(systemName: "multiply")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(ColorManager.image)
-                    } else {
-                        Image(systemName: "arrow.up.arrow.down")
-                            .resizable()
-                            .frame(width: 15, height: 15)
-                            .foregroundColor(ColorManager.image)
+                        Button(action: {
+                            ToDoListViewModel.shared.completeSelectedEvents()
+                        }) {
+                            Image(systemName: "trash")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(ColorManager.image)
+                        }
                     }
                 }
             default:

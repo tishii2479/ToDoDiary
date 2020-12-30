@@ -62,8 +62,13 @@ struct CalendarCell: View {
             
             VStack(spacing: 7) {
                 // イベントラベル
-                ForEach(0 ..< events.count, id: \.self) { index in
+                ForEach(0 ..< min(3, events.count), id: \.self) { index in
                     CalendarEventLabel(event: events[index])
+                }
+                
+                // TODO: イベントの数が多い時は省略していることを表現する
+                if events.count > 3 {
+                    
                 }
                 
                 Spacer()

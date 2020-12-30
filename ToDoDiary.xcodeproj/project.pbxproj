@@ -13,7 +13,6 @@
 		490D02882588B43000A2F038 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490D02872588B43000A2F038 /* Preview Assets.xcassets */; };
 		490D02932588B43000A2F038 /* ToDoDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D02922588B43000A2F038 /* ToDoDiaryTests.swift */; };
 		490D029E2588B43000A2F038 /* ToDoDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D029D2588B43000A2F038 /* ToDoDiaryUITests.swift */; };
-		49106A9D259A1B3F00A65A4D /* TrackableScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49106A9C259A1B3F00A65A4D /* TrackableScrollView.swift */; };
 		491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316E5258A3E2900CF2B6C /* TabBar.swift */; };
 		491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316ED258A419600CF2B6C /* NavigationBar.swift */; };
 		491316F3258A425600CF2B6C /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491316F2258A425600CF2B6C /* MainView.swift */; };
@@ -93,7 +92,6 @@
 		490D02992588B43000A2F038 /* ToDoDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		490D029D2588B43000A2F038 /* ToDoDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDiaryUITests.swift; sourceTree = "<group>"; };
 		490D029F2588B43000A2F038 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		49106A9C259A1B3F00A65A4D /* TrackableScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableScrollView.swift; sourceTree = "<group>"; };
 		491316E5258A3E2900CF2B6C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		491316ED258A419600CF2B6C /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		491316F2258A425600CF2B6C /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 				492157642597379700D9C63E /* Array.swift */,
 				492157712597562000D9C63E /* DateFormatter.swift */,
 				4927CA32259C480600BBF945 /* EditMode.swift */,
-				49106A9C259A1B3F00A65A4D /* TrackableScrollView.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -650,7 +647,6 @@
 				492157722597562000D9C63E /* DateFormatter.swift in Sources */,
 				4921576D2597425100D9C63E /* DayBar.swift in Sources */,
 				4927CA33259C480600BBF945 /* EditMode.swift in Sources */,
-				49106A9D259A1B3F00A65A4D /* TrackableScrollView.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
 				4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */,
 				49A94681258F228C0048DA05 /* Event.swift in Sources */,

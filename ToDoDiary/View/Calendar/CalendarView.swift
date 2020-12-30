@@ -26,19 +26,20 @@ struct CalendarView: View {
                     ColorManager.calendarBorder
                     
                     // カレンダーコンテンツ
-                    ScrollView {
-                        ZStack {
-                            LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
-                                ForEach((0 ..< calendar.rowCount * 7), id: \.self) { index in
-                                    Button(action: {
-                                        calendar.selectIndex(index: index)
-                                    }) {
-                                        CalendarCell(date: calendar.getDateFromIndex(index: index), calendar: calendar).id(index)
-                                    }
+                    ScrollView(showsIndicators: false) {
+                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
+                            ForEach((0 ..< calendar.rowCount * 7), id: \.self) { index in
+                                Button(action: {
+                                    calendar.selectIndex(index: index)
+                                }) {
+                                    CalendarCell(date: calendar.getDateFromIndex(index: index), calendar: calendar).id(index)
                                 }
                             }
-                            .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
                         }
+                        .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
+                        
+                        Color.clear
+                            .frame(height: 200)         // TODO: 高さを計算する
                     }
                     
                     // 日時イベント詳細ウィンドウ
@@ -49,6 +50,12 @@ struct CalendarView: View {
                     CreateEventButton()
                 }
             }
+            .gesture(
+                DragGesture(minimumDistance: 5, coordinateSpace: .local)
+                    .onChanged{ value in
+                        print(value.translation.width)
+                    }
+            )
             .onAppear {
                 calendar.update()
             }
