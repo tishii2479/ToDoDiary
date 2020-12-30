@@ -17,6 +17,8 @@ class Event: Object {
     @objc dynamic var endTime: Date?
     @objc dynamic var rawNotification: Int
     @objc dynamic var detail: String?
+    @objc dynamic var updatedAt: Date?
+    @objc dynamic var rawEventType: Int
     
     var notification: NotificationType {
         get {
@@ -36,9 +38,18 @@ class Event: Object {
             return color
         }
     }
+    var type: EventType {
+        get {
+            guard let type = EventType(rawValue: rawEventType) else {
+                print("[error] type not found")
+                return .event
+            }
+            return type
+        }
+    }
     
     // テスト用
-    static let test = Event(title: "アルバイトをする", startTime: Date())
+    static let test = Event(title: "アルバイトをする", startTime: Date(), eventType: .event)
     
     var eventColor: Color {
         return color.color
@@ -48,9 +59,10 @@ class Event: Object {
         title = ""
         rawNotification = 0
         rawColor = 0
+        rawEventType = 0
     }
     
-    init (title: String, color: Int = -1, place: String? = nil, date: Date? = nil, startTime: Date? = nil, endTime: Date? = nil, notification: Int = 0, detail: String? = nil) {
+    init (title: String, color: Int = -1, place: String? = nil, date: Date? = nil, startTime: Date? = nil, endTime: Date? = nil, notification: Int = 0, detail: String? = nil, eventType: EventType) {
         self.title = title
         self.place = place
         self.date = date
@@ -58,6 +70,8 @@ class Event: Object {
         self.endTime = endTime
         self.detail = detail
         self.rawNotification = notification
+        self.updatedAt = Date()
+        self.rawEventType = eventType.rawValue
         
         // colorが設定されていなかったらランダムで割り付ける
         if color == -1 {

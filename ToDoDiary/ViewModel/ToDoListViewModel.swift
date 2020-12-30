@@ -30,7 +30,7 @@ class ToDoListViewModel: ObservableObject {
         // 件名が入力されていない場合はreturn
         guard createText != "" else { return }
         
-        let event = Event(title: createText, color: selectedColor.rawValue)
+        let event = Event(title: createText, color: selectedColor.rawValue, eventType: .todo)
         events.append(event)
         
         EventManager.shared.addEventToDictionary(events: [event])

@@ -21,11 +21,6 @@ enum EventMode: String {
     }
 }
 
-enum EventType: String {
-    case event = "予定"
-    case todo = "ToDo"
-}
-
 class EventViewModel: ObservableObject {
     @Published var title: String = ""
     @Published var place: String = ""
@@ -43,11 +38,19 @@ class EventViewModel: ObservableObject {
             didSetEnd = true
         }
     }
+    @Published var isToDo: Bool = false
     
     var mode: EventMode = .new
     var content: EventType = .event
     var pageTitle: String {
-        return content.rawValue + "の" + mode.rawValue
+        switch content {
+        case .event:
+            return "予定の" + mode.rawValue
+        case .todo:
+            return "ToDoの" + mode.rawValue
+        default:
+            return "予定の" + mode.rawValue
+        }
     }
     
     var event: Event?
@@ -171,7 +174,7 @@ class EventViewModel: ObservableObject {
         
         // 日時が選択されていない場合、ToDoとしてのみ追加する
         if selectedDates.count == 0 {
-            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: nil, startTime: startTime, endTime: endTime, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
+            let event = Event(title: title, color: color.rawValue, place: place != "" ? place : nil, date: nil, startTime: startTime, endTime: endTime, notification: notification.rawValue, detail: _detail != "" ? _detail : nil, eventType: .todo)
             
             // 作成後に編集する場合のために設定
 //            self.event = event
@@ -217,7 +220,7 @@ class EventViewModel: ObservableObject {
                 end = Calendar(identifier: .gregorian).date(from: components)
             }
             
-            let event = Event(title: title, color: color != .none ? color.rawValue : rawColor, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil)
+            let event = Event(title: title, color: color != .none ? color.rawValue : rawColor, place: place != "" ? place : nil, date: date, startTime: start, endTime: end, notification: notification.rawValue, detail: _detail != "" ? _detail : nil, eventType: isToDo ? .eventAndToDo : .event)
                 
             // 作成後に編集する場合のために設定
             // TODO: 複数イベント作成時に対応
