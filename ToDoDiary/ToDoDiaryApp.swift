@@ -14,6 +14,7 @@ struct ToDoDiaryApp: App {
         WindowGroup {
             MainView()
                 .environmentObject(ViewSwitcher.shared)
+                .environmentObject(UserSetting.shared)
 //                .onTapGesture(count: 2, perform: {  // ダブルタップでカラーテーマを変える（テスト用）
 //                    if colorTheme == .dark {
 //                        colorTheme = .light

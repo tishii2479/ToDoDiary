@@ -22,7 +22,10 @@ class CalendarViewModel: ObservableObject {
     static let shared = CalendarViewModel()
     
     init() {
-        update()
+        let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: Date())
+        
+        nowYear = comp.year!
+        nowMonth = comp.month!
     }
     
     func nextMonth() {

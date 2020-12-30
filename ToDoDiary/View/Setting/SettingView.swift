@@ -25,57 +25,86 @@ fileprivate struct SettingLink: View {
     var title: String = ""
     
     var body: some View {
-        NavigationLink(title, destination: EmptyView())
+        NavigationLink(title, destination: SettingTextView())
             .foregroundColor(ColorManager.character)
             .font(Font.custom(FontManager.japanese, size: 14))
             .listRowBackground(ColorManager.back)
+            .navigationBarTitle("", displayMode: .inline)
     }
 }
 
 struct SettingView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
+    @EnvironmentObject var userSetting: UserSetting
     @State var text: String = ""
     
     var body: some View {
-        List {
-            SettingHeader(title: "タイトル")
-                .padding(.top, 20)
+        NavigationView {
+            List {
+                Section(header:
+                    SettingHeader(title: "ユーザ設定")
+                            .padding(.top, 20)
+                ) {
+                    Picker(selection: $userSetting.colorTheme, label:
+                            Text("カラーテーマ")
+                                .foregroundColor(ColorManager.character)
+                                .font(Font.custom(FontManager.japanese, size: 14))
+                    ) {
+                        Text("ライト")
+                            .foregroundColor(ColorManager.character)
+                            .font(Font.custom(FontManager.japanese, size: 14))
+                            .tag(ColorScheme.light)
+                        
+                        Text("ダーク")
+                            .foregroundColor(ColorManager.character)
+                            .font(Font.custom(FontManager.japanese, size: 14))
+                            .tag(ColorScheme.dark)
+                            .navigationBarTitle("", displayMode: .inline)
+                    }
+                    .listRowBackground(ColorManager.back)
                     
-            Picker(selection: $viewSwitcher.colorTheme, label:
-                    Text("カラーテーマ")
-                        .foregroundColor(ColorManager.character)
-                        .font(Font.custom(FontManager.japanese, size: 14))
-            ) {
-                Text("ライト")
-                    .foregroundColor(ColorManager.character)
-                    .font(Font.custom(FontManager.japanese, size: 14))
-                    .tag(ColorScheme.light)
+                    Picker(selection: $userSetting.notification, label:
+                            Text("通知")
+                                .foregroundColor(ColorManager.character)
+                                .font(Font.custom(FontManager.japanese, size: 14))
+                    ) {
+                        Text("なし")
+                            .foregroundColor(ColorManager.character)
+                            .font(Font.custom(FontManager.japanese, size: 14))
+                            .tag(NotificationType.none)
+                        
+                        Text("一回のみ")
+                            .foregroundColor(ColorManager.character)
+                            .font(Font.custom(FontManager.japanese, size: 14))
+                            .tag(NotificationType.once)
+                            .navigationBarTitle("", displayMode: .inline)
+                    }
+                    .listRowBackground(ColorManager.back)
+                }
                 
-                Text("ダーク")
-                    .foregroundColor(ColorManager.character)
-                    .font(Font.custom(FontManager.japanese, size: 14))
-                    .tag(ColorScheme.dark)
+                Section(header:
+                    SettingHeader(title: "このアプリについて")
+                            .padding(.top, 20)
+                ) {
+                    SettingLink(title: "利用規約")
+                    SettingLink(title: "プライバシーポリシー")
+                    SettingLink(title: "バージョン")
+                    SettingLink(title: "問い合わせ")
+                }
+                
             }
-            .listRowBackground(ColorManager.back)
-            
-            SettingLink(title: "設定")
-            SettingLink(title: "設定")
-            
-            SettingHeader(title: "タイトル")
-                .padding(.top, 40)
-            
-            SettingLink(title: "設定")
-            SettingLink(title: "設定")
-            SettingLink(title: "設定")
-            SettingLink(title: "設定")
+            .listStyle(GroupedListStyle())
+            .onAppear {
+                viewSwitcher.setNavigationTitle(title: "設定")
+                
+                // リストの色の設定
+                UITableView.appearance().separatorStyle = .none
+                UITableView.appearance().backgroundColor = UIColor(ColorManager.main)
+                UINavigationBar.appearance().backgroundColor = UIColor(Color.clear)
+            }
+            .navigationTitle("")
         }
-        .onAppear {
-            viewSwitcher.setNavigationTitle(title: "設定 ")
-            
-            // リストの色の設定
-            UITableView.appearance().separatorStyle = .none
-            UITableView.appearance().backgroundColor = UIColor(ColorManager.main)
-        }
+//        .padding(.top, -44)   // hide navigationbar
     }
 }
 

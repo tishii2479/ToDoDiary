@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
+    @EnvironmentObject var userSetting: UserSetting
     @ObservedObject var calendar: CalendarViewModel = CalendarViewModel.shared
     
     @State private var scrollOffset: CGFloat = 0
@@ -48,10 +49,13 @@ struct CalendarView: View {
                     CreateEventButton()
                 }
             }
+            .onAppear {
+                calendar.update()
+            }
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 EventView()
                     .environmentObject(EventViewModel(content: .event))
-                    .colorScheme(viewSwitcher.colorTheme) // FIXME: これだけカラーが反映されない
+                    .colorScheme(userSetting.colorTheme) // FIXME: これだけカラーが反映されない
             }
         }
     }

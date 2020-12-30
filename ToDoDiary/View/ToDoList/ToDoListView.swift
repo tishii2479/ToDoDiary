@@ -50,6 +50,7 @@ fileprivate struct ToDoListCell: View {
 struct ToDoListView: View {
     @Environment(\.editMode) var editMode
     @EnvironmentObject var viewSwitcher: ViewSwitcher
+    @EnvironmentObject var userSetting: UserSetting
     @ObservedObject var toDoList: ToDoListViewModel = ToDoListViewModel()
     
     var body: some View {
@@ -79,7 +80,7 @@ struct ToDoListView: View {
             .sheet(isPresented: $viewSwitcher.isShowingModal) {
                 EventView()
                     .environmentObject(EventViewModel(content: .todo))
-                    .colorScheme(viewSwitcher.colorTheme) // FIXME: これだけカラーが反映されない
+                    .colorScheme(userSetting.colorTheme) // FIXME: これだけカラーが反映されない
             }
         }
         .onAppear {
