@@ -121,9 +121,6 @@ struct EventView: View {
             // イベントが設定されていれば編集モードに
             createEvent.setUpEvent(date: viewSwitcher.selectedDate, event: viewSwitcher.targetEvent)
         }
-        .onTapGesture {
-            UIApplication.shared.closeKeyboard()
-        }
     }
 }
 

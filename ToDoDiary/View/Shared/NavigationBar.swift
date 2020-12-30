@@ -62,23 +62,6 @@ struct NavigationBar: View {
                 }
             case .toDoList:
                 HStack {
-                    Button(action: {
-                        // 編集モードの切り替え
-                        self.editMode?.wrappedValue.toggle()
-                    }) {
-                        if self.editMode?.wrappedValue == .active {
-                            Image(systemName: "multiply")
-                                .resizable()
-                                .frame(width: 15, height: 15)
-                                .foregroundColor(ColorManager.image)
-                        } else {
-                            Image(systemName: "arrow.up.arrow.down")
-                                .resizable()
-                                .frame(width: 15, height: 15)
-                                .foregroundColor(ColorManager.image)
-                        }
-                    }
-                    
                     // 編集モードの時
                     if self.editMode?.wrappedValue == .active {
                         Button(action: {
@@ -98,8 +81,23 @@ struct NavigationBar: View {
                                 .frame(width: 15, height: 15)
                                 .foregroundColor(ColorManager.image)
                         }
-                        
-                        
+                    }
+                    
+                    Button(action: {
+                        // 編集モードの切り替え
+                        self.editMode?.wrappedValue.toggle()
+                    }) {
+                        if self.editMode?.wrappedValue == .active {
+                            Image(systemName: "multiply")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(ColorManager.image)
+                        } else {
+                            Image(systemName: "arrow.up.arrow.down")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(ColorManager.image)
+                        }
                     }
                 }
             default:

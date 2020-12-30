@@ -21,7 +21,7 @@ struct CalendarView: View {
             ScrollViewReader { (proxy: ScrollViewProxy) in
                 ZStack {
                     // 背景色
-                    ColorManager.calendarBorder
+                    ColorManager.back
                     
                     // カレンダーコンテンツ
                     ScrollView(showsIndicators: false) {
@@ -38,7 +38,7 @@ struct CalendarView: View {
                             }
                             
                             Color.clear
-                                .frame(height: 200) // TODO: 高さを計算する
+                                .frame(height: 190) // TODO: 高さを計算する
                         }
                         .padding(.horizontal, 4)
                     }
