@@ -76,16 +76,16 @@ class EventManager {
     
     // ToDoのイベントを返す
     func getToDoArray(searchText: String) -> [Event] {
-        // updatedAtの新しい順で整理
-        let sortProperties = [
-            SortDescriptor(keyPath: "updatedAt", ascending: false)
-        ]
+        // TODO: ソート基準
+//        let sortProperties = [
+//            SortDescriptor(keyPath: "updatedAt", ascending: false)
+//        ]
         
         do {
             let realm = try Realm()
             let search: String = "*" + searchText + "*"
             
-            let events = realm.objects(Event.self).filter("title LIKE '\(search)'").filter("rawEventType == \(EventType.todo.rawValue) OR rawEventType == \(EventType.eventAndToDo.rawValue)").sorted(by: sortProperties)
+            let events = realm.objects(Event.self).filter("title LIKE '\(search)'").filter("rawEventType == \(EventType.todo.rawValue) OR rawEventType == \(EventType.eventAndToDo.rawValue)").filter("isDone == false")//.sorted(by: sortProperties)
             
             return Array(events)
         } catch {
@@ -110,6 +110,15 @@ class EventManager {
         eventDictionary = setUpEventDictionary()
     }
     
+    // TODOの完了
+    func completeEvent(event: Event) {
+        event.setDone(isDone: true)
+        
+        // TODO: 軽量化
+        eventDictionary = setUpEventDictionary()
+    }
+    
+    // realmのマイグレーション
     private func migrate() {
         let config = Realm.Configuration(deleteRealmIfMigrationNeeded: true)
         let _ = try! Realm(configuration: config)

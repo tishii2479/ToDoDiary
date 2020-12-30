@@ -17,8 +17,8 @@ class Event: Object {
     @objc dynamic var endTime: Date?
     @objc dynamic var rawNotification: Int
     @objc dynamic var detail: String?
-    @objc dynamic var updatedAt: Date?
     @objc dynamic var rawEventType: Int
+    @objc dynamic var isDone: Bool
     
     var notification: NotificationType {
         get {
@@ -60,9 +60,10 @@ class Event: Object {
         rawNotification = 0
         rawColor = 0
         rawEventType = 0
+        isDone = false
     }
     
-    init (title: String, color: Int = -1, place: String? = nil, date: Date? = nil, startTime: Date? = nil, endTime: Date? = nil, notification: Int = 0, detail: String? = nil, eventType: EventType) {
+    init (title: String, color: Int = -1, place: String? = nil, date: Date? = nil, startTime: Date? = nil, endTime: Date? = nil, notification: Int = 0, detail: String? = nil, eventType: EventType, isDone: Bool = false) {
         self.title = title
         self.place = place
         self.date = date
@@ -70,8 +71,8 @@ class Event: Object {
         self.endTime = endTime
         self.detail = detail
         self.rawNotification = notification
-        self.updatedAt = Date()
         self.rawEventType = eventType.rawValue
+        self.isDone = isDone
         
         // colorが設定されていなかったらランダムで割り付ける
         if color == -1 {
@@ -81,6 +82,7 @@ class Event: Object {
         }
     }
     
+    // 時間のフォーマット
     func formatTime() -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm"
@@ -104,5 +106,17 @@ class Event: Object {
         }
         
         return result
+    }
+    
+    // イベントを完了する
+    func setDone(isDone _isDone: Bool) {
+        do {
+            let realm = try Realm()
+            try realm.write {
+                isDone = _isDone
+            }
+        } catch {
+            print("[error] realm failed")
+        }
     }
 }

@@ -14,7 +14,7 @@ struct ListCellValue: View {
         HStack {
             Spacer()
             Text(value)
-                .foregroundColor(ColorManager.lightCharacter)
+                .foregroundColor(ColorManager.character)
                 .font(Font.custom(FontManager.japanese, size: 14))
         }
         .padding(.horizontal, 10)

@@ -84,11 +84,22 @@ struct NavigationBar: View {
                         Button(action: {
                             ToDoListViewModel.shared.completeSelectedEvents()
                         }) {
+                            Image(systemName: "checkmark")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                                .foregroundColor(ColorManager.image)
+                        }
+                        
+                        Button(action: {
+                            ToDoListViewModel.shared.deleteSelectedEvents()
+                        }) {
                             Image(systemName: "trash")
                                 .resizable()
                                 .frame(width: 15, height: 15)
                                 .foregroundColor(ColorManager.image)
                         }
+                        
+                        
                     }
                 }
             default:

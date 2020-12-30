@@ -45,13 +45,6 @@ struct EventView: View {
                 // 入力欄
                 ScrollView {
                     VStack(spacing: 0) {
-                        HStack {
-                            Spacer()
-                            Toggle(isOn: $createEvent.isToDo) {
-                                Text("ToDoに追加する")
-                            }
-                        }
-                        
                         // 件名、場所
                         Group {
                             ListDivider()
@@ -62,6 +55,9 @@ struct EventView: View {
                                 .accessibility(identifier: "PlaceField")
                             ListDivider()
                             
+                            // ToDoに追加するかのToggle
+                            ListToggleField(title: "ToDoに追加する", isOn: $createEvent.isToDo)
+                            ListDivider()
                         }
                         
                         // 色

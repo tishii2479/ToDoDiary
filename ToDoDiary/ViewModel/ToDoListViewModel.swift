@@ -31,7 +31,9 @@ class ToDoListViewModel: ObservableObject {
         guard createText != "" else { return }
         
         let event = Event(title: createText, color: selectedColor.rawValue, eventType: .todo)
-        events.append(event)
+        
+        // 先頭に追加
+        events.insert(event, at: 0)
         
         EventManager.shared.addEventToDictionary(events: [event])
         
@@ -61,8 +63,12 @@ class ToDoListViewModel: ObservableObject {
     
     // 行入れ替え処理
     func rowReplace(_ from: IndexSet, _ to: Int) {
+        guard let _ = from.first else {
+            print("[error] failed to delete row")
+            return
+        }
+        
         events.move(fromOffsets: from, toOffset: to)
-        print(selectedIndexes)
     }
     
     // 行削除処理
@@ -73,19 +79,31 @@ class ToDoListViewModel: ObservableObject {
         }
         
         EventManager.shared.deleteEvent(event: events[index])
-        
         events.remove(atOffsets: offsets)
     }
     
     // 選択されたイベントの削除
+    // 降順で削除することで、indexのズレを防ぐ
+    func deleteSelectedEvents() {
+        var arr = Array(selectedIndexes)
+        arr.sort { $1 < $0 }
+        
+        for index in arr {
+            EventManager.shared.deleteEvent(event: events[index])
+            events.remove(at: index)
+        }
+        
+        selectedIndexes = []
+    }
+    
+    // 選択されたイベントの達成
     // 降順で削除することで、indexのズレを防ぐ
     func completeSelectedEvents() {
         var arr = Array(selectedIndexes)
         arr.sort { $1 < $0 }
         
         for index in arr {
-            EventManager.shared.deleteEvent(event: events[index])
-            
+            EventManager.shared.completeEvent(event: events[index])
             events.remove(at: index)
         }
         

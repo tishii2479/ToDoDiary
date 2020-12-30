@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1D791B1A02FD33FE7692B58D /* Pods_ToDoDiary_ToDoDiaryUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9348073FC83ABE952E0ED80 /* Pods_ToDoDiary_ToDoDiaryUITests.framework */; };
 		490424A8259CBA4800344AE9 /* EventType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490424A7259CBA4800344AE9 /* EventType.swift */; };
+		490424B5259CC3B800344AE9 /* ListToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490424B4259CC3B800344AE9 /* ListToggleField.swift */; };
 		490D02812588B42F00A2F038 /* ToDoDiaryApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D02802588B42F00A2F038 /* ToDoDiaryApp.swift */; };
 		490D02852588B43000A2F038 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490D02842588B43000A2F038 /* Assets.xcassets */; };
 		490D02882588B43000A2F038 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 490D02872588B43000A2F038 /* Preview Assets.xcassets */; };
@@ -84,6 +85,7 @@
 		11761E65D44694C13A83B8E1 /* Pods-ToDoDiary-ToDoDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoDiary-ToDoDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-ToDoDiary-ToDoDiaryUITests/Pods-ToDoDiary-ToDoDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		11973117896E135AB73E2E3D /* Pods_ToDoDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ToDoDiaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		490424A7259CBA4800344AE9 /* EventType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventType.swift; sourceTree = "<group>"; };
+		490424B4259CC3B800344AE9 /* ListToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListToggleField.swift; sourceTree = "<group>"; };
 		490D027D2588B42F00A2F038 /* ToDoDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		490D02802588B42F00A2F038 /* ToDoDiaryApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoDiaryApp.swift; sourceTree = "<group>"; };
 		490D02842588B43000A2F038 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				4938DE1D25937A1800F4F1AB /* ListDateField.swift */,
 				4938DE102593754000F4F1AB /* ListNotificationField.swift */,
 				492157822597661A00D9C63E /* ListDeleteField.swift */,
+				490424B4259CC3B800344AE9 /* ListToggleField.swift */,
 			);
 			path = Event;
 			sourceTree = "<group>";
@@ -677,6 +680,7 @@
 				49A2B0BA2593115E00E169FC /* EventManager.swift in Sources */,
 				49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */,
 				4927CA50259C7DA600BBF945 /* UIApplication.swift in Sources */,
+				490424B5259CC3B800344AE9 /* ListToggleField.swift in Sources */,
 				49A2B0922592EAB500E169FC /* EventColor.swift in Sources */,
 				491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */,
 				49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */,
