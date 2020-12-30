@@ -78,6 +78,14 @@ class ToDoListViewModel: ObservableObject {
     
     // 選択されたイベントの削除
     func completeSelectedEvents() {
-        print(selectedIndexes)
+        
+        for index in selectedIndexes {
+            print(index)
+            EventManager.shared.deleteEvent(event: events[index])
+            
+            events.remove(at: index)
+        }
+        
+        selectedIndexes = []
     }
 }

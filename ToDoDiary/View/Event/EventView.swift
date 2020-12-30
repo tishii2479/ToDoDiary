@@ -10,7 +10,7 @@ import SwiftUI
 struct EventView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     @EnvironmentObject var createEvent: EventViewModel
-    
+
     var body: some View {
         // TextEditorの背景色を透明に
         UITextView.appearance().backgroundColor = .clear
@@ -117,6 +117,9 @@ struct EventView: View {
             // 日付が設定されていれば日付を設定して作成モード
             // イベントが設定されていれば編集モードに
             createEvent.setUpEvent(date: viewSwitcher.selectedDate, event: viewSwitcher.targetEvent)
+        }
+        .onTapGesture {
+            UIApplication.shared.closeKeyboard()
         }
     }
 }

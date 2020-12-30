@@ -25,6 +25,7 @@
 		4927CA33259C480600BBF945 /* EditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927CA32259C480600BBF945 /* EditMode.swift */; };
 		4927CA38259C4CBC00BBF945 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927CA37259C4CBC00BBF945 /* UserSetting.swift */; };
 		4927CA3D259C4F0F00BBF945 /* SettingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927CA3C259C4F0F00BBF945 /* SettingTextView.swift */; };
+		4927CA50259C7DA600BBF945 /* UIApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927CA4F259C7DA600BBF945 /* UIApplication.swift */; };
 		4938DDD8259352FE00F4F1AB /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* EventViewModel.swift */; };
 		4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */; };
 		4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDE725936D5000F4F1AB /* ListTextField.swift */; };
@@ -104,6 +105,7 @@
 		4927CA32259C480600BBF945 /* EditMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMode.swift; sourceTree = "<group>"; };
 		4927CA37259C4CBC00BBF945 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		4927CA3C259C4F0F00BBF945 /* SettingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTextView.swift; sourceTree = "<group>"; };
+		4927CA4F259C7DA600BBF945 /* UIApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.swift; sourceTree = "<group>"; };
 		4938DDD7259352FE00F4F1AB /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTextField.swift; sourceTree = "<group>"; };
 		4938DDE725936D5000F4F1AB /* ListTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextField.swift; sourceTree = "<group>"; };
@@ -321,6 +323,7 @@
 				492157642597379700D9C63E /* Array.swift */,
 				492157712597562000D9C63E /* DateFormatter.swift */,
 				4927CA32259C480600BBF945 /* EditMode.swift */,
+				4927CA4F259C7DA600BBF945 /* UIApplication.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -669,6 +672,7 @@
 				49D8394C258DB9A600BA9AA6 /* FontManager.swift in Sources */,
 				49A2B0BA2593115E00E169FC /* EventManager.swift in Sources */,
 				49D8393A258DA19D00BA9AA6 /* ColorManager.swift in Sources */,
+				4927CA50259C7DA600BBF945 /* UIApplication.swift in Sources */,
 				49A2B0922592EAB500E169FC /* EventColor.swift in Sources */,
 				491316EE258A419600CF2B6C /* NavigationBar.swift in Sources */,
 				49FD8BA1258DA07D005219C5 /* CalendarCell.swift in Sources */,
