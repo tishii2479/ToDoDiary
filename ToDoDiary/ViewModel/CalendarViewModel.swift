@@ -15,31 +15,37 @@ class CalendarViewModel: ObservableObject {
     
     // TODO: 初期値
     @Published var nowYear: Int = 2020
+    @Published var nowMonth: Int = 12
     @Published var dayOffset: Int = 0
-    @Published var startOfYear: Date = Date()
+    @Published var startOfMonth: Date = Date()
     
-    var today: Int = 0
+    
     
     init() {
         update()
-        today = getElapsedDays(from: startOfYear, to: Date())
     }
     
     func nextYear() {
-        nowYear += 1
+        nowMonth += 1
+        if nowMonth > 12 {
+            nowYear += 1
+            nowMonth = 1
+        }
         update()
-        today = 0
     }
     
     func lastYear() {
-        nowYear -= 1
+        nowMonth -= 1
+        if nowMonth < 1 {
+            nowYear -= 1
+            nowMonth = 12
+        }
         update()
-        today = 365
     }
     
     func update() {
-        startOfYear = getStartOfYear(year: nowYear)
-        dayOffset = getDayOffset(date: Calendar(identifier: .gregorian).startOfDay(for: startOfYear))
+        startOfMonth = getStartOfMonth(year: nowYear, month: nowMonth)
+        dayOffset = getDayOffset(date: Calendar(identifier: .gregorian).startOfDay(for: startOfMonth))
     }
     
     // カレンダーの日付選択時に呼ばれる
@@ -60,7 +66,7 @@ class CalendarViewModel: ObservableObject {
     
     // TODO: スクロールカウントを含めた処理
     func getDateFromIndex(index: Int) -> Date {
-        guard let date = Calendar(identifier: .gregorian).date(byAdding: .day, value: index - dayOffset, to: startOfYear) else {
+        guard let date = Calendar(identifier: .gregorian).date(byAdding: .day, value: index - dayOffset, to: startOfMonth) else {
             print("[Error] GetDateFromIndex Failed")
             return Date()
         }
@@ -82,8 +88,8 @@ class CalendarViewModel: ObservableObject {
     }
     
     // 一年の最初の日を取得する
-    func getStartOfYear(year: Int) -> Date {
-        let comp = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: 1, day: 1)
+    func getStartOfMonth(year: Int, month: Int) -> Date {
+        let comp = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: 1)
         if let date = comp.date {
             return date
         }

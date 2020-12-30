@@ -17,7 +17,7 @@ struct NavigationBar: View {
         
             // タイトル
             HStack {
-                Text("2021/1")
+                Text(viewSwitcher.navigationTitle ?? "")
                     .font(Font.custom(FontManager.number, size: 24))
                     .bold()
                     .foregroundColor(ColorManager.character)

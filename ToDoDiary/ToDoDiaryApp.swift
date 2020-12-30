@@ -11,8 +11,7 @@ import SwiftUI
 struct ToDoDiaryApp: App {
     var body: some Scene {
         // viewswitcherの設定
-        ViewSwitcher.shared = ViewSwitcher()
-        return WindowGroup {
+        WindowGroup {
             MainView()
                 .environmentObject(ViewSwitcher.shared)
 //                .onTapGesture(count: 2, perform: {  // ダブルタップでカラーテーマを変える（テスト用）

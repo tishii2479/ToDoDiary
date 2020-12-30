@@ -19,7 +19,10 @@ class ViewSwitcher: ObservableObject {
     // 選択された日付の保持
     @Published var selectedDate: Date? = nil
     
-    static var shared: ViewSwitcher!
+    // ナビゲーションバーのタイトル
+    @Published var navigationTitle: String? = nil
+    
+    static var shared: ViewSwitcher = ViewSwitcher()
 
     func showModal(targetEvent: Event? = nil, selectedDate: Date? = nil) {
         self.targetEvent = targetEvent
