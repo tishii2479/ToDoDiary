@@ -35,6 +35,19 @@ struct NavigationBar: View {
     func trailingItems(viewType: ViewType) -> some View {
         return Group {
             switch viewType {
+            case .calendar:
+                HStack {
+                    Button(action: {
+                        CalendarViewModel.shared.lastYear()
+                    }) {
+                        Text("last")
+                    }
+                    Button(action: {
+                        CalendarViewModel.shared.nextYear()
+                    }) {
+                        Text("next")
+                    }
+                }
             case .toDoList:
                 EditButton()
             default:

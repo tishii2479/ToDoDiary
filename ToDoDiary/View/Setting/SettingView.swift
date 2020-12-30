@@ -70,6 +70,8 @@ struct SettingView: View {
             SettingLink(title: "設定")
         }
         .onAppear {
+            viewSwitcher.setNavigationTitle(title: "設定 ")
+            
             // リストの色の設定
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = UIColor(ColorManager.main)

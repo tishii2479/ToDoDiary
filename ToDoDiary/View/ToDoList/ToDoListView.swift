@@ -82,6 +82,8 @@ struct ToDoListView: View {
             }
         }
         .onAppear {
+            viewSwitcher.setNavigationTitle(title: "ToDo")
+            
             // リストの色の設定
             UITableView.appearance().separatorStyle = .none
             UITableView.appearance().backgroundColor = UIColor(ColorManager.back)

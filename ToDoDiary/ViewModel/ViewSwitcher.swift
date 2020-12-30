@@ -29,4 +29,8 @@ class ViewSwitcher: ObservableObject {
         self.selectedDate = selectedDate
         self.isShowingModal = true
     }
+    
+    func setNavigationTitle(title: String) {
+        navigationTitle = title
+    }
 }

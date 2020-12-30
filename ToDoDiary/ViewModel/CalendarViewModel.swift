@@ -18,8 +18,8 @@ class CalendarViewModel: ObservableObject {
     @Published var nowMonth: Int = 12
     @Published var dayOffset: Int = 0
     @Published var startOfMonth: Date = Date()
-    
-    
+
+    static let shared = CalendarViewModel()
     
     init() {
         update()
@@ -46,6 +46,7 @@ class CalendarViewModel: ObservableObject {
     func update() {
         startOfMonth = getStartOfMonth(year: nowYear, month: nowMonth)
         dayOffset = getDayOffset(date: Calendar(identifier: .gregorian).startOfDay(for: startOfMonth))
+        ViewSwitcher.shared.setNavigationTitle(title: String(nowYear) + "/" + String(nowMonth))
     }
     
     // カレンダーの日付選択時に呼ばれる

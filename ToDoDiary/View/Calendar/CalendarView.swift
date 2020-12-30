@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CalendarView: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
-    @ObservedObject var calendar: CalendarViewModel = CalendarViewModel()
+    @ObservedObject var calendar: CalendarViewModel = CalendarViewModel.shared
     
     @State private var scrollOffset: CGFloat = 0
     
@@ -37,20 +37,6 @@ struct CalendarView: View {
                                 }
                             }
                             .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
-                        }
-                    }
-                    
-                    HStack {
-                        Button(action: {
-                            calendar.nextYear()
-                        }) {
-                            Text("next")
-                        }
-                        
-                        Button(action: {
-                            calendar.lastYear()
-                        }) {
-                            Text("last")
                         }
                     }
                     
