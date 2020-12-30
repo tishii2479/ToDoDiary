@@ -13,19 +13,33 @@ class CalendarViewModel: ObservableObject {
     @Published var selectedEventArray: [Event] = []
     @Published var nowIndex = 0
     
-    // TODO: 初期値
     @Published var nowYear: Int = 2020
     @Published var nowMonth: Int = 12
     @Published var dayOffset: Int = 0
+    @Published var lastDayOfMonth: Int = 30
     @Published var startOfMonth: Date = Date()
+    
+    var rowCount: Int {
+        let total = dayOffset + lastDayOfMonth
+        if total % 7 == 0 {
+            return (dayOffset + lastDayOfMonth) / 7
+        } else {
+            return (dayOffset + lastDayOfMonth) / 7 + 1
+        }
+    }
 
     static let shared = CalendarViewModel()
     
     init() {
         let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: Date())
         
-        nowYear = comp.year!
-        nowMonth = comp.month!
+        guard let year = comp.year, let month = comp.month else {
+            print("[error] failed to earn year and month")
+            return
+        }
+        
+        nowYear = year
+        nowMonth = month
     }
     
     func nextMonth() {
@@ -47,9 +61,10 @@ class CalendarViewModel: ObservableObject {
     }
     
     func update() {
-        startOfMonth = getStartOfMonth(year: nowYear, month: nowMonth)
-        dayOffset = getDayOffset(date: Calendar(identifier: .gregorian).startOfDay(for: startOfMonth))
+        startOfMonth = CalendarManager.shared.getStartOfMonth(year: nowYear, month: nowMonth)
+        dayOffset = CalendarManager.shared.getDayOffset(date: Calendar(identifier: .gregorian).startOfDay(for: startOfMonth))
         ViewSwitcher.shared.setNavigationTitle(title: String(nowYear) + "/" + String(nowMonth))
+        lastDayOfMonth = CalendarManager.shared.getLastDayOfMonth(year: nowYear, month: nowMonth)
     }
     
     // カレンダーの日付選択時に呼ばれる
@@ -77,37 +92,20 @@ class CalendarViewModel: ObservableObject {
         
         return date
     }
-    
-    // 曜日計算用のoffSetを計算する
-    // 曜日(1...7) - 1を返す
-    func getDayOffset(date: Date) -> Int {
-        let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: date)
-        
-        guard let offset = comp.weekday else {
-            print("[Error] GetDayOffset Failed")
-            return 0
+
+    // ISSUE: 重いかも
+    // 対象の日付が表示すべきかを返す
+    func isTargetDate(date: Date, year: Int, month: Int) -> Bool {
+        let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: date)
+        guard let _year = comp.year, let _month = comp.month else {
+            print("[error] earn components failed")
+            return false
         }
         
-        return offset - 1
-    }
-    
-    // 一年の最初の日を取得する
-    func getStartOfMonth(year: Int, month: Int) -> Date {
-        let comp = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: 1)
-        if let date = comp.date {
-            return date
+        if year == _year && month == _month {
+            return true
+        } else {
+            return false
         }
-        print("[error] failed to get start of year")
-        return Date()
-    }
-    
-    // 一年の何日目かを取得する
-    func getElapsedDays(from: Date, to: Date) -> Int {
-        if let elapsedDays: Int = Calendar(identifier: .gregorian).dateComponents([.day], from: from, to: to).day {
-            return elapsedDays
-        }
-        
-        print("[error] failed to get elapsed days")
-        return 0
     }
 }

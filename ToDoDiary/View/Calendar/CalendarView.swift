@@ -29,11 +29,11 @@ struct CalendarView: View {
                     ScrollView {
                         ZStack {
                             LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
-                                ForEach((0 ..< 42), id: \.self) { index in
+                                ForEach((0 ..< calendar.rowCount * 7), id: \.self) { index in
                                     Button(action: {
                                         calendar.selectIndex(index: index)
                                     }) {
-                                        CalendarCell(date: calendar.getDateFromIndex(index: index)).id(index)
+                                        CalendarCell(date: calendar.getDateFromIndex(index: index), calendar: calendar).id(index)
                                     }
                                 }
                             }

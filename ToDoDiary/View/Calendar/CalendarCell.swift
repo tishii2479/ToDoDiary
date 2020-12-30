@@ -30,10 +30,12 @@ fileprivate struct CalendarEventLabel: View {
 }
 
 struct CalendarCell: View {
+    @ObservedObject var calendar: CalendarViewModel
     var date: Date = Date()
     var events: [Event] = []
     
-    init (date: Date) {
+    init (date: Date, calendar: CalendarViewModel) {
+        self.calendar = calendar
         self.date = date
         let dateStr: String = CalendarManager.shared.formatFullDate(date: self.date)
         
@@ -72,10 +74,14 @@ struct CalendarCell: View {
         .frame(width: UIScreen.main.bounds.width / 7, height: 100)
         .background(
             Group {
-                if (CalendarManager.shared.isOddMonth(date: self.date)) {
-                    ColorManager.calendar1
+                if CalendarManager.shared.isTargetDate(date: self.date, year: calendar.nowYear, month: calendar.nowMonth) {
+                    if CalendarManager.shared.isOddMonth(date: self.date) {
+                        ColorManager.calendar1
+                    } else {
+                        ColorManager.calendar2
+                    }
                 } else {
-                    ColorManager.calendar2
+                    ColorManager.unableBack
                 }
             }
         )
@@ -85,6 +91,6 @@ struct CalendarCell: View {
 
 struct CalendarCell_Previews: PreviewProvider {
     static var previews: some View {
-        CalendarCell(date: Date())
+        CalendarCell(date: Date(), calendar: CalendarViewModel())
     }
 }

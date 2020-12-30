@@ -13,6 +13,7 @@ class ColorManager {
     
     // 背景色
     static let back = Color("Back")
+    static let unableBack = Color("UnableBack")
     
     // 影
     static let shadow = Color("Shadow")

@@ -38,11 +38,32 @@ fileprivate struct TimeSelecter: View {
 fileprivate struct DateSelecter: View {
     @EnvironmentObject var createEvent: EventViewModel
     
-    // TODO: 初期値
     @State var year: Int = 2020
     @State var month: Int = 12
     @State var offset: Int = 0
+    @State var lastDayOfMonth: Int = 30
     @State var selectedIndexes: [Bool] = [Bool](repeating: false, count: 50)
+    
+    var rowCount: Int {
+        let total = offset + lastDayOfMonth
+        if total % 7 == 0 {
+            return (offset + lastDayOfMonth) / 7
+        } else {
+            return (offset + lastDayOfMonth) / 7 + 1
+        }
+    }
+    
+    init() {
+        let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: Date())
+        
+        guard let _year = comp.year, let _month = comp.month else {
+            print("[error] failed to earn year and month")
+            return
+        }
+        
+        year = _year
+        month = _month
+    }
     
     var body: some View {
         ZStack {
@@ -59,7 +80,7 @@ fileprivate struct DateSelecter: View {
             
                 VStack {
                     // タイトル
-                    Text(calendarTitle())
+                    Text(CalendarManager.shared.formatCalendarTitle(year: year, month: month))
                         .foregroundColor(ColorManager.character)
                         .font(Font.custom(FontManager.japanese, size: 20))
                         .bold()
@@ -69,39 +90,40 @@ fileprivate struct DateSelecter: View {
                     
                     // カレンダー
                     // TODO: 範囲を変更
-                    ForEach(0..<6) { y in
+                    ForEach(0 ..< rowCount, id: \.self) { y in
                         HStack {
-                            ForEach(0..<7) { x in
-                                // 表示されている年月の範囲内であれば表示する
-                                if isTargetDate(date: getDateForDateSelecter(index: index(x, y))) {
-                                    // ボタン
-                                    Button(action: {
-                                        selectDate(index: index(x, y))
-                                        selectedIndexes[index(x, y)].toggle()
-                                    }) {
-                                        ZStack {
-                                            // 枠線
-                                            Circle()
-                                                .fill(ColorManager.border)
-                                                .frame(minWidth: 32, minHeight: 32)
-                                            
-                                            // 背景
+                            ForEach(0 ..< 7, id: \.self) { x in
+                                // ボタン
+                                Button(action: {
+                                    selectDate(index: index(x, y))
+                                    selectedIndexes[index(x, y)].toggle()
+                                }) {
+                                    ZStack {
+                                        // 枠線
+                                        Circle()
+                                            .fill(ColorManager.border)
+                                            .frame(minWidth: 32, minHeight: 32)
+                                        
+                                        // 背景
+                                        if CalendarManager.shared.isTargetDate(date: getDateForDateSelecter(index: index(x, y)), year: year, month: month) {
                                             Circle()
                                                 // 選択されて入れば色を変える
                                                 .fill(selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.main)
                                                 .frame(minWidth: 30, minHeight: 30)
                                                 .padding(1)
-                                            
-                                            // 文字
-                                            Text(DateFormatter.format(date: getDateForDateSelecter(index: index(x, y)), format: "d"))
-                                                .foregroundColor(selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
-                                                .font(Font.custom(FontManager.japanese, size: 12))
+                                        } else {
+                                            Circle()
+                                                // 選択されて入れば色を変える
+                                                .fill(selectedIndexes[index(x, y)] ? ColorManager.character : ColorManager.unableBack)
+                                                .frame(minWidth: 30, minHeight: 30)
+                                                .padding(1)
                                         }
+                                        
+                                        // 文字
+                                        Text(DateFormatter.format(date: getDateForDateSelecter(index: index(x, y)), format: "d"))
+                                            .foregroundColor(selectedIndexes[index(x, y)] ? ColorManager.main : ColorManager.character)
+                                            .font(Font.custom(FontManager.japanese, size: 12))
                                     }
-                                } else {
-                                    Circle()
-                                        .fill(Color.clear)
-                                        .frame(minWidth: 32, minHeight: 32)
                                 }
                             }
                         }
@@ -116,7 +138,6 @@ fileprivate struct DateSelecter: View {
             }
             .padding(.vertical, 10)
             .onAppear {
-                offset = getOffsetForDateSelecter()
                 update()
             }
         }
@@ -125,36 +146,7 @@ fileprivate struct DateSelecter: View {
     private func index(_ x: Int, _ y: Int) -> Int {
         return x + y * 7
     }
-    
-    // year and date
-    private func calendarTitle() -> String {
-        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month)
-        guard let date = components.date else {
-            print("[Error] GetDateFromIndex Failed")
-            return ""
-        }
-        
-        return DateFormatter.format(date: date, format: "y/M")
-    }
-    
-    // 日にち選択用に月の最初の曜日を取得する
-    private func getOffsetForDateSelecter() -> Int {
-        let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: 0)
-        guard let date = components.date else {
-            print("[Error] GetDayOffset Failed")
-            return 0
-        }
-        
-        let comp = Calendar(identifier: .gregorian).dateComponents([.weekday], from: date)
-        
-        guard let offset: Int = comp.weekday else {
-            print("[Error] GetDayOffset Failed")
-            return 0
-        }
-        
-        return (offset % 7) - 1
-    }
-    
+     
     // 日にち選択用の日付取得
     private func getDateForDateSelecter(index: Int) -> Date {
         let components = DateComponents(calendar: Calendar(identifier: .gregorian), year: year, month: month, day: index - offset)
@@ -169,7 +161,6 @@ fileprivate struct DateSelecter: View {
     // 日付からindexを取得する
     private func getIndexForDateSelecter(date: Date) -> Int {
         let comp = Calendar(identifier: .gregorian).dateComponents([.day], from: date)
-        
         guard let day = comp.day else {
             print("[error] component earn failed")
             return 0
@@ -196,8 +187,9 @@ fileprivate struct DateSelecter: View {
     
     // 選択している年、月が変わった時に呼ばれる
     private func update() {
-        offset = getOffsetForDateSelecter()
+        offset = CalendarManager.shared.getDayOffset(date: CalendarManager.shared.getStartOfMonth(year: year, month: month))
         selectedIndexes = [Bool](repeating: false, count: 50)
+        lastDayOfMonth = CalendarManager.shared.getLastDayOfMonth(year: year, month: month)
         
         // 選択されている日は選択済みにする
         // ISSUE: selectedDatesが増えてくると重いかも
@@ -237,22 +229,6 @@ fileprivate struct DateSelecter: View {
         }
         
         update()
-    }
-    
-    // ISSUE: 重いかも
-    // 対象の日付が表示すべきかを返す
-    private func isTargetDate(date: Date) -> Bool {
-        let comp = Calendar(identifier: .gregorian).dateComponents([.year, .month], from: date)
-        guard let _year = comp.year, let _month = comp.month else {
-            print("[error] earn components failed")
-            return false
-        }
-        
-        if year == _year && month == _month {
-            return true
-        } else {
-            return false
-        }
     }
     
 }
