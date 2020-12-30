@@ -25,6 +25,7 @@ struct ToDoTextField: View {
                 .foregroundColor(ColorManager.character)
                 .frame(height: 50)
                 .padding(.leading, 20)
+                .padding(.trailing, 80)
             
             // ボタン類
             HStack {
@@ -32,14 +33,20 @@ struct ToDoTextField: View {
                 Button(action: {
                     toDoList.createEvent()
                 }) {
-                    Text("追加")
+                    Image(systemName: "plus")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(ColorManager.image)
                 }
                 
                 // TODO: 位置検討
                 Button(action: {
                     viewSwitcher.showModal()
                 }) {
-                    Text("詳細")
+                    Image(systemName: "calendar.badge.plus")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(ColorManager.image)
                 }
             }
             .padding(.horizontal, 25)

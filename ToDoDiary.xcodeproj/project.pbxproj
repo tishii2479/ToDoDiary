@@ -23,6 +23,7 @@
 		4921576D2597425100D9C63E /* DayBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4921576C2597425100D9C63E /* DayBar.swift */; };
 		492157722597562000D9C63E /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492157712597562000D9C63E /* DateFormatter.swift */; };
 		492157832597661A00D9C63E /* ListDeleteField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492157822597661A00D9C63E /* ListDeleteField.swift */; };
+		4927CA33259C480600BBF945 /* EditMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4927CA32259C480600BBF945 /* EditMode.swift */; };
 		4938DDD8259352FE00F4F1AB /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDD7259352FE00F4F1AB /* EventViewModel.swift */; };
 		4938DDDF25936CEB00F4F1AB /* ToDoTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */; };
 		4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4938DDE725936D5000F4F1AB /* ListTextField.swift */; };
@@ -100,6 +101,7 @@
 		4921576C2597425100D9C63E /* DayBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBar.swift; sourceTree = "<group>"; };
 		492157712597562000D9C63E /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		492157822597661A00D9C63E /* ListDeleteField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDeleteField.swift; sourceTree = "<group>"; };
+		4927CA32259C480600BBF945 /* EditMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMode.swift; sourceTree = "<group>"; };
 		4938DDD7259352FE00F4F1AB /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		4938DDDE25936CEB00F4F1AB /* ToDoTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTextField.swift; sourceTree = "<group>"; };
 		4938DDE725936D5000F4F1AB /* ListTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTextField.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				49A2B09B2592F88C00E169FC /* KeyboardResponder.swift */,
 				492157642597379700D9C63E /* Array.swift */,
 				492157712597562000D9C63E /* DateFormatter.swift */,
+				4927CA32259C480600BBF945 /* EditMode.swift */,
 				49106A9C259A1B3F00A65A4D /* TrackableScrollView.swift */,
 			);
 			path = Util;
@@ -639,6 +642,7 @@
 				492157652597379700D9C63E /* Array.swift in Sources */,
 				492157722597562000D9C63E /* DateFormatter.swift in Sources */,
 				4921576D2597425100D9C63E /* DayBar.swift in Sources */,
+				4927CA33259C480600BBF945 /* EditMode.swift in Sources */,
 				49106A9D259A1B3F00A65A4D /* TrackableScrollView.swift in Sources */,
 				491316E6258A3E2900CF2B6C /* TabBar.swift in Sources */,
 				4938DDE825936D5000F4F1AB /* ListTextField.swift in Sources */,

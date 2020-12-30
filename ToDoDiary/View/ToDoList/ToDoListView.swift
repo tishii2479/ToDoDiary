@@ -68,6 +68,7 @@ struct ToDoListView: View {
                 }
                 .padding(.horizontal, 10)
                 .frame(minWidth: 0, maxWidth: .infinity)
+                .animation(.default)
             }
             
             VStack {

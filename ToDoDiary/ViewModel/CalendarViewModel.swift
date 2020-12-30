@@ -25,7 +25,7 @@ class CalendarViewModel: ObservableObject {
         update()
     }
     
-    func nextYear() {
+    func nextMonth() {
         nowMonth += 1
         if nowMonth > 12 {
             nowYear += 1
@@ -34,7 +34,7 @@ class CalendarViewModel: ObservableObject {
         update()
     }
     
-    func lastYear() {
+    func lastMonth() {
         nowMonth -= 1
         if nowMonth < 1 {
             nowYear -= 1

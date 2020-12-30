@@ -47,12 +47,22 @@ struct CalendarDateDetail: View {
                         .font(Font.custom(FontManager.number, size: 14))
                     Spacer()
                     
-                    Button("作成") {
+                    Button(action: {
                         viewSwitcher.showModal(selectedDate: calendar.getDateFromIndex(index: calendar.selectedIndex))
+                    }) {
+                        Image(systemName: "plus")
+                            .resizable()
+                            .frame(width: 10, height: 10)
+                            .foregroundColor(ColorManager.image)
                     }
                     
-                    Button("閉じる") {
+                    Button(action: {
                         calendar.isShowingDetail = false
+                    }) {
+                        Image(systemName: "multiply")
+                            .resizable()
+                            .frame(width: 10, height: 10)
+                            .foregroundColor(ColorManager.image)
                     }
                 }
                 .padding(.horizontal, 10)

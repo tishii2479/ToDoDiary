@@ -11,11 +11,20 @@ fileprivate struct TabBarItem: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
     var type: ViewType
     
+    let imageName: Dictionary<ViewType, String> = [
+        .calendar: "calendar",
+        .toDoList: "list.bullet.indent",
+        .setting: "wrench"
+    ]
+    
     var body: some View {
         Button(action: {
             viewSwitcher.currentView = type
         }) {
-            Text("0")
+            Image(systemName: imageName[type] ?? "gear")
+                .resizable()
+                .frame(width: 20, height: 20)
+                .foregroundColor(ColorManager.image)
         }
     }
 }

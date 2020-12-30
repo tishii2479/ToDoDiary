@@ -9,6 +9,8 @@ import SwiftUI
 
 struct NavigationBar: View {
     @EnvironmentObject var viewSwitcher: ViewSwitcher
+    @Environment(\.editMode) var editMode
+    
     var body: some View {
         ZStack {
             // 背景色
@@ -25,7 +27,7 @@ struct NavigationBar: View {
                 
                 trailingItems(viewType: viewSwitcher.currentView)
             }
-            .padding(.horizontal, 10)
+            .padding(.horizontal, 20)
         }
         .frame(height: 60)
         .shadow(color: ColorManager.shadow, radius: 5, x: 0, y: 5)
@@ -38,18 +40,40 @@ struct NavigationBar: View {
             case .calendar:
                 HStack {
                     Button(action: {
-                        CalendarViewModel.shared.lastYear()
+                        CalendarViewModel.shared.lastMonth()
                     }) {
-                        Text("last")
+                        Image(systemName: "chevron.left")
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(ColorManager.image)
                     }
+                    .padding(.trailing, 20)
+                    
                     Button(action: {
-                        CalendarViewModel.shared.nextYear()
+                        CalendarViewModel.shared.nextMonth()
                     }) {
-                        Text("next")
+                        Image(systemName: "chevron.right")
+                            .resizable()
+                            .frame(width: 12, height: 12)
+                            .foregroundColor(ColorManager.image)
                     }
                 }
             case .toDoList:
-                EditButton()
+                Button(action: {
+                    self.editMode?.wrappedValue.toggle()
+                }) {
+                    if self.editMode?.wrappedValue == .active {
+                        Image(systemName: "multiply")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(ColorManager.image)
+                    } else {
+                        Image(systemName: "arrow.up.arrow.down")
+                            .resizable()
+                            .frame(width: 15, height: 15)
+                            .foregroundColor(ColorManager.image)
+                    }
+                }
             default:
                 EmptyView()
             }

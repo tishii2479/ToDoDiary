@@ -17,6 +17,9 @@ class ColorManager {
     // 影
     static let shadow = Color("Shadow")
     
+    // 画像
+    static let image = Color("Image")
+    
     // 文字
     static let character = Color("Character")
     static let redCharacter = Color("RedCharacter")

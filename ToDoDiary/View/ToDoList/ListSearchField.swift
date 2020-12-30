@@ -29,7 +29,10 @@ struct ListSearchField: View {
                 Button(action: {
                     toDoList.resetSearchInput()
                 }) {
-                    Text("削除")
+                    Image(systemName: "multiply")
+                        .resizable()
+                        .frame(width: 12, height: 12)
+                        .foregroundColor(ColorManager.image)
                 }
             }
             .padding(.horizontal, 20)
