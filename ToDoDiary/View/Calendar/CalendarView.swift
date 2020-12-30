@@ -25,18 +25,22 @@ struct CalendarView: View {
                     
                     // カレンダーコンテンツ
                     ScrollView(showsIndicators: false) {
-                        LazyVGrid(columns: Array(repeating: GridItem(.adaptive(minimum: 50, maximum: 300)), count: 7), spacing: 0) {
-                            ForEach((0 ..< calendar.rowCount * 7), id: \.self) { index in
-                                CalendarCell(date: calendar.getDateFromIndex(index: index), calendar: calendar).id(index)
-                                    .onTapGesture(count: 1, perform: {
-                                        calendar.selectIndex(index: index)
-                                    })
+                        VStack(spacing: 0) {
+                            ForEach(0 ..< calendar.rowCount) { y in
+                                HStack(spacing: 0) {
+                                    ForEach(0 ..< 7) { x in
+                                        CalendarCell(date: calendar.getDateFromIndex(index: index(x, y)), calendar: calendar).id(index(x, y))
+                                            .onTapGesture(count: 1, perform: {
+                                                calendar.selectIndex(index: index(x, y))
+                                            })
+                                    }
+                                }
                             }
+                            
+                            Color.clear
+                                .frame(height: 200) // TODO: 高さを計算する
                         }
-                        .padding(.horizontal, 4)       // 表示がはみ出すのを防ぐ
-                        
-                        Color.clear
-                            .frame(height: 200)         // TODO: 高さを計算する
+                        .padding(.horizontal, 4)
                     }
                     
                     // 日時イベント詳細ウィンドウ
@@ -67,6 +71,10 @@ struct CalendarView: View {
                     .colorScheme(userSetting.colorTheme) // FIXME: これだけカラーが反映されない
             }
         }
+    }
+    
+    private func index(_ x: Int, _ y: Int) -> Int {
+        return x + y * 7
     }
 }
 
